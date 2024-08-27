@@ -141,3 +141,80 @@
     justify-content: center;
     display: flex;
 }
+
+
+/* SEÇÃO 3 */
+
+.secao3 {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 100vw;
+    height: 90vh;
+    background-color: #01182B;
+}
+.elementos {
+    padding: 0 10vw;
+}
+.titulo1 {
+padding-top: 10vh;
+padding-left: 5%;
+width: 20%;
+font-size: 0.6rem;
+}
+.titulo1 h2 {
+    width: 55%;
+    border-bottom: 1px solid var(--cor-azul-claro);
+}
+
+.titulo2 {
+    width: 80vw;
+    text-align: center;
+    display: flex;
+    padding-top: 2vh;
+    font-size: 1.5rem;
+    font-weight: 900;
+    justify-content: center;
+}
+
+.blocos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 5%;
+    width: 80vw;
+    height: 100%;
+    gap: 8%;
+}
+
+
+.bloco1, .bloco2, .bloco3 {
+    display: flex;
+    flex-direction: column;
+    gap: 7%;
+    padding-top: 4%;
+    text-align: center;
+    align-items: center;
+    width: 25%;
+    height: 44%;
+    border-radius: 7px;
+    background-color: #000000;
+}
+.bloco1 img, .bloco2 img, .bloco3 img {
+    width: 15%;
+    padding-bottom: 4%;
+}
+.bloco1 .vetor, .bloco2 .vetor, .bloco3 .vetor {
+    margin-top: 2.3vh;
+    width: 95%;
+}
+.bloco1 h1, .bloco2 h1, .bloco3 h1 {
+    font-size: 1.3rem;
+    
+}
+
+.bloco1 p, .bloco2 p, .bloco3 p {
+    padding: 0 3%;
+    font-size: 1rem;
+    color: #f0f0f0;
+}
