@@ -139,7 +139,6 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    border: 3px solid red;
 }
 
 /* LADO ESQUERDO */
@@ -202,6 +201,7 @@
 .secao2 .lado-direito .texto h1 {
     font-family: "Montserrat";
     margin-top: 2%;
+    font-weight: 800;
 }
 
 .secao2 .lado-direito .texto p {
@@ -259,3 +259,121 @@
     color: white;
     background-color: var(--cor-azul-claro);
 }
+
+
+
+
+
+
+
+/* SEÇÃO 4 */
+.secao4 {
+    width: 100vw;
+    height: 80vh;
+    background-image: url("../assets/antena-secsvg");
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+
+/* LADO ESQUERDO */
+.secao4 .lado-esquerdo {
+    width: 35%;
+    height: 80%;
+}
+
+.secao4 .lado-esquerdo .titulo {
+    font-family: "Inter";
+    font-weight: 900;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+    text-decoration-color: var(--cor-azul-claro);
+    text-decoration-thickness: 0.05rem;
+}
+
+.secao4 .lado-esquerdo .titulo .texto-azul {
+    color: var(--cor-azul-claro);
+}
+
+.secao4 .lado-esquerdo .texto h1 {
+    font-family: "Montserrat";
+    margin-top: 2%;
+    font-weight: 800;
+}
+
+.secao4 .lado-esquerdo .texto p {
+    font-family: "Inter";
+    line-height: 1.7;
+    font-size: 0.9rem;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.secao4 .lado-esquerdo .ganhos {
+    font-family: "Prompt";
+    display: flex;
+}
+
+.secao4 .lado-esquerdo .ganhos div {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+} 
+
+.secao4 .lado-esquerdo .ganhos div:first-of-type img {
+    width: 25%;
+} 
+
+.secao4 .lado-esquerdo .ganhos div:last-of-type img {
+    width: 23%;
+} 
+
+.secao4 .lado-esquerdo .ganhos div span {
+    font-weight: 500;
+    width: 60%;
+}
+
+
+
+.secao4 .meio {
+    width: 2.5%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: start;
+    gap: 4%;
+    margin-right: 0.5%;
+}
+
+.secao4 .meio div:first-of-type {
+    background-color: var(--cor-azul-escuro);
+    width: 45%;
+    height: 10%;
+} 
+
+.secao4 .meio div:last-of-type {
+    background-color: var(--cor-azul-claro);
+    width: 45%;
+    height: 40%;
+} 
+
+
+
+/* LADO DIREITO */
+.secao4 .lado-direito {
+    width: 30%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.secao4 .lado-direito img {
+    width: 100%;
+    height: auto;
+}
+
