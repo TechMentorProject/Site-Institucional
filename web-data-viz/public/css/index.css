@@ -388,19 +388,19 @@ font-family: 'Inter', sans-serif;
     color: var(--cor-azul-claro);
 }
 
-.secao4 .lado-esquerdo .texto h1 {
-    font-family: "Montserrat";
-    margin-top: 2%;
-    font-weight: 800;
-}
+    .secao4 .lado-esquerdo .texto h1 {
+        font-family: "Montserrat";
+        margin-top: 2%;
+        font-weight: 800;
+    }
 
-.secao4 .lado-esquerdo .texto p {
-    font-family: "Inter";
-    line-height: 1.7;
-    font-size: 0.9rem;
-    margin-top: 2%;
-    margin-bottom: 5%;
-}
+    .secao4 .lado-esquerdo .texto p {
+        font-family: "Inter";
+        line-height: 1.7;
+        font-size: 0.9rem;
+        margin-top: 2%;
+        margin-bottom: 5%;
+    }
 
 .secao4 .lado-esquerdo .ganhos {
     font-family: "Prompt";
@@ -467,3 +467,112 @@ font-family: 'Inter', sans-serif;
     height: auto;
 }
 
+
+
+
+
+
+
+
+
+
+
+/* SEÇÃO 5 */
+.secao5 {
+    width: 100vw;
+    height: 80vh;
+    background-image: url("../assets/background-section5.svg");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+}
+
+/* LADO ESQUERDO */
+.secao5 .lado-esquerdo {
+    width: 30%;
+    color: white;
+    height: 90%;
+    margin-top: 10%;
+}
+
+.secao5 .lado-esquerdo .titulo {
+    font-family: "Inter";
+    font-weight: 900;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+    text-decoration-color: var(--cor-azul-claro);
+    text-decoration-thickness: 0.05rem;
+}
+
+.secao5 .lado-esquerdo .texto h1 {
+    font-family: "Montserrat";
+    margin-top: 2%;
+    font-weight: 800;
+}
+
+.secao5 .lado-esquerdo .texto p {
+    font-family: "Inter";
+    line-height: 1.7;
+    font-size: 0.9rem;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.secao5 .lado-esquerdo .beneficios {
+    gap: 15%;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.secao5 .lado-esquerdo .beneficios div {
+    gap: 4%;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+}
+
+.secao5 .lado-esquerdo .beneficios div span {
+    font-family: "Inter";
+    font-size: 0.9rem;
+}
+
+.secao5 .lado-esquerdo .div-botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+    height: 15%;
+}
+
+.secao5 .lado-esquerdo button {
+    font-family: "Inter";
+    border: none;
+    padding-left: 3.5vw;
+    padding-right: 3.5vw;
+    padding-top: 1.7vh;
+    padding-bottom: 1.7vh;
+    border-radius: 0.5vw;
+    font-weight: 700;
+    word-spacing: 0.3rem;
+    cursor: pointer;
+    color: white;
+    background-color: var(--cor-azul-claro);
+}
+
+
+/* LADO DIREITO */
+.secao5 .lado-direito {
+    font-family: "Montserrat";
+    width: 30%;
+}
+
+.secao5 .lado-direito .parte-esquerda {
+    
+}
