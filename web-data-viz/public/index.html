@@ -25,7 +25,6 @@
 <body>
 
   <div class="navbar">
-    <hr class="linha-estilizada">
     <div class="nav"></div>
     <div class="navbar-Child">
       <img src="assets/logo-techmentor.svg" alt="Logo">
@@ -331,22 +330,4 @@
 
 </html>
 
-<script>
-  const btnMobile = document.getElementById('btn-mobile');
-
-function menuHamburguer(event) {
-  if (event.type === 'touchstart') event.preventDefault();
-  const nav = document.getElementById('nav');
-  nav.classList.toggle('active');
-  const active = nav.classList.contains('active');
-  event.currentTarget.setAttribute('aria-expanded', active);
-  if (active) {
-    event.currentTarget.setAttribute('aria-label', 'Fechar Menu');
-  } else {
-    event.currentTarget.setAttribute('aria-label', 'Abrir Menu');
-  }
-}
-
-btnMobile.addEventListener('click', menuHamburguer);
-btnMobile.addEventListener('touchstart', menuHamburguer);
-</script>
+<script src="js/header.js"></script>

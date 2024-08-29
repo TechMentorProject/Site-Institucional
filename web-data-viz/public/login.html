@@ -15,15 +15,29 @@
   <body>
     <section class="section1">
       <div class="navbar">
+        <div class="nav"></div>
         <div class="navbar-Child">
-          <img src="assets/TEchmentor__4_-removebg-preview 1.png" alt="" />
-          <li>Home</li>
-          <li>Serviços</li>
-          <li>Contato</li>
-          <li>Painel de Análise</li>
-          <li class="botaoConta">
-            <img src="assets/ícone-conta.svg" alt="" />Minha Conta
-          </li>
+          <img src="assets/logo-techmentor.svg" alt="Logo">
+          <nav id="nav">
+            <button class="menu" aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false">
+              <span id="hamburger"></span>
+            </button>
+            <ul class="menu" id="menu" role="menu">
+              <li><a href="/">Home</a></li>
+              <li><a href="/">Serviços</a></li>
+              <li><a href="/">Contato</a></li>
+              <li><a href="/">Painel de Análise</a></li>
+              <li><a href="/">Minha Conta</a></li>
+            </ul>
+          </nav>
+          
+            <li class="nav-padrao">Home</li>
+            <li class="nav-padrao">Serviços</li>
+            <li class="nav-padrao">Contato</li>
+            <li class="nav-padrao">Painel de Análise</li>
+            <li  class="botaoConta nav-padrao"><img src="assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta</li>
+          
+          
         </div>
       </div>
       <div class="box-login">
@@ -45,7 +59,7 @@
               placeholder="Digite sua senha"
               class="input-decoration"
             />
-            Esqueceu sua senha?
+            <p class="esquecer-senha">Esqueceu sua senha?</p>
           </div>
         </div>
 
@@ -59,3 +73,5 @@
     </section>
   </body>
 </html>
+
+<script src="js/header.js"></script>
