@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
 }
+body {
+    overflow-x: hidden; 
+    
+  }
+ 
 
 :root {
     --cor-azul-claro: #43BAFF;
@@ -15,6 +20,9 @@
     width: 100vw;
     height: 8vh;
     
+}
+.menu {
+    display: none;
 }
 
 .navbar-Child {
