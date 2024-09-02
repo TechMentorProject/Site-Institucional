@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
     />
     <link rel="stylesheet" href="css/login.css" />
   </head>
@@ -17,9 +17,16 @@
       <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
-          <img src="assets/logo-techmentor.svg" alt="Logo">
+          <img src="assets/logo-techmentor.svg" alt="Logo" />
           <nav id="nav">
-            <button class="menu" aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false">
+            <button
+              class="menu"
+              aria-label="Abrir Menu"
+              id="btn-mobile"
+              aria-haspopup="true"
+              aria-controls="menu"
+              aria-expanded="false"
+            >
               <span id="hamburger"></span>
             </button>
             <ul class="menu" id="menu" role="menu">
@@ -30,14 +37,16 @@
               <li><a href="/">Minha Conta</a></li>
             </ul>
           </nav>
-          
-            <li class="nav-padrao">Home</li>
-            <li class="nav-padrao">Serviços</li>
-            <li class="nav-padrao">Contato</li>
-            <li class="nav-padrao">Painel de Análise</li>
-            <li  class="botaoConta nav-padrao"><img src="assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta</li>
-          
-          
+
+          <a href="index.html"> <li class="nav-padrao">Home</li></a>
+          <li class="nav-padrao">Serviços</li>
+          <li class="nav-padrao">Contato</li>
+          <li class="nav-padrao">Painel de Análise</li>
+          <a href="login.html">
+            <li class="botaoConta nav-padrao">
+              <img src="assets/ícone-conta.svg" alt="Ícone Conta" />Minha Conta
+            </li></a
+          >
         </div>
       </div>
       <div class="box-login">
@@ -50,6 +59,7 @@
               type="text"
               placeholder="Digite seu usuário"
               class="input-decoration"
+              id="usuarioLog"
             />
           </div>
           <div class="senha-input">
@@ -58,20 +68,26 @@
               type="text"
               placeholder="Digite sua senha"
               class="input-decoration"
+              id="senhaLog"
             />
             <p class="esquecer-senha">Esqueceu sua senha?</p>
           </div>
         </div>
 
-        <div class="box-btn"><button>Login</button></div>
+        <div class="box-btn"><button onclick="entrar()">Login</button></div>
 
         <div class="text-signup">
           Ainda não possui uma conta?
-          <span style="color: #43baff">Cadastre-se</span>
+          <span style="color: #43baff"
+            ><a href="cadastro.html"> Cadastre-se</a></span
+          >
         </div>
       </div>
     </section>
+
+    <div id="divError"><span id="msgError"></span></div>
   </body>
 </html>
 
 <script src="js/header.js"></script>
+<script src="js/cadastro-login.js"></script>

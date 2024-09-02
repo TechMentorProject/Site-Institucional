@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    text-decoration-line: none;
 }
 
 :root {
@@ -17,6 +18,7 @@
     padding-bottom: 5%;
 
 }
+
 .menu {
     display: none;
 }
@@ -100,8 +102,7 @@
     align-items: center;
     justify-content: center;
     font-size: xx-large;
-    font-weight: 600
-    ;
+    font-weight: 600;
 }
 
 .container-input {
@@ -180,122 +181,152 @@ button:hover {
     font-size: 0.85rem;
 }
 
+#divError {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20vw;
+    height: 20vh;
+    border: solid black;
+    background-color: white;
+    color: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
 @media only screen and (max-width: 768px) {
     body {
         overflow: scroll;
-        -ms-overflow-style: none;  /* Remove a barra de rolagem no IE e Edge */
-        scrollbar-width: none;     /* Remove a barra de rolagem no Firefox */
-        }
-        body::-webkit-scrollbar {
-            display: none;
-            }
-            body,
-ul {
-  margin: 0px;
-  padding: 0px;
-}
-
-a {
-  color: black;
-  text-decoration: none;
-  font-family: sans-serif;
-}
-
-a:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-#logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-
-#menu {
-  display: flex;
-  list-style: none;
-  gap: 0.5rem;
-}
-
-#menu a {
-  display: block;
-  padding: 0.5rem;
-}
-
-#btn-mobile {
-  display: none;
-}
-
-@media (max-width: 600px) {
-    .menu {
-        display: block;
+        -ms-overflow-style: none;
+        /* Remove a barra de rolagem no IE e Edge */
+        scrollbar-width: none;
+        /* Remove a barra de rolagem no Firefox */
     }
-  #menu {
-    display: block;
-    position: absolute;
-    width: 100%;
-    top: 70px;
-    right: 0px;
-    background-color: #000000c9;
-    transition: 0.6s;
-    z-index: 1000;
-    height: 0px;
-    visibility: hidden;
-    overflow-y: hidden;
-  }
-  #nav.active #menu {
-    height: calc(45vh - 70px);
-    visibility: visible;
-    overflow-y: auto;
-  }
-  #menu a {
-    padding: 1rem 0;
-    margin: 0 1rem;
-    border-bottom: 2px solid #565656;
-    color: white;
-  }
-  #menu a:hover {
-    color: var(--cor-azul-claro);
-  }
-  #btn-mobile {
-    display: flex;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-    gap: 0.5rem;
-  }
-  #hamburger {
-    border-top: 2px solid white;
-    width: 20px;
-  }
-  #hamburger::after,
-  #hamburger::before {
-    content: '';
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: #fff;
-    margin-top: 5px;
-    transition: 0.3s;
-    position: relative;
-  }
-  #nav.active #hamburger {
-    border-top-color: transparent;
-  }
-  #nav.active #hamburger::before {
-    transform: rotate(135deg);
-  }
-  #nav.active #hamburger::after {
-    transform: rotate(-135deg);
-    top: -7px;
-  }
-}
+
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    body,
+    ul {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    a {
+        color: black;
+        text-decoration: none;
+        font-family: sans-serif;
+    }
+
+    a:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    #logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+
+    #menu {
+        display: flex;
+        list-style: none;
+        gap: 0.5rem;
+    }
+
+    #menu a {
+        display: block;
+        padding: 0.5rem;
+    }
+
+    #btn-mobile {
+        display: none;
+    }
+
+    @media (max-width: 600px) {
+        .menu {
+            display: block;
+        }
+
+        #menu {
+            display: block;
+            position: absolute;
+            width: 100%;
+            top: 70px;
+            right: 0px;
+            background-color: #000000c9;
+            transition: 0.6s;
+            z-index: 1000;
+            height: 0px;
+            visibility: hidden;
+            overflow-y: hidden;
+        }
+
+        #nav.active #menu {
+            height: calc(45vh - 70px);
+            visibility: visible;
+            overflow-y: auto;
+        }
+
+        #menu a {
+            padding: 1rem 0;
+            margin: 0 1rem;
+            border-bottom: 2px solid #565656;
+            color: white;
+        }
+
+        #menu a:hover {
+            color: var(--cor-azul-claro);
+        }
+
+        #btn-mobile {
+            display: flex;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            gap: 0.5rem;
+        }
+
+        #hamburger {
+            border-top: 2px solid white;
+            width: 20px;
+        }
+
+        #hamburger::after,
+        #hamburger::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            margin-top: 5px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        #nav.active #hamburger {
+            border-top-color: transparent;
+        }
+
+        #nav.active #hamburger::before {
+            transform: rotate(135deg);
+        }
+
+        #nav.active #hamburger::after {
+            transform: rotate(-135deg);
+            top: -7px;
+        }
+    }
 
     .navbar .nav-padrao {
         display: none;
     }
+
     .navbar img {
         width: 80%;
     }
@@ -303,37 +334,47 @@ a:hover {
     .navbar img {
         width: 80%;
     }
+
     .box-cadastro {
         width: 95vw;
         height: 90vh;
     }
+
     .text-cadastro {
         font-size: 1.5rem;
         height: 10%;
         padding-top: 2%;
     }
+
     .box-input {
         width: 100%;
     }
+
     .container-input {
         height: 100%;
     }
+
     .cadastro-input {
         width: 80vw;
     }
+
     .senha-input {
         width: 80vw;
     }
+
     .text-signup {
         font-size: 0.65rem;
     }
+
     button {
         width: 70vw;
     }
+
     .container-input {
         flex-direction: column;
-        
+
     }
+
     .box-btn p {
         font-size: 0.9rem;
     }
