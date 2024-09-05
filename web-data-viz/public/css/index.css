@@ -21,9 +21,12 @@ body {
     width: 100vw;
     height: 8vh;
     
+    
 }
-.menu {
+#nav {
     display: none;
+    margin: 0; 
+    padding: 0; 
 }
 
 .navbar-Child {
