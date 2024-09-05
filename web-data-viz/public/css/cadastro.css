@@ -16,7 +16,6 @@
     width: 100vw;
     height: 8vh;
     padding-bottom: 5%;
-
 }
 
 .menu {
@@ -92,6 +91,7 @@
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
+    margin-bottom: 5%;
 }
 
 .text-cadastro {
@@ -146,6 +146,13 @@ input {
     display: flex;
     flex-direction: column;
 }
+.botaoLogin {
+    color: var(--cor-azul-claro);
+    font-weight: 600;
+}
+.botaoLogin:hover {
+    color: rgba(0, 132, 255, 0.847);
+}
 
 .box-btn {
     width: 100%;
@@ -197,13 +204,7 @@ button:hover {
 }
 
 @media only screen and (max-width: 768px) {
-    body {
-        overflow: scroll;
-        -ms-overflow-style: none;
-        /* Remove a barra de rolagem no IE e Edge */
-        scrollbar-width: none;
-        /* Remove a barra de rolagem no Firefox */
-    }
+    
 
     body::-webkit-scrollbar {
         display: none;
@@ -355,11 +356,11 @@ button:hover {
     }
 
     .cadastro-input {
-        width: 80vw;
+        width: 80%;
     }
 
     .senha-input {
-        width: 80vw;
+        width: 80%;
     }
 
     .text-signup {
@@ -367,7 +368,7 @@ button:hover {
     }
 
     button {
-        width: 70vw;
+        width: 70%;
     }
 
     .container-input {
@@ -377,5 +378,9 @@ button:hover {
 
     .box-btn p {
         font-size: 0.9rem;
+    }
+    #divError {
+        width: 50vw;
+        height: 20vh;
     }
 }

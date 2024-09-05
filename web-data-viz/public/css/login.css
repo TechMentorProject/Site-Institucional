@@ -186,6 +186,14 @@ button:hover {
   color: white;
   font-size: 0.85rem;
 }
+.botaoCadastro {
+  color: var(--cor-azul-claro);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.botaoCadatro:hover {
+  color: rgba(0, 132, 255, 0.847);
+}
 
 #divError {
   position: absolute;
@@ -338,11 +346,11 @@ button:hover {
   }
 
   .box-login {
-    width: 95vw;
+    width: 95%;
   }
 
   .login-input {
-    width: 80vw;
+    width: 80%;
     align-items: center;
   }
 
@@ -351,7 +359,7 @@ button:hover {
   }
 
   .senha-input {
-    width: 80vw;
+    width: 80%;
     align-items: center;
   }
 
@@ -360,10 +368,14 @@ button:hover {
   }
 
   .text-signup {
-    font-size: 0.65rem;
+    font-size: 0.85rem;
   }
 
   button {
-    width: 70vw;
+    width: 70%;
   }
+  #divError {
+    width: 50vw;
+    height: 20vh;
+}
 }

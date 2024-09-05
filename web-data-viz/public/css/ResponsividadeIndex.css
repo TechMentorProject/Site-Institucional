@@ -1,6 +1,12 @@
 @media only screen and (max-width: 768px) {
+    * {
+        max-width: 100vw;
+        box-sizing: border-box;
+      }
     body {
         overflow: scroll;
+        
+        overflow-x: hidden;
         -ms-overflow-style: none;  /* Remove a barra de rolagem no IE e Edge */
         scrollbar-width: none;     /* Remove a barra de rolagem no Firefox */
         }
@@ -114,8 +120,10 @@ a:hover {
     .navbar .nav-padrao {
         display: none;
     }
+    
     .navbar img {
         width: 80%;
+        padding-left: 15%;
     }
 
     .secao1 .elementos {
@@ -138,10 +146,11 @@ a:hover {
         flex-direction: column;
         gap: 5%;
         width: 100%;
+        height: 20%;
         
     }
     .secao1 .elementos .botoes .contato {
-        padding-right: 3.5vw;
+        padding-right: 3.5%;
         margin-top: 3%;
     }
 
@@ -166,7 +175,7 @@ a:hover {
         padding: 2% 2%;
     }
     .secao2 .lado-direito .texto p {
-        width: 90%;
+        width: 100%;
         padding: 2% 5.5%
     }
     .secao2 .lado-direito .ganhos {
@@ -232,7 +241,7 @@ a:hover {
         padding-left: 10%;
     }
     .secao4 .lado-esquerdo .texto p {
-        width: 90%;
+        width: 100%;
         padding: 2% 5.5%
     }
     .secao4 .lado-esquerdo .ganhos {
@@ -314,10 +323,11 @@ a:hover {
         display: flex;
         flex-direction: column;
         height: 100vh;
+        width: 100vw;
         min-height: 110vh;
     }
     .secao6 .caixa1, .secao6 .caixa2, .secao6 .caixa3 {
-        width: 65vw;
+        width: 70%;
     }
     .secao6 .seta1 img, .secao6 .seta2 img {
         display: none;
