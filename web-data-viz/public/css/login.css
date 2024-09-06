@@ -3,7 +3,9 @@
   padding: 0;
   text-decoration-line: none;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 :root {
   --cor-azul-claro: #43BAFF;
   --cor-azul-escuro: #080501;
@@ -39,7 +41,6 @@
 }
 
 .navbar img {
-  cursor: pointer;
   width: 20%;
 }
 

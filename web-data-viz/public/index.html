@@ -33,18 +33,18 @@
           <span id="hamburger"></span>
         </button>
         <ul class="menu" id="menu" role="menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/">Serviços</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#servicos">Serviços</a></li>
           <li><a href="/">Contato</a></li>
-          <li><a href="/">Painel de Análise</a></li>
-          <li><a href="/">Minha Conta</a></li>
+          <li><a href="cadastro.html">Painel de Análise</a></li>
+          <li><a href="login.html">Minha Conta</a></li>
         </ul>
       </nav>
       
         <li class="nav-padrao">Home</li>
-        <li class="nav-padrao">Serviços</li>
-        <li class="nav-padrao">Contato</li>
-        <li class="nav-padrao">Painel de Análise</li>
+        <a href="#servicos"><li class="nav-padrao">Serviços</li></a>
+        <a href=""><li class="nav-padrao">Contato</li></a>
+        <a href="cadastro.html"><li class="nav-padrao">Painel de Análise</li></a>
        <a href="login.html"> <li  class="botaoConta nav-padrao"><img src="assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta</li></a>
       
       
@@ -60,8 +60,8 @@
           maximize seu potencial com nossas análises de dados detalhadas.</p>
       </div>
       <div class="botoes">
-        <button class="servicos">VEJA NOSSOS SERVIÇOS</button>
-        <button class="contato">CONTATO<img src="assets/seta-secao1.svg"></button>
+        <a href="#servicos"><button class="servicos">VEJA NOSSOS SERVIÇOS</button></a>
+        <a href="cadastro.html"><button class="contato">CONTATO<img src="assets/seta-secao1.svg"></button></a>
       </div>
     </div>
   </div>
@@ -103,14 +103,14 @@
       </div>
 
       <div class="div-botao">
-        <button>CONTRATE JÁ</button>
+        <a href="cadastro.html"><button>CONTRATE JÁ</button></a>
       </div>
 
     </div>
 
   </div>
 
-  <section class="secao3">
+  <section id="servicos" class="secao3">
     <div class="elementos">
       <div class="titulo1">
         <h2>NOSSOS SERVIÇOS</h2>
@@ -191,7 +191,7 @@
           </div>
         </div>
         <div class="div-botao">
-          <button>COMECE AGORA!</button>
+          <a href="cadastro.html"><button>COMECE AGORA!</button></a>
         </div>
       </div>
 
@@ -320,10 +320,10 @@
       
       <div class="parte3">
         <h1>Links Úteis</h1>
-        <span>Cadastrar</span>
-        <span>Serviços</span>
-        <span>Contato</span>
-        <span>Painel de Análise</span>
+        <a href="cadastro.html"><span>Cadastrar</span></a>
+        <a href="#servicos"><span>Serviços</span></a>
+        <a href="/"><span>Contato</span></a>
+        <a href="cadastro.html"><span>Painel de Análise</span></a>
       </div>
     </footer>
 </body>
