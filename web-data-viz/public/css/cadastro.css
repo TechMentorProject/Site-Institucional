@@ -161,20 +161,20 @@ input {
 
 #olho_senha {
     position: absolute;
-    left: 71vw;
-    top: 52.4vh;
-    width: 1.3vw;
-    height: 1.3vw;
+    left: 85vw;
+    top: 68vh;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     cursor: pointer;
 }
 
 #olho_repetir_senha {
     position: absolute;
-    left: 71vw;
-    top: 64.2vh;
-    width: 1.3vw;
-    height: 1.3vw;
+    left: 85vw;
+    top: 79vh;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     cursor: pointer;
 }

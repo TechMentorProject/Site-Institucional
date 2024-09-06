@@ -160,12 +160,12 @@ input {
   padding-left: 5px;
 }
 
-#olho_senha  {
+#olho_senha {
   position: absolute;
-  left: 58vw;
-  top: 47.3vh;
-  width: 1.3vw;
-  height: 1.3vw;
+  left: 85vw;
+  top: 39.3vh;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   cursor: pointer;
 }
