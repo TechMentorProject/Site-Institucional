@@ -3,9 +3,11 @@
   padding: 0;
   text-decoration-line: none;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 :root {
   --cor-azul-claro: #43BAFF;
   --cor-azul-escuro: #080501;
@@ -24,8 +26,8 @@ html {
 
 #nav {
   display: none;
-  margin: 0; 
-  padding: 0; 
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-Child {
@@ -158,6 +160,16 @@ input {
   padding-left: 5px;
 }
 
+#olho_senha  {
+  position: absolute;
+  left: 58vw;
+  top: 47.3vh;
+  width: 1.3vw;
+  height: 1.3vw;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .box-btn {
   width: 100%;
   height: 20%;
@@ -191,12 +203,14 @@ button:hover {
   color: white;
   font-size: 0.85rem;
 }
+
 .botaoCadastro {
   color: var(--cor-azul-claro);
   font-weight: 600;
   font-size: 0.85rem;
   transition: 0.3s ease-in-out;
 }
+
 .botaoCadastro:hover {
   color: white;
   font-size: 0.90rem;
@@ -382,8 +396,9 @@ button:hover {
   button {
     width: 70%;
   }
+
   #divError {
     width: 50vw;
     height: 20vh;
-}
+  }
 }

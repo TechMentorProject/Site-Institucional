@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/cadastro.css" />
+    <link rel="icon" href="assets/logo-techmentor.svg">
     
   </head>
   <body>
@@ -32,7 +33,7 @@
             </ul>
           </nav>
           
-            <li class="nav-padrao">Home</li>
+           <a href="index.html"> <li class="nav-padrao">Home</li></a>
             <a href="index.html#servicos"><li class="nav-padrao">Serviços</li></a>
             <a href=""><li class="nav-padrao">Contato</li></a>
             <a href="cadastro.html"><li class="nav-padrao">Painel de Análise</li></a>
@@ -72,21 +73,23 @@
 
           <div class="text-input">
             <p>Senha</p>
-            <input type="text" placeholder="Digite sua senha" id="input_senha" required="Olá"/>
+            <input type="password" placeholder="Digite sua senha" id="input_senha" required="Olá"/>
           </div>
-
+          
           <div class="text-input">
             <p>Repetir Senha</p>
-            <input type="text" placeholder="Digite novamente sua senha" id="input_confirmaSenha" required="Olá"/>
+            <input type="password" placeholder="Digite novamente sua senha" id="input_confirmaSenha" required="Olá"/>
           </div>
-          </div>
-        </div>
-
-        <div class="box-btn"><button onclick="cadastrar()">Cadastrar</button>
-        <p>Já possui uma conta? <span style="color: #43BAFF;"><a class="botaoLogin" href="login.html"> Logue-se </a></span></p>
         </div>
       </div>
-    </section>
+      
+      <div class="box-btn"><button onclick="cadastrar()">Cadastrar</button>
+        <p>Já possui uma conta? <span style="color: #43BAFF;"><a class="botaoLogin" href="login.html"> Logue-se </a></span></p>
+      </div>
+    </div>
+  </section>
+  <img onclick="mudarOlho(this, 'cadastro')" id="olho_senha" src="assets/icone-senha-fechado.jpg" alt="">
+  <img onclick="mudarOlho(this, 'cadastro')" id="olho_repetir_senha" src="assets/icone-senha-fechado.jpg" alt="">
 
     <div id="divError"><span id="msgError"></span></div>
     <script src="js/header.js"></script>

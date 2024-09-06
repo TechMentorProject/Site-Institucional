@@ -76,3 +76,36 @@ function entrar() {
         msgErro.innerHTML = mensagem;
     }
 }
+
+
+function mudarOlho(olho, local) {
+    if (local == "cadastro") {
+        if (olho.id == "olho_senha") {
+            if (olho.src[olho.src.length - 6] == "d") {
+                olho_senha.src = "assets/icone-senha-aberto.jpg"
+                input_senha.type = "text"
+            } else {
+                olho_senha.src = "assets/icone-senha-fechado.jpg"
+                input_senha.type = "password"
+            }
+        } else {
+            if (olho.src[olho.src.length - 6] == "d") {
+                olho_repetir_senha.src = "assets/icone-senha-aberto.jpg"
+                input_confirmaSenha.type = "text"
+            } else {
+                olho_repetir_senha.src = "assets/icone-senha-fechado.jpg"
+                input_confirmaSenha.type = "password"
+            }
+        }
+    } else {
+        if (olho.id == "olho_senha") {
+            if (olho.src[olho.src.length - 6] == "d") {
+                olho_senha.src = "assets/icone-senha-aberto.jpg"
+                senhaLog.type = "text"
+            } else {
+                olho_senha.src = "assets/icone-senha-fechado.jpg"
+                senhaLog.type = "password"
+            }
+        }
+    }
+}

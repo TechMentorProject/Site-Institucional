@@ -11,14 +11,22 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/login.css" />
+    <link rel="icon" href="assets/logo-techmentor.svg" />
   </head>
   <body>
     <section class="section1">
       <div class="navbar">
         <div class="navbar-Child">
-          <img src="assets/logo-techmentor.svg" alt="Logo">
+          <img src="assets/logo-techmentor.svg" alt="Logo" />
           <nav id="nav">
-            <button class="menu" aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false">
+            <button
+              class="menu"
+              aria-label="Abrir Menu"
+              id="btn-mobile"
+              aria-haspopup="true"
+              aria-controls="menu"
+              aria-expanded="false"
+            >
               <span id="hamburger"></span>
             </button>
             <ul class="menu" id="menu" role="menu">
@@ -29,16 +37,19 @@
               <li><a href="login.html">Minha Conta</a></li>
             </ul>
           </nav>
-          
-            <li class="nav-padrao">Home</li>
-            <a href="index.html#servicos"><li class="nav-padrao">Serviços</li></a>
-            <a href=""><li class="nav-padrao">Contato</li></a>
-            <a href="cadastro.html"><li class="nav-padrao">Painel de Análise</li></a>
-           <a href="login.html"> <li  class="botaoConta nav-padrao"><img src="assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta</li></a>
-          
-          
-        </div>
 
+          <a href="index.html"><li class="nav-padrao">Home</li></a>
+          <a href="index.html#servicos"><li class="nav-padrao">Serviços</li></a>
+          <a href=""><li class="nav-padrao">Contato</li></a>
+          <a href="cadastro.html"
+            ><li class="nav-padrao">Painel de Análise</li></a
+          >
+          <a href="login.html">
+            <li class="botaoConta nav-padrao">
+              <img src="assets/ícone-conta.svg" alt="Ícone Conta" />Minha Conta
+            </li></a
+          >
+        </div>
       </div>
       <div class="box-login">
         <div class="text-login"><p>Login</p></div>
@@ -56,7 +67,7 @@
           <div class="senha-input">
             <p>Senha</p>
             <input
-              type="text"
+              type="password"
               placeholder="Digite sua senha"
               class="input-decoration"
               id="senhaLog"
@@ -70,11 +81,19 @@
         <div class="text-signup">
           Ainda não possui uma conta?
           <span style="color: #43baff"
-            ><a class="botaoCadastro" href="cadastro.html"> Cadastre-se</a></span
+            ><a class="botaoCadastro" href="cadastro.html">
+              Cadastre-se</a
+            ></span
           >
         </div>
       </div>
     </section>
+    <img
+      onclick="mudarOlho(this, 'login')"
+      id="olho_senha"
+      src="assets/icone-senha-fechado.jpg"
+      alt=""
+    />
 
     <div id="divError"><span id="msgError"></span></div>
   </body>

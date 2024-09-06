@@ -3,9 +3,11 @@
     padding: 0;
     text-decoration-line: none;
 }
+
 html {
     scroll-behavior: smooth;
 }
+
 :root {
     --cor-azul-claro: #43BAFF;
     --cor-azul-escuro: #080501;
@@ -22,8 +24,8 @@ html {
 
 #nav {
     display: none;
-    margin: 0; 
-    padding: 0; 
+    margin: 0;
+    padding: 0;
 }
 
 .navbar-Child {
@@ -149,11 +151,40 @@ input {
     display: flex;
     flex-direction: column;
 }
+
+.text-input div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+#olho_senha {
+    position: absolute;
+    left: 71vw;
+    top: 52.4vh;
+    width: 1.3vw;
+    height: 1.3vw;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#olho_repetir_senha {
+    position: absolute;
+    left: 71vw;
+    top: 64.2vh;
+    width: 1.3vw;
+    height: 1.3vw;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .botaoLogin {
     color: var(--cor-azul-claro);
     font-weight: 600;
     transition: 0.3s ease-in-out;
 }
+
 .botaoLogin:hover {
     color: white;
     font-size: 1.05rem;
@@ -210,7 +241,7 @@ button:hover {
 }
 
 @media only screen and (max-width: 768px) {
-    
+
 
     body::-webkit-scrollbar {
         display: none;
@@ -382,6 +413,7 @@ button:hover {
     .box-btn p {
         font-size: 0.9rem;
     }
+
     #divError {
         width: 50vw;
         height: 20vh;
