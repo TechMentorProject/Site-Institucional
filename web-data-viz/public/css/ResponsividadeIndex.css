@@ -35,7 +35,7 @@ a:hover {
 }
 
 
-#menu {
+#nav {
   display: flex;
   list-style: none;
   gap: 0.5rem;
@@ -122,8 +122,8 @@ a:hover {
     }
     
     .navbar img {
-        width: 80%;
-        padding-left: 15%;
+        width: 87%;
+        padding-left: 7%;
     }
 
     .secao1 .elementos {

@@ -42,12 +42,13 @@
 }
 
 .navbar li {
+    cursor: pointer;
     color: white;
     font-size: 1rem;
-    transition: 0.3s;
     font-family: "Poppins";
     font-weight: 650;
     user-select: none;
+    transition: 0.3s ease-in-out;
 }
 
 .botaoConta {
@@ -65,8 +66,7 @@
 }
 
 .navbar li:hover {
-    cursor: pointer;
-    font-size: 1.1rem;
+    transform: scale(1.1);
     color: var(--cor-azul-claro);
 
 }
@@ -151,9 +151,11 @@ input {
 .botaoLogin {
     color: var(--cor-azul-claro);
     font-weight: 600;
+    transition: 0.3s ease-in-out;
 }
 .botaoLogin:hover {
-    color: rgba(0, 132, 255, 0.847);
+    color: white;
+    font-size: 1.05rem;
 }
 
 .box-btn {
@@ -167,20 +169,21 @@ input {
 }
 
 button {
+    cursor: pointer;
     width: 35%;
     height: 30%;
     border-radius: 6px;
+    border: none;
     background-color: #43BAFF;
-    border: solid #43BAFF 1px;
     color: white;
     text-decoration: none;
     font-size: large;
+    transition: 0.3s ease-in-out;
 }
 
 button:hover {
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: 0.5s;
+    transform: scale(1.1);
+    background-color: #01182B;
 }
 
 .text-signup {
@@ -234,7 +237,7 @@ button:hover {
     }
 
 
-    #menu {
+    #nav {
         display: flex;
         list-style: none;
         gap: 0.5rem;
@@ -332,10 +335,7 @@ button:hover {
 
     .navbar img {
         width: 80%;
-    }
-
-    .navbar img {
-        width: 80%;
+        padding-left: 7%;
     }
 
     .box-cadastro {
