@@ -49,17 +49,17 @@
         <div class="container-input">
           <div class="box-input">
             <div class="text-input">
-              <p>E-mail</p>
+              <p id="erro_email">E-mail</p>
               <input type="text" placeholder="Digite seu E-mail" id="input_email" required="Olá"/>
             </div>
 
             <div class="text-input">
-              <p>Usuário</p>
+              <p id="erro_usuario">Usuário</p>
               <input type="text" placeholder="Digite seu usuário" id="input_usuario" required="Olá"/>
             </div>
 
             <div class="text-input">
-              <p>Token</p>
+              <p id="erro_token">Token</p>
               <input type="text" placeholder="Digite seu Token" id="input_token" required="Olá"/>
             </div>
           </div>
@@ -67,17 +67,17 @@
           <div class="box-input">
 
             <div class="text-input">
-            <p>CNPJ</p>
+            <p id="erro_cnpj">CNPJ</p>
             <input type="text" placeholder="Digite seu CNPJ" id="input_cnpj" required="Olá"/>
           </div>
 
           <div class="text-input">
-            <p>Senha</p>
+            <p id="erro_senha">Senha</p>
             <input type="password" placeholder="Digite sua senha" id="input_senha" required="Olá"/>
           </div>
           
           <div class="text-input">
-            <p>Repetir Senha</p>
+            <p id="erro_repetir_senha">Repetir Senha</p>
             <input type="password" placeholder="Digite novamente sua senha" id="input_confirmaSenha" required="Olá"/>
           </div>
         </div>
@@ -91,8 +91,7 @@
   <img onclick="mudarOlho(this, 'cadastro')" id="olho_senha" src="assets/icone-senha-fechado.jpg" alt="">
   <img onclick="mudarOlho(this, 'cadastro')" id="olho_repetir_senha" src="assets/icone-senha-fechado.jpg" alt="">
 
-    <div id="divError"><span id="msgError"></span></div>
-    <script src="js/header.js"></script>
+  <script src="js/header.js"></script>
     <script src="js/cadastro-login.js"></script>
   </body>
 </html>

@@ -225,21 +225,6 @@ button:hover {
     font-size: 0.85rem;
 }
 
-#divError {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20vw;
-    height: 20vh;
-    border: solid black;
-    background-color: white;
-    color: black;
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
 @media only screen and (max-width: 768px) {
 
 
@@ -410,7 +395,7 @@ button:hover {
         flex-direction: column;
 
     }
-    
+
     #olho_senha {
         position: absolute;
         left: 85vw;
