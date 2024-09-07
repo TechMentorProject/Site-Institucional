@@ -257,6 +257,7 @@ button:hover {
         color: black;
         text-decoration: none;
         font-family: sans-serif;
+        font-size: 0.9rem;
     }
 
     a:hover {
@@ -304,7 +305,7 @@ button:hover {
         }
 
         #nav.active #menu {
-            height: calc(45vh - 70px);
+            height: calc(50vh - 70px);
             visibility: visible;
             overflow-y: auto;
         }

@@ -28,6 +28,7 @@
         color: black;
         text-decoration: none;
         font-family: sans-serif;
+        font-size: 0.9rem;
     }
 
     a:hover {
@@ -75,7 +76,7 @@
         }
 
         #nav.active #menu {
-            height: calc(45vh - 70px);
+            height: calc(50vh - 70px);
             visibility: visible;
             overflow-y: auto;
         }
@@ -169,8 +170,10 @@
     }
 
     .secao1 .elementos .botoes .contato {
-        padding-right: 3.5%;
-        margin-top: 3%;
+        margin-top: 5%;
+    }
+    .secao1 .elementos .botoes .contato img {
+        display: none;
     }
 
     .secao2 .lado-esquerdo {
@@ -245,11 +248,7 @@
         width: 100%;
     }
 
-    .bloco1 .vetor,
-    .bloco2 .vetor,
-    .bloco3 .vetor {
-        margin-top: 4.5vh;
-    }
+    
 
     .secao4 {
         height: 90vh;
@@ -373,6 +372,7 @@
         font-size: 1.6rem;
         text-align: center;
         line-height: 1.3;
+        padding: 0 10%;
     }
 
     .secao6 .caixas {
@@ -407,7 +407,12 @@
         border-radius: 50%;
         height: 15%;
         font-size: 1.6rem;
-        min-height: 50%;
+        min-height: 55%;
+    }
+    .secao6 .caixa1 .texto,
+    .secao6 .caixa2 .texto,
+    .secao6 .caixa3 .texto {
+        height: 85%;
     }
 
     .secao6 .caixa1 .div-img img,

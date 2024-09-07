@@ -138,7 +138,7 @@ html {
 
 .senha-input {
   width: 70%;
-  height: 55%;
+  height: 39%;
   display: flex;
   justify-content: space-around;
   align-items: start;
@@ -163,11 +163,15 @@ input {
 #olho_senha  {
   position: absolute;
   left: 58vw;
-  top: 47.3vh;
+  top: 50vh;
   width: 1.3vw;
   height: 1.3vw;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.esquecer-senha {
+  display: none;
 }
 
 .box-btn {
@@ -254,6 +258,7 @@ button:hover {
     color: black;
     text-decoration: none;
     font-family: sans-serif;
+    font-size: 0.9rem;
   }
 
   a:hover {
@@ -301,10 +306,10 @@ button:hover {
     }
 
     #nav.active #menu {
-      height: calc(45vh - 70px);
+      height: calc(50vh - 70px);
       visibility: visible;
       overflow-y: auto;
-    }
+  }
 
     #menu a {
       padding: 1rem 0;
@@ -379,7 +384,7 @@ button:hover {
      #olho_senha {
         position: absolute;
         left: 85vw;
-        top: 39.5vh;
+        top: 42.3vh;
         width: 20px;
         height: 20px;
         border-radius: 50%;
