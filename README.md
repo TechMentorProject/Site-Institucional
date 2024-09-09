@@ -1,4 +1,4 @@
-# site-institucional
+## site-institucional
 
 Um projeto para a matéria de Pesquisa e Inovação da São Paulo Tech School.
 Nesse repositório serão comitadas todas as alterações de código do projeto.
