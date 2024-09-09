@@ -67,7 +67,7 @@
             width: 100%;
             top: 70px;
             right: 0px;
-            background-color: #000000c9;
+            background-color: #000000;
             transition: 0.6s;
             z-index: 1000;
             height: 0px;
@@ -84,7 +84,7 @@
         #menu a {
             padding: 1rem 0;
             margin: 0 1rem;
-            border-bottom: 2px solid #565656;
+            border-bottom: 2px solid #c2c2c2;;
             color: white;
         }
 
@@ -168,9 +168,13 @@
         height: 20%;
 
     }
+    .secao1 .elementos .botoes .servicos {
+        border-radius: 5px;
+    }
 
     .secao1 .elementos .botoes .contato {
         margin-top: 5%;
+        border-radius: 5px;
     }
     .secao1 .elementos .botoes .contato img {
         display: none;
