@@ -23,4 +23,3 @@ Através da plataforma, o projeto visa trazer inclusão digital aos usuarios e o
 [@Matheus Santos] (https://github.com/mhssouza/mhssouza.github.io)
 [@Murilo Henrique] (https://github.com/Murilo20H)
 [@Stephanie Barreto] (https://github.com/StephanieGBarreto)
-
