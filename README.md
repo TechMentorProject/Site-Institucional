@@ -24,5 +24,3 @@ Através da plataforma, o projeto visa trazer inclusão digital aos usuarios e o
 [@Murilo Henrique] (https://github.com/Murilo20H)
 [@Stephanie Barreto] (https://github.com/StephanieGBarreto)
 
-
-
