@@ -1,13 +1,6 @@
 var msgErro = document.getElementById("msgError");
 var divErro = document.getElementById("divError");
 
-function exibirMsg() {
-    caixas_erro.style.display = "flex";
-    setTimeout(function () {
-        divErro.style.display = "none";
-    }, 1500);
-}
-
 function cadastrar() {
     var usuarioVar = document.getElementById("input_usuario").value;
     var emailVar = document.getElementById("input_email").value;
@@ -180,4 +173,8 @@ function mudarOlho(olho, local) {
             }
         }
     }
+}
+
+function abrirEmail() {
+    window.open("mailto:tech.mentor.project@gmail.com?subject=Desejo adquirir um serviço&body=Planos:%0A%0AR$999,99 por mês: plano bronze com acesso a cidades sem antenas%0AR$1499,99 por mês: plano prata com acesso a empresas que estão no raio%0AR$1899,99 por mês: plano ouro com acesso a diversos dados de aumento e diminuição populacional%0AR$2299,99 por mês: plano black com acesso a bairros e locais exatos sem antenas%0A%0APlano escolhido (adicione abaixo o plano desejado):", "_blank");
 }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro | TechMentor</title>
+    <title>TechMentor | Cadastro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,7 +27,7 @@
             <ul class="menu" id="menu" role="menu">
               <li><a href="index.html">Home</a></li>
               <li><a href="index.html#servicos">Serviços</a></li>
-              <li><a href="https://techmentorproject.atlassian.net/servicedesk/customer/portal/1">Contato</a></li>
+              <li><a href="https://techmentorproject.atlassian.net/servicedesk/customer/portal/1" target="_blank">Contato</a></li>
               <li><a href="cadastro.html">Painel de Análise</a></li>
               <li><a href="login.html">Minha Conta</a></li>
             </ul>
@@ -35,7 +35,7 @@
           
            <a href="index.html"> <li class="nav-padrao">Home</li></a>
             <a href="index.html#servicos"><li class="nav-padrao">Serviços</li></a>
-            <a href=""><li class="nav-padrao">Contato</li></a>
+            <a href="https://techmentorproject.atlassian.net/servicedesk/customer/portal/1" target="_blank"><li class="nav-padrao">Contato</li></a>
             <a href="cadastro.html"><li class="nav-padrao">Painel de Análise</li></a>
            <a href="login.html"> <li  class="botaoConta nav-padrao"><img src="assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta</li></a>
           
@@ -83,8 +83,10 @@
         </div>
       </div>
       
-      <div class="box-btn"><button onclick="cadastrar()">Cadastrar</button>
-        <p>Já possui uma conta? <span style="color: #43BAFF;"><a class="botaoLogin" href="login.html"> Logue-se </a></span></p>
+      <div class="box-btn">
+        <button onclick="cadastrar()">Cadastrar</button>
+        <p>Já possui uma conta? <span style="color: #43BAFF;"><a class="botaoLogin" href="login.html"> Login </a></span></p>
+        <p>Não possuo Token? <span style="color: #43BAFF;"><a class="botaoLogin" onclick="abrirEmail()"> Adquirir Serviço </a></span></p>
       </div>
     </div>
   </section>

@@ -1,4 +1,4 @@
-## site-institucional
+## Site Institucional
 
 Um projeto para a matéria de Pesquisa e Inovação da São Paulo Tech School.
 Nesse repositório serão comitadas todas as alterações de código do projeto.
@@ -17,9 +17,9 @@ Nossa plataforma, com foco em áreas com baixa conectividade, oferece ferramenta
 Através da plataforma, o projeto visa trazer inclusão digital aos usuarios e oportunidades de crescimento territorial e lucrativo para a empresa.
 
 ## Autores
-[@Lucas Carminatti] (https://github.com/LCarminatti)
-[@Naomi Calisto] (https://github.com/NaomiCalisto)
-[@Matheus Barros] (https://github.com/Matheusbarros54)
-[@Matheus Santos] (https://github.com/mhssouza/mhssouza.github.io)
-[@Murilo Henrique] (https://github.com/Murilo20H)
-[@Stephanie Barreto] (https://github.com/StephanieGBarreto)
+[@Lucas Carminatti](https://github.com/LCarminatti)<br>
+[@Naomi Calisto](https://github.com/NaomiCalisto)<br>
+[@Matheus Barros](https://github.com/Matheusbarros54)<br>
+[@Matheus Santos](https://github.com/mhssouza/mhssouza.github.io)<br>
+[@Murilo Henrique](https://github.com/Murilo20H)<br>
+[@Stephanie Barreto](https://github.com/StephanieGBarreto)<br>

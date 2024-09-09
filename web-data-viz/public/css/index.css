@@ -333,8 +333,11 @@ body {
 }
 
 .secao3 .titulo1 h2 {
-    width: 60%;
-    border-bottom: 1px solid var(--cor-azul-claro);
+    width: auto;
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+    text-decoration-color: var(--cor-azul-claro);
+    text-decoration-thickness: 0.05rem;
 }
 
 .secao3 .titulo2 {
@@ -477,7 +480,7 @@ body {
 }
 
 .secao4 .lado-esquerdo .ganhos div:last-of-type img {
-    width: 23%;
+    width: 28%;
 }
 
 .secao4 .lado-esquerdo .ganhos div span {
