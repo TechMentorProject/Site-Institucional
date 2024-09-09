@@ -20,6 +20,6 @@ Através da plataforma, o projeto visa trazer inclusão digital aos usuarios e o
 [@Lucas Carminatti](https://github.com/LCarminatti)<br>
 [@Naomi Calisto](https://github.com/NaomiCalisto)<br>
 [@Matheus Barros](https://github.com/Matheusbarros54)<br>
-[@Matheus Santos](https://github.com/mhssouza/mhssouza.github.io)<br>
+[@Matheus Santos](https://github.com/mhssouza)<br>
 [@Murilo Henrique](https://github.com/Murilo20H)<br>
 [@Stephanie Barreto](https://github.com/StephanieGBarreto)<br>
