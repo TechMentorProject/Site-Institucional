@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration-line: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: "Poppins";
+}
+
+:root {
+    --cor-azul-claro: #43BAFF;
+    --cor-azul-escuro: #080501;
+}
+
+/* Nav Bar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 8vh;
+
+}
+
+#nav {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-Child {
+    display: flex;
+    flex-direction: row;
+    font-weight: 900;
+    background-color: #00000089;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    list-style-type: none;
+    padding: 0 10vw;
+}
+
+.navbar img {
+    width: 20%;
+}
+
+.navbar li {
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+    font-family: "Poppins";
+    font-weight: 650;
+    user-select: none;
+    transition: 0.3s ease-in-out;
+}
+
+.botaoConta {
+    color: var(--cor-azul-claro) !important;
+}
+
+.botaoConta img {
+    width: 15%;
+    margin-right: 5px;
+    margin-bottom: -5px;
+}
+
+.botaoConta:hover {
+    color: #ffffff !important;
+}
+
+.navbar li:hover {
+    transform: scale(1.1);
+    color: var(--cor-azul-claro);
+
+}
+
+/* SEÇÃO 1 */
+.secao1 {
+    width: 100vw;
+    height: 102vh;
+    margin-top: -10vh;
+    background-image: url("../assets/background-login.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.secao1 .sub1 {
+    flex-direction: column;
+    display: flex;
+    margin-top: 10vh;
+    width: 90%;
+    height: 80%;
+    background-color: #000000c0;
+    border-radius: 15px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.sub1 .usuario {
+    display: flex;
+    color: white;
+    width: 25%;
+    height: 50%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.usuario .foto-usuario {
+    background-color: white;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+}
+
+.sub1 .sub2 {
+    background-color: white;
+    border-radius: 15px 15px 0px 0px;
+    width: 80%;
+    height: 50%;
+}
+
+
+/* 
+.sub2 .notificacao {
+    
+}
+*/
+
+
+/* Botão hamburguer */
+.sub1 .container{
+    width: 60px;
+    height: 60px
+}
+
+.btn-hamburguer {
+    cursor: pointer;
+}
+
+.btn-left {
+    background-color: white;
+    position: absolute;
+    height: 8px;
+    width: 30px;
+    top: 30px;
+    left: 0px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.btn-left:before {
+    background-color: white;
+    position: absolute;
+    width: 30px;
+    height: 8px;
+    content: "";
+    top: -20px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.btn-left:after {
+    background-color: white;
+    position: absolute;
+    width: 30px;
+    height: 8px;
+    content: "";
+    top: 20px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.btn-right {
+    background-color: white;
+    position: absolute;
+    height: 8px;
+    width: 30px;
+    top: 30px;
+    left: 30px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.btn-right:before {
+    background-color: white;
+    position: absolute;
+    width: 30px;
+    height: 8px;
+    content: "";
+    top: -20px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.btn-right:after {
+    background-color: white;
+    position: absolute;
+    width: 30px;
+    height: 8px;
+    content: "";
+    top: 20px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.active .btn-left {
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    background: transparent;
+}
+
+.active .btn-left:before {
+    -webkit-transform: rotateZ(45deg) scaleX(1.4) translate(4px, 4px);
+    transform: rotateZ(45deg) scaleX(1.4) translate(4px, 4px);
+}
+
+.active .btn-left:after {
+    -webkit-transform: rotateZ(-45deg) scaleX(1.4) translate(4px, -4px);
+    transform: rotateZ(-45deg) scaleX(1.4) translate(4px, -4px);
+}
+
+.active .btn-right {
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    background: transparent;
+}
+
+.active .btn-right:before {
+    -webkit-transform: rotateZ(-45deg) scaleX(1.4) translate(-4px, 4px);
+    transform: rotateZ(-45deg) scaleX(1.4) translate(-4px, 4px);
+}
+
+.active .btn-right:after {
+    -webkit-transform: rotateZ(45deg) scaleX(1.4) translate(-4px, -4px);
+    transform: rotateZ(45deg) scaleX(1.4) translate(-4px, -4px);
+}
