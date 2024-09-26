@@ -25,15 +25,10 @@
         <div class="navbar-Child">
             <img src="../assets/logo-techmentor.svg" alt="Logo">
             <nav id="nav">
-                <button class="menu" aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu"
-                    aria-expanded="false">
-                    <span id="hamburger"></span>
-                </button>
                 <ul class="menu" id="menu" role="menu">
                     <li><a href="cadastro.html">Minha Conta</a></li>
                 </ul>
             </nav>
-
 
             <a href="cadastro.html">
                 <li class="botaoConta nav-padrao"><img src="../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
@@ -48,25 +43,83 @@
     <div class="secao1">
 
         <div class="sub1">
-            <div class="btn-hamburguer">
-                <div class="btn-left"></div>
-                <div class="btn-right"></div>
-            </div>
-
-            <div class="usuario">
-                <div class="foto-usuario">
+            <div class="menu">
+                <div class="icone-menu">
+                    <img src="../assets/menu-aberto-white.png" alt="">
+                    <span>MENU</span>
+                </div>
+                <div class="ancoras-menu">
+                    <div class="ancora">
+                        <img src="../assets/casa.png" alt=""> <span class="selecionado"><a href="">Home</a></span>
+                    </div>
+                    <div class="ancora">
+                        <img src="../assets/grafico-de-barras.png" alt=""> <span onclick="dropDown()">Dashboard</span>
+                    </div>
+                    <div class="ancora">
+                        <img src="../assets/aviso.png" alt=""> <span><a href="">Alertas</a></span>
+                    </div>
+                    <div class="ancora">
+                        <img src="../assets/usuarios.png" alt=""> <span><a href="">Usuários</a></span>
+                    </div>
 
                 </div>
 
-                <div id="saudacoes" class="saudacoes">Olá Usuário, seja bem-vindo!</div>
-                <div class="tipo-usuario">Gerente</div>
+                <div class="configuracoes">
+                    <div class="ancora">
+                        <img src="../assets/configuracoes.png" alt=""> <span><a href="">Configurações</a></span>
+                    </div>
+                </div>
             </div>
 
             <div class="sub2">
-                <div class="notificacao">
+                <div class="usuario">
+                    <div class="foto-usuario">
 
+                    </div>
+
+                    <div id="saudacoes" class="saudacoes"><span>Olá Usuário, seja bem-vindo!</span></div>
+                    <div class="tipo-usuario"><span style="font-size: 14px; text-decoration: underline;">Gerente</span>
+                    </div>
+                </div>
+
+                <div class="painel">
+                    <h1 class="titulo">Notificações recentes</h1>
+                    <div class="notificacao">
+                        <div class="conteudo">
+                            <div class="icone-notif"></div>
+                            <div class="escrita">
+                                <p>Lorem ipsum dolor sit amet. Rem nesciunt quod est necessitatibus dolor et corrupti
+                                    quos est harum nemo ad repellat recusandae. Ut dolorem saepe aut quaerat laudantium
+                                    eum eveniet adipisci. quos est harum nemo ad repellat recusandae. Ut dolorem saepe
+                                    aut quaerat laudantium eum eveniet adipisci.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notificacao">
+                        <div class="conteudo">
+                            <div class="icone-notif"></div>
+                            <div class="escrita">
+                                <p>Lorem ipsum dolor sit amet. Rem nesciunt quod est necessitatibus dolor et corrupti
+                                    quos est harum nemo ad repellat recusandae. Ut dolorem saepe aut quaerat laudantium
+                                    eum eveniet adipisci. quos est harum nemo ad repellat recusandae. Ut dolorem saepe
+                                    aut quaerat laudantium eum eveniet adipisci.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notificacao">
+                        <div class="conteudo">
+                            <div class="icone-notif"></div>
+                            <div class="escrita">
+                                <p>Lorem ipsum dolor sit amet. Rem nesciunt quod est necessitatibus dolor et corrupti
+                                    quos est harum nemo ad repellat recusandae. Ut dolorem saepe aut quaerat laudantium
+                                    eum eveniet adipisci. quos est harum nemo ad repellat recusandae. Ut dolorem saepe
+                                    aut quaerat laudantium eum eveniet adipisci.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -76,9 +129,3 @@
 </html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
-    $('.btn-hamburguer').click(function () {
-        $(this).toggleClass('active');
-    });
-</script>
