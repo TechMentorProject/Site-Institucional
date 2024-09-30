@@ -7,6 +7,7 @@
   <title>TechMentor | Página Inicial</title>
   <link rel="stylesheet" href="css/index.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script src="https://unpkg.com/scrollreveal"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -169,6 +170,7 @@
    <!-- SEÇÃO 5 -->
     <div class="secao5">
 
+      <div class="elementos-secao5">
       <div class="lado-esquerdo">
         <div class="titulo">
           <span>BENEFÍCIOS</span>
@@ -219,7 +221,7 @@
           </div>
         </div>
       </div>
-
+    </div>
     </div>
 
 
@@ -332,3 +334,82 @@
 </html>
 
 <script src="js/header.js"></script>
+<script>
+
+  var slideLeft = {
+    distance: '500%',
+    origin: 'left',
+    opacity: null,
+    delay: 300,
+    reset: true
+};
+
+var slideLeft2 = {
+    distance: '500%',
+    origin: 'left',
+    opacity: null,
+    delay: 500,
+    reset: true
+};
+
+var slideLeft3 = {
+    distance: '1000%',
+    origin: 'left',
+    opacity: null,
+    delay: 800,
+    reset: true
+};
+
+var slideRight = {
+    distance: '150%',
+    origin: 'right',
+    opacity: null,
+    delay: 300,
+    reset: true
+};
+
+var slideRight1 = {
+    distance: '500%',
+    origin: 'right',
+    opacity: null,
+    delay: 300,
+    reset: true,
+};
+
+var slideRight2 = {
+    distance: '500%',
+    origin: 'right',
+    opacity: null,
+    delay: 500,
+    reset: true
+};
+
+var slideRight3 = {
+    distance: '500%',
+    origin: 'right',
+    opacity: null,
+    delay: 800,
+    reset: true
+};
+
+var slideUp = {
+    distance: '150%',
+    origin: 'bottom',
+    opacity: null,
+    delay: 300,
+    reset: true
+};
+
+
+ScrollReveal().reveal('.secao2', slideRight);
+ScrollReveal().reveal('.bloco1', slideLeft);
+ScrollReveal().reveal('.bloco2', slideLeft2);
+ScrollReveal().reveal('.bloco3', slideLeft3);
+ScrollReveal().reveal('.secao4', slideRight);
+ScrollReveal().reveal('.elementos-secao5', slideLeft);
+ScrollReveal().reveal('.caixa1', slideLeft);
+ScrollReveal().reveal('.caixa2', slideLeft2);
+ScrollReveal().reveal('.caixa3', slideLeft3);
+
+
+</script>
