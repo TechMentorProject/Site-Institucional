@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMentor | Dashboard</title>
+    <link rel="stylesheet" href="../css/conexao-area.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+
+    <link rel="icon" href="../assets/TechMentor-Logo.ico" />
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="nav"></div>
+        <div class="navbar-Child">
+            <img src="../assets/logo-techmentor.svg" alt="Logo">
+            <nav id="nav">
+                <ul class="menu" id="menu" role="menu">
+                    <li><a href="cadastro.html">Minha Conta</a></li>
+                </ul>
+            </nav>
+
+            <a href="cadastro.html">
+                <li class="botaoConta nav-padrao"><img src="../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+                </li>
+            </a>
+
+
+        </div>
+    </div>
+
+
+    <div class="secao1">
+
+        <div class="sub1">
+            <div class="menu">
+                <div class="icone-menu">
+                    <img src="../assets/menu-aberto-white.png" alt=""> <span>MENU</span>
+                </div>
+                <div class="ancoras-menu">
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../assets/casa.png" alt=""> <span class="selecionado">Home</span>
+                        </div>
+                    </a>
+                    
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../assets/grafico-de-barras.png" alt=""> <span onclick="dropDown()">Dashboards</span>
+                        </div>
+                    </a>
+                    
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../assets/aviso.png" alt=""> <span>Alertas</span>
+                        </div>
+                    </a>
+                    
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../assets/painel.png" alt=""> <span onclick="dropDown()">Painel</span>
+                        </div>
+                    </a>                    
+
+                </div>
+
+                <div class="configuracoes">
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../assets/configuracoes.png" alt=""> <span>Configurações</span>
+                        </div>
+                    </a>  
+                </div>
+            </div>
+
+            <div class="sub2">
+                <div class="painel">
+                    <h1>Conexão por área</h1>
+                    <h2>Mapeamento de conectividade por área</h2>
+                    <div class="dashboard">
+                        <div class="dash" id="geochart-colors">
+
+                        </div>
+                        <div class="cards">
+                            <div class="card">
+                                <div class="conteudo"></div>
+                                <div class="abaixo"></div>
+                            </div>
+                            <div class="card">
+                                <div class="conteudo"></div>
+                                <div class="abaixo"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+    google.charts.load('current', {
+      'packages':['geochart'],
+      'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+    var data = google.visualization.arrayToDataTable([
+        ['State', 'Value'],
+        ['BR-ES', 40],
+        ['BR-MG', 60],
+        ['BR-RJ', 80],
+        ['BR-SP', 100]
+    ]);
+
+      var options = {
+        region: 'BR',
+        resolution: 'provinces',
+        displayMode: 'regions',
+        colorAxis: {colors: ['#FF0000', '#EE7214', '#FDD04C', '#527853']},
+        backgroundColor: '#ffffff',
+        datalessRegionColor: '#a5deff',
+        keepAspectRatio: true,
+        magnifyingGlass: {enable: true, zoomFactor: 7},
+        tooltip: {trigger: 'focus'}
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
+
+    // Customização do Tooltip
+    google.visualization.events.addListener(chart, 'ready', function () {
+        const tooltips = document.querySelectorAll('.google-visualization-tooltip');
+        tooltips.forEach((tooltip, index) => {
+            const value = data.getValue(index, 1);
+            tooltip.innerHTML = value === 0 ? '0%' : value + '%';
+        });
+    });
+
+    chart.draw(data, options);
+    }
+</script>
