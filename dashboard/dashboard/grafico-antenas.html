@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/grafico-antenas.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav"></div>
+        <div class="navbar-Child">
+            <img src="../assets/logo-techmentor.svg" alt="Logo">
+            <nav id="nav">
+                <ul class="menu" id="menu" role="menu">
+                    <li><a href="cadastro.html">Minha Conta</a></li>
+                </ul>
+            </nav>
+
+            <a href="cadastro.html">
+                <li class="botaoConta nav-padrao"><img src="../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+                </li>
+            </a>
+
+
+        </div>
+    </div>
+
+
+    <div class="secao1">
+
+        <div class="sub1">
+            <div class="menu">
+                <div class="icone-menu">
+                    <img src="../assets/menu-aberto-white.png" alt=""> <span>MENU</span>
+                </div>
+                <div class="ancoras-menu">
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../assets/casa.png" alt=""> <span class="selecionado">Home</span>
+                        </div>
+                    </a>
+                    
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../assets/grafico-de-barras.png" alt=""> <span onclick="dropDown()">Dashboards</span>
+                        </div>
+                    </a>
+                    
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../assets/aviso.png" alt=""> <span>Alertas</span>
+                        </div>
+                    </a>
+                    
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../assets/painel.png" alt=""> <span onclick="dropDown()">Painel</span>
+                        </div>
+                    </a>                    
+
+                </div>
+
+                <div class="configuracoes">
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../assets/configuracoes.png" alt=""> <span>Configurações</span>
+                        </div>
+                    </a>  
+                </div>
+            </div>
+
+            <div class="sub2">
+                <div class="painel">
+                    <h1>Mapeamento de Antenas</h1>
+                    <h2>Conectividade por área</h2>
+                    <div class="dashboard">
+                        <div class="dash" id="geochart-colors">
+
+                        </div>
+                        <div class="cards">
+                            <div class="card">
+                              <div class="card-inner">
+                                <div class="card-front">
+                                  <p>Estado X precisa de mais antenas para cobrir Y% da população</p>
+                                </div>
+                                <div class="card-back">
+                                  <p>Back Side</p>
+                                </div>
+                              </div>
+                            </div>
+    
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                     <p>Operadoras com mais presença</p>
+                                     </div>
+                                    <div class="card-back">
+                                     <p>Back Side</p>
+                                   </div>
+                                 </div>
+                                </div>
+
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                    <p>Estados com maior crescimento populacional</p>
+                                    </div>
+                                    <div class="card-back">
+                                    <p>Back Side</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+</body>
+</html>
