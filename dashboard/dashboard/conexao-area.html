@@ -18,24 +18,20 @@
 
 </head>
 
-<body>
-
+<body onload="onStateClick('BR-SP')">
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
             <img src="../assets/logo-techmentor.svg" alt="Logo">
-            <nav id="nav">
-                <ul class="menu" id="menu" role="menu">
-                    <li><a href="cadastro.html">Minha Conta</a></li>
-                </ul>
-            </nav>
 
-            <a href="cadastro.html">
-                <li class="botaoConta nav-padrao"><img src="../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+            <div>
+                <li class="botaoConta">
+                    <img src="../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+                    <div class="encerrar">
+                        <div class="botao"><img src="../assets/deslogar.png" alt=""><span>Encerrar sessão</span></div>
+                    </div>
                 </li>
-            </a>
-
-
+            </div>
         </div>
     </div>
 
@@ -45,41 +41,59 @@
         <div class="sub1">
             <div class="menu">
                 <div class="icone-menu">
-                    <img src="../assets/menu-aberto-white.png" alt=""> <span>MENU</span>
+                    <img src="../assets/menu-aberto-white.png" alt="">
+                    <span>MENU</span>
                 </div>
                 <div class="ancoras-menu">
-                    <a href="">
+                    <a href="../dashboard/home.html">
                         <div class="ancora">
-                            <img src="../assets/casa.png" alt=""> <span class="selecionado">Home</span>
+                            <img src="../assets/casa.png" alt="">
+                            <span>Home</span>
                         </div>
                     </a>
-                    
+
+                    <div class="dropdown">
+                        <a href="">
+                            <div class="ancora">
+                                <img src="../assets/grafico-de-barras.png" alt="">
+                                <span class="selecionado">Dashboards<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="../dashboard/conexao-area.html" class="selecionado">Conexão por área</a>
+                            <a href="#">Dashboard 2</a>
+                        </div>
+                    </div>
+
                     <a href="">
                         <div class="ancora">
-                            <img src="../assets/grafico-de-barras.png" alt=""> <span onclick="dropDown()">Dashboards</span>
+                            <img src="../assets/aviso.png" alt="">
+                            <span>Alertas</span>
                         </div>
                     </a>
-                    
-                    <a href="">
-                        <div class="ancora">
-                            <img src="../assets/aviso.png" alt=""> <span>Alertas</span>
+
+                    <div class="dropdown">
+                        <a href="#">
+                            <div class="ancora">
+                                <img src="../assets/painel.png" alt="">
+                                <span>Painel<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="#">Usuários</a>
+                            <a href="#">Antenas</a>
                         </div>
-                    </a>
-                    
-                    <a href="">
-                        <div class="ancora">
-                            <img src="../assets/painel.png" alt=""> <span onclick="dropDown()">Painel</span>
-                        </div>
-                    </a>                    
+                    </div>
 
                 </div>
 
                 <div class="configuracoes">
                     <a href="">
                         <div class="ancora">
-                            <img src="../assets/configuracoes.png" alt=""> <span>Configurações</span>
+                            <img src="../assets/configuracoes.png" alt="">
+                            <span>Configurações</span>
                         </div>
-                    </a>  
+                    </a>
                 </div>
             </div>
 
@@ -92,13 +106,29 @@
 
                         </div>
                         <div class="cards">
-                            <div class="card">
-                                <div class="conteudo"></div>
-                                <div class="abaixo"></div>
+                            <div class="filtro">
+                                <div class="caixa" onclick="mudar('5G')">
+                                    <div class="texto">5G</div>
+                                    <div class="abaixo" id="5G"></div>
+                                </div>
+                                <div class="caixa" onclick="mudar('4G')">
+                                    <div class="texto">4G</div>
+                                    <div class="abaixo" id="4G"></div>
+                                </div>
+                                <div class="caixa" onclick="mudar('3G')">
+                                    <div class="texto">3G</div>
+                                    <div class="abaixo" id="3G"></div>
+                                </div>
+                                <div class="caixa" onclick="mudar('2G')">
+                                    <div class="texto">2G</div>
+                                    <div class="abaixo" id="2G"></div>
+                                </div>
                             </div>
                             <div class="card">
-                                <div class="conteudo"></div>
-                                <div class="abaixo"></div>
+                                <div class="texto" id="estado"></div>
+                            </div>
+                            <div class="conteudo">
+                                <div class="texto" id="municipios"></div>
                             </div>
                         </div>
                     </div>
@@ -116,45 +146,117 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<script type="text/javascript">
+<script>
     google.charts.load('current', {
-      'packages':['geochart'],
-      'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+        'packages': ['geochart'],
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
     });
     google.charts.setOnLoadCallback(drawRegionsMap);
 
+    let state = 'BR-SP';
+
     function drawRegionsMap() {
-    var data = google.visualization.arrayToDataTable([
-        ['State', 'Value'],
-        ['BR-ES', 40],
-        ['BR-MG', 60],
-        ['BR-RJ', 80],
-        ['BR-SP', 100]
-    ]);
+        var data = google.visualization.arrayToDataTable([
+            ['State', 'Value'],
+            ['BR-ES', 40],
+            ['BR-MG', 60],
+            ['BR-RJ', 80],
+            ['BR-SP', 100]
+        ]);
 
-      var options = {
-        region: 'BR',
-        resolution: 'provinces',
-        displayMode: 'regions',
-        colorAxis: {colors: ['#FF0000', '#EE7214', '#FDD04C', '#527853']},
-        backgroundColor: '#ffffff',
-        datalessRegionColor: '#a5deff',
-        keepAspectRatio: true,
-        magnifyingGlass: {enable: true, zoomFactor: 7},
-        tooltip: {trigger: 'focus'}
-      };
+        var options = {
+            region: 'BR',
+            resolution: 'provinces',
+            displayMode: 'regions',
+            colorAxis: { colors: ['#FF0000', '#EE7214', '#FDD04C', '#527853'] },
+            backgroundColor: '#ffffff',
+            datalessRegionColor: '#a5deff',
+            keepAspectRatio: true,
+            magnifyingGlass: { enable: true, zoomFactor: 7 },
+            tooltip: { trigger: 'focus' }
+        };
 
-      var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
+        var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
+        chart.draw(data, options);
 
-    // Customização do Tooltip
-    google.visualization.events.addListener(chart, 'ready', function () {
-        const tooltips = document.querySelectorAll('.google-visualization-tooltip');
-        tooltips.forEach((tooltip, index) => {
-            const value = data.getValue(index, 1);
-            tooltip.innerHTML = value === 0 ? '0%' : value + '%';
+        google.visualization.events.addListener(chart, 'select', function () {
+            var selectedItem = chart.getSelection()[0];
+            if (selectedItem) {
+                state = data.getValue(selectedItem.row, 0); // Atualiza o estado selecionado
+                onStateClick(state); // Chama a função personalizada para o estado selecionado
+            }
         });
-    });
-
-    chart.draw(data, options);
     }
+
+    // Função para obter o nome do estado baseado no código
+    function getEstadoNome(state) {
+        switch (state) {
+            case 'BR-ES': return 'Espírito Santo';
+            case 'BR-MG': return 'Minas Gerais';
+            case 'BR-RJ': return 'Rio de Janeiro';
+            case 'BR-SP': return 'São Paulo';
+            default: return 'Estado desconhecido';
+        }
+    }
+
+    // Função personalizada ao clicar em um estado
+    function onStateClick(state) {
+        let frase = '';
+        let texto = '';
+
+        // Mantém a frase padrão e atualiza a tecnologia selecionada
+        frase = `No estado ${getEstadoNome(state)}, os municípios com menor porcentagem de cobertura ${selecionado} de seus domicílios:`;
+
+        // Define o texto baseado no estado
+        if (state === 'BR-ES') {
+            texto = `• Cachoeiro de Itapemirim - 0,004727775%
+            <br>• São José do Calçado - 0,055969787%
+            <br>• Mimoso do Sul  - 0,901983249%
+            <br>• Muqui - 2,972492613%
+            <br>• Apiacá - 4,041073559%`;
+        } else if (state === 'BR-MG') {
+            texto = `• Timóteo - 0,003185359%
+            <br>• Belmiro Braga - 0,027222581%
+            <br>• Alpercata - 0,147474615%
+            <br>• Pedrinópolis - 0,309194185%
+            <br>• Paiva - 1,588189695%`;
+        } else if (state === 'BR-RJ') {
+            texto = `• Itaperuna - 0,000438401%
+            <br>• São Fidélis - 0,013169717%
+            <br>• Teresópolis - 0,075377723%
+            <br>• Paraíba do Sul - 0,348082186%
+            <br>• São João da Barra - 1,3278558%`;
+        } else if (state === 'BR-SP') {
+            texto = `• Santa Gertrudes - 0,000945242%
+            <br>• Itanhaém - 0,002213689%
+            <br>• Barrinha - 0,00590997%
+            <br>• Monteiro Lobato - 0,007708764%
+            <br>• Guariba - 0,011074511%`;
+        }
+
+        // Atualiza o conteúdo da div com o id 'estado' e 'municipios'
+        document.getElementById('estado').innerHTML = frase;
+        document.getElementById('municipios').innerHTML = texto;
+    }
+
+    let selecionado = '5G';
+
+    function mudar(tecnologia) {
+        // Reseta a cor da div previamente selecionada
+        document.getElementById(selecionado).style.backgroundColor = '#9f9f9f';
+
+        // Atualiza o selecionado com a nova opção
+        selecionado = tecnologia;
+
+        // Muda a cor da nova opção selecionada
+        document.getElementById(selecionado).style.backgroundColor = '#43BAFF';
+
+        // Atualiza a exibição para o estado atual com a nova tecnologia
+        onStateClick(state);
+    }
+
+    window.onload = function () {
+        document.getElementById(selecionado).style.backgroundColor = '#43BAFF';
+        onStateClick(state);
+    };
 </script>

@@ -24,7 +24,6 @@ body {
     justify-content: center;
     width: 100vw;
     height: 8vh;
-
 }
 
 #nav {
@@ -57,10 +56,13 @@ body {
     font-weight: 650;
     user-select: none;
     transition: 0.3s ease-in-out;
+    position: relative;
 }
 
 .botaoConta {
     color: var(--cor-azul-claro) !important;
+    padding-top: 5px;
+    height: 30px;
 }
 
 .botaoConta img {
@@ -75,8 +77,42 @@ body {
 
 .navbar li:hover {
     transform: scale(1.1);
-    color: var(--cor-azul-claro);
+    color: white;
+}
 
+.encerrar {
+    display: none;
+    position: absolute;
+    background-color: #000000c0;
+    border-radius: 15px;
+    margin-top: 5px;
+    height: 50px;
+    width: 200px;
+    right: 10px;
+}
+
+.navbar li:hover .encerrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.encerrar .botao {
+    display: flex;
+    align-items: center;
+    color: black;
+    border-radius: 8px;
+    background-color: #ffffff;
+    width: 90%;
+    height: 60%;
+    font-size: 14px;
+}
+
+.botao img{
+    margin-left: 10px;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
 }
 
 /* SEÇÃO 1 */
@@ -106,7 +142,7 @@ body {
 }
 
 /* MENU */
-.sub1 .menu{
+.sub1 .menu {
     color: white;
     display: flex;
     flex-direction: column;
@@ -115,14 +151,16 @@ body {
     height: 100%;
     border-radius: 15px 0px 0px 15px;
     background-color: #000000c0;
-    transition: width 0.6s; 
+    transition: width 0.6s;
+    overflow: hidden;
+    /* Isso evita que o dropdown apareça quando o menu está recolhido */
 }
 
 .menu:hover {
     width: 25%;
 }
 
-.menu .icone-menu{
+.menu .icone-menu {
     transition: transform 0.6s ease-out;
     display: flex;
     align-items: center;
@@ -147,7 +185,7 @@ body {
     transition-delay: 1s;
 }
 
-.menu .icone-menu img{
+.menu .icone-menu img {
     transition: transform 0.6s ease-out;
     margin-left: 5px;
     width: 50px;
@@ -157,7 +195,6 @@ body {
 .menu:hover .icone-menu img {
     margin-left: 0px;
     transform: rotate(90deg);
-    transition: transform 0.6s;
 }
 
 /* MENU - ANCORAS */
@@ -166,25 +203,23 @@ body {
     flex-direction: column;
     gap: 25px;
     transition: transform 0.6s ease-out;
-    align-items: center;
     margin: 10px;
     width: 75%;
     height: 80%;
 }
 
 .menu a {
-    display: block;
+    display: flex;
     width: 100%;
-    height: 8%;
     color: white;
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 .ancora {
     display: flex;
     align-items: center;
+    position: relative;
     width: 100%;
-    height: 100%;
 }
 
 .ancora img {
@@ -199,7 +234,7 @@ body {
 }
 
 .ancora span {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .menu .configuracoes {
@@ -222,6 +257,49 @@ body {
 }
 
 .menu a:hover span {
+    color: #43BAFF;
+}
+
+/* DROPDOWN */
+.dropdown {
+    display: block;
+}
+
+.dropdown .dropdown-icon {
+    transform: rotate(-90deg);
+}
+
+.dropdown .dropdown-content {
+    display: none;
+    font-size: 14px;
+    z-index: 1;
+    border-radius: 0 0 5px 5px;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.6s;
+    visibility: hidden;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-icon {
+    transition: transform 0.3s ease-out;
+    transform: rotate(90deg);
+}
+
+.dropdown-content a {
+    display: block;
+    color: white;
+    padding: 10px 0 0 80px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
     color: #43BAFF;
 }
 
@@ -267,39 +345,106 @@ body {
 }
 
 .dashboard .dash {
-    width: 65%;
+    position: relative;
+    width: 55%;
     height: auto;
     overflow: hidden;
-    position: relative;
+    bottom: 1px;
 }
 
-.dashboard .cards{
+/* FILTRO */
+.filtro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12%;
+    gap: 20px;
+    margin-bottom: 5px;
+}
+
+.filtro .caixa{
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: #8080803b;
+    border-radius: 15px 15px;
+    height: 100%;
+    width: 15%;
+    cursor: pointer;
+}
+
+.caixa .texto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 85%;
+}
+
+.caixa .abaixo {
+    border-radius: 0 0 15px 15px;
+    width: 100%;
+    height: 15%;
+    background-color: #9f9f9f;
+    bottom: 5px;
+}
+
+
+/* CARDS */
+.dashboard .cards{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     width: 40%;
     height: auto;
-    margin-right: 10px;
+    margin-right: 50px;
 }
+
 
 .cards .card{
     display: flex;
     flex-direction: column;
-    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px 15px 0 0;
     background-color: #8080803b;
     width: auto;
     height: 40%;
 }
 
-.card .conteudo{
-    height: 90%;
+.cards .conteudo{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #43BAFF;
+    border-radius: 15px;
+    height: 40%;
+    bottom: 10px;
 }
 
-.card .abaixo{
-    background-color: #43BAFF;
-    border-radius: 0 0 15px 15px;
-    height: 10%;
+.card .texto{
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 70%;
 }
+
+.conteudo .texto{
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 80%;
+}
+
+
+
 
 
 
