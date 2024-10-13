@@ -183,6 +183,7 @@ body {
 .ancora {
     display: flex;
     align-items: center;
+    position: relative;
     width: 100%;
     height: 100%;
 }
@@ -267,39 +268,105 @@ body {
 }
 
 .dashboard .dash {
-    width: 65%;
+    position: relative;
+    width: 55%;
     height: auto;
     overflow: hidden;
-    position: relative;
+    bottom: 1px;
 }
 
-.dashboard .cards{
+/* FILTRO */
+.filtro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12%;
+    gap: 20px;
+    margin-bottom: 5px;
+}
+
+.filtro .caixa{
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: #8080803b;
+    border-radius: 15px 15px;
+    height: 100%;
+    width: 15%;
+}
+
+.caixa .texto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 85%;
+}
+
+.caixa .abaixo {
+    border-radius: 0 0 15px 15px;
+    width: 100%;
+    height: 15%;
+    background-color: #9f9f9f;
+    bottom: 5px;
+    /* background-color: #43BAFF; */
+}
+
+/* CARDS */
+.dashboard .cards{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     width: 40%;
     height: auto;
-    margin-right: 10px;
+    margin-right: 50px;
 }
+
 
 .cards .card{
     display: flex;
     flex-direction: column;
-    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px 15px 0 0;
     background-color: #8080803b;
     width: auto;
     height: 40%;
 }
 
-.card .conteudo{
-    height: 90%;
+.cards .conteudo{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #43BAFF;
+    border-radius: 15px;
+    height: 40%;
+    bottom: 10px;
 }
 
-.card .abaixo{
-    background-color: #43BAFF;
-    border-radius: 0 0 15px 15px;
-    height: 10%;
+.card .texto{
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 70%;
 }
+
+.conteudo .texto{
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 80%;
+}
+
+
+
 
 
 

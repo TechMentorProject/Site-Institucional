@@ -50,27 +50,31 @@
                 <div class="ancoras-menu">
                     <a href="">
                         <div class="ancora">
-                            <img src="../assets/casa.png" alt=""> <span class="selecionado">Home</span>
+                            <img src="../assets/casa.png" alt="">
+                            <span class="selecionado">Home</span>
                         </div>
                     </a>
-                    
+
                     <a href="">
                         <div class="ancora">
-                            <img src="../assets/grafico-de-barras.png" alt=""> <span onclick="dropDown()">Dashboards</span>
+                            <img src="../assets/grafico-de-barras.png" alt=""> 
+                            <span>Dashboards</span>
                         </div>
                     </a>
-                    
+
                     <a href="">
                         <div class="ancora">
-                            <img src="../assets/aviso.png" alt=""> <span>Alertas</span>
+                            <img src="../assets/aviso.png" alt=""> 
+                            <span>Alertas</span>
                         </div>
                     </a>
-                    
+
                     <a href="">
                         <div class="ancora">
-                            <img src="../assets/painel.png" alt=""> <span onclick="dropDown()">Painel</span>
+                            <img src="../assets/painel.png" alt=""> 
+                            <span>Painel</span>
                         </div>
-                    </a>                    
+                    </a>
 
                 </div>
 
@@ -79,7 +83,7 @@
                         <div class="ancora">
                             <img src="../assets/configuracoes.png" alt=""> <span>Configurações</span>
                         </div>
-                    </a>  
+                    </a>
                 </div>
             </div>
 
@@ -92,13 +96,29 @@
 
                         </div>
                         <div class="cards">
-                            <div class="card">
-                                <div class="conteudo"></div>
-                                <div class="abaixo"></div>
+                            <div class="filtro">
+                                <div class="caixa">
+                                    <div class="texto">5G</div>
+                                    <div class="abaixo"></div>
+                                </div>
+                                <div class="caixa">
+                                    <div class="texto">4G</div>
+                                    <div class="abaixo"></div>
+                                </div>
+                                <div class="caixa">
+                                    <div class="texto">3G</div>
+                                    <div class="abaixo"></div>
+                                </div>
+                                <div class="caixa">
+                                    <div class="texto">2G</div>
+                                    <div class="abaixo"></div>
+                                </div>
                             </div>
                             <div class="card">
-                                <div class="conteudo"></div>
-                                <div class="abaixo"></div>
+                                <div class="texto" id="estado"></div>
+                            </div>
+                            <div class="conteudo">
+                                <div class="texto" id="municipios"></div>
                             </div>
                         </div>
                     </div>
@@ -118,43 +138,97 @@
 
 <script type="text/javascript">
     google.charts.load('current', {
-      'packages':['geochart'],
-      'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+        'packages': ['geochart'],
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
     });
     google.charts.setOnLoadCallback(drawRegionsMap);
 
     function drawRegionsMap() {
-    var data = google.visualization.arrayToDataTable([
-        ['State', 'Value'],
-        ['BR-ES', 40],
-        ['BR-MG', 60],
-        ['BR-RJ', 80],
-        ['BR-SP', 100]
-    ]);
+        var data = google.visualization.arrayToDataTable([
+            ['State', 'Value'],
+            ['BR-ES', 40],
+            ['BR-MG', 60],
+            ['BR-RJ', 80],
+            ['BR-SP', 100]
+        ]);
 
-      var options = {
-        region: 'BR',
-        resolution: 'provinces',
-        displayMode: 'regions',
-        colorAxis: {colors: ['#FF0000', '#EE7214', '#FDD04C', '#527853']},
-        backgroundColor: '#ffffff',
-        datalessRegionColor: '#a5deff',
-        keepAspectRatio: true,
-        magnifyingGlass: {enable: true, zoomFactor: 7},
-        tooltip: {trigger: 'focus'}
-      };
+        var options = {
+            region: 'BR',
+            resolution: 'provinces',
+            displayMode: 'regions',
+            colorAxis: { colors: ['#FF0000', '#EE7214', '#FDD04C', '#527853'] },
+            backgroundColor: '#ffffff',
+            datalessRegionColor: '#a5deff',
+            keepAspectRatio: true,
+            magnifyingGlass: { enable: true, zoomFactor: 7 },
+            tooltip: { trigger: 'focus' }
+        };
 
-      var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
+        var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
+        chart.draw(data, options);
 
-    // Customização do Tooltip
-    google.visualization.events.addListener(chart, 'ready', function () {
-        const tooltips = document.querySelectorAll('.google-visualization-tooltip');
-        tooltips.forEach((tooltip, index) => {
-            const value = data.getValue(index, 1);
-            tooltip.innerHTML = value === 0 ? '0%' : value + '%';
+        // Customização do Tooltip
+        google.visualization.events.addListener(chart, 'ready', function () {
+            const tooltips = document.querySelectorAll('.google-visualization-tooltip');
+            tooltips.forEach((tooltip, index) => {
+                const value = data.getValue(index, 1);
+                tooltip.innerHTML = value === 0 ? '0%' : value + '%';
+            });
         });
-    });
 
-    chart.draw(data, options);
+        google.visualization.events.addListener(chart, 'select', function () {
+            var selectedItem = chart.getSelection()[0];
+            if (selectedItem) {
+                var state = data.getValue(selectedItem.row, 0);
+                var value = data.getValue(selectedItem.row, 1);
+
+                // Chama a função personalizada para o estado selecionado
+                onStateClick(state, value);
+            }
+        });
     }
+
+    // Função personalizada ao clicar em um estado
+function onStateClick(state, value) {
+    var texto = '';
+    var frase = '';
+
+    if (state == 'BR-ES') {
+        frase = `No estado de Espírito Santo, os municípios com menor porcentagem de cobertura 5G de seus domicílios:`;
+        texto = `• Cachoeiro de Itapemirim - 0,004727775%
+                <br>• São José do Calçado - 0,055969787%
+                <br>• Mimoso do Sul  - 0,901983249%
+                <br>• Muqui - 2,972492613%
+                <br>• Apiacá - 4,041073559%`;
+
+    } else if (state == 'BR-MG') {
+        frase = `No estado de Minas Gerais, os municípios com menor porcentagem de cobertura 5G de seus domicílios:`;
+        texto = `• Timóteo - 0,003185359%
+                <br>• Belmiro Braga - 0,027222581%
+                <br>• Alpercata - 0,147474615%
+                <br>• Pedrinópolis - 0,309194185%
+                <br>• Paiva - 1,588189695%`;
+
+    } else if (state == 'BR-RJ') {
+        frase = `No estado do Rio de Janeiro, os municípios com menor porcentagem de cobertura 5G de seus domicílios:`;
+        texto = `• Itaperuna - 0,000438401%
+                <br>• São Fidélis - 0,013169717%
+                <br>• Teresópolis - 0,075377723%
+                <br>• Paraíba do Sul - 0,348082186%
+                <br>• São João da Barra - 1,3278558%`;
+
+    } else if (state == 'BR-SP') {
+        frase = `No estado de São Paulo, os municípios com menor porcentagem de cobertura 5G de seus domicílios:`;
+        texto = `• Santa Gertrudes - 0,000945242%
+                <br>• Itanhaém - 0,002213689%
+                <br>• Barrinha - 0,00590997%
+                <br>• Monteiro Lobato - 0,007708764%
+                <br>• Guariba - 0,011074511%`;
+    }
+
+    // Atualiza o conteúdo da div com o id 'estado' e 'municipios'
+    document.getElementById('estado').innerHTML = frase;
+    document.getElementById('municipios').innerHTML = texto;
+}
+
 </script>
