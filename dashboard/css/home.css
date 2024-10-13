@@ -24,7 +24,6 @@ body {
     justify-content: center;
     width: 100vw;
     height: 8vh;
-
 }
 
 #nav {
@@ -57,10 +56,13 @@ body {
     font-weight: 650;
     user-select: none;
     transition: 0.3s ease-in-out;
+    position: relative;
 }
 
 .botaoConta {
     color: var(--cor-azul-claro) !important;
+    padding-top: 5px;
+    height: 30px;
 }
 
 .botaoConta img {
@@ -75,8 +77,42 @@ body {
 
 .navbar li:hover {
     transform: scale(1.1);
-    color: var(--cor-azul-claro);
+    color: white;
+}
 
+.encerrar {
+    display: none;
+    position: absolute;
+    background-color: #000000c0;
+    border-radius: 15px;
+    margin-top: 5px;
+    height: 50px;
+    width: 200px;
+    right: 10px;
+}
+
+.navbar li:hover .encerrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.encerrar .botao {
+    display: flex;
+    align-items: center;
+    color: black;
+    border-radius: 8px;
+    background-color: #ffffff;
+    width: 90%;
+    height: 60%;
+    font-size: 14px;
+}
+
+.botao img{
+    margin-left: 10px;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
 }
 
 /* SEÇÃO 1 */
@@ -106,7 +142,7 @@ body {
 }
 
 /* MENU */
-.sub1 .menu{
+.sub1 .menu {
     color: white;
     display: flex;
     flex-direction: column;
@@ -115,14 +151,15 @@ body {
     height: 100%;
     border-radius: 15px 0px 0px 15px;
     background-color: #000000c0;
-    transition: width 0.6s; 
+    transition: width 0.6s;
+    overflow: hidden;
 }
 
 .menu:hover {
     width: 25%;
 }
 
-.menu .icone-menu{
+.menu .icone-menu {
     transition: transform 0.6s ease-out;
     display: flex;
     align-items: center;
@@ -147,7 +184,7 @@ body {
     transition-delay: 1s;
 }
 
-.menu .icone-menu img{
+.menu .icone-menu img {
     transition: transform 0.6s ease-out;
     margin-left: 5px;
     width: 50px;
@@ -157,7 +194,6 @@ body {
 .menu:hover .icone-menu img {
     margin-left: 0px;
     transform: rotate(90deg);
-    transition: transform 0.6s;
 }
 
 /* MENU - ANCORAS */
@@ -166,25 +202,23 @@ body {
     flex-direction: column;
     gap: 25px;
     transition: transform 0.6s ease-out;
-    align-items: center;
     margin: 10px;
     width: 75%;
     height: 80%;
 }
 
 .menu a {
-    display: block;
+    display: flex;
     width: 100%;
-    height: 8%;
     color: white;
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 .ancora {
     display: flex;
     align-items: center;
+    position: relative;
     width: 100%;
-    height: 100%;
 }
 
 .ancora img {
@@ -199,7 +233,7 @@ body {
 }
 
 .ancora span {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .menu .configuracoes {
@@ -225,9 +259,52 @@ body {
     color: #43BAFF;
 }
 
+/* DROPDOWN */
+.dropdown {
+    display: block;
+}
 
-/* USUARIO - PAINEL */
-.sub2{
+.dropdown .dropdown-icon {
+    transform: rotate(-90deg);
+}
+
+.dropdown .dropdown-content {
+    display: none;
+    font-size: 14px;
+    z-index: 1;
+    border-radius: 0 0 5px 5px;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.6s;
+    visibility: hidden;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-icon {
+    transition: transform 0.3s ease-out;
+    transform: rotate(90deg);
+}
+
+.dropdown-content a {
+    display: block;
+    color: white;
+    padding: 10px 0 0 80px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    color: #43BAFF;
+}
+
+
+/* PAINEL */
+.sub2 {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -235,7 +312,7 @@ body {
     justify-content: center;
     gap: 15px;
     align-items: flex-end;
-    
+
 }
 
 /* INFO */
@@ -244,15 +321,15 @@ body {
     justify-content: center;
     border-radius: 15px 15px 0 0;
     background-color: white;
-    height: 70%;
-    width: 20%;
+    height: 80%;
+    width: 35vh;
 }
 
 .info .perfil {
     background-image: url(../assets/pikachu.jpeg);
     background-size: cover;
     position: absolute;
-    bottom: 370px;
+    bottom: 420px;
     background-color: white;
     border: black solid;
     border-radius: 100%;
@@ -260,32 +337,48 @@ body {
     width: 160px;
 }
 
+.info .conteudo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    width: 30vh;
+    height: 75%;
+    top: 20%;
+}
+
+.sub-conteudo {
+    height: 90%;
+    font-size: 12px;
+}
+
+.sub-conteudo .suporte{
+    position: relative;
+    top: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* PLUS - CONTAINERS DIREITO */
 .plus {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 70%;
+    height: 80%;
     width: 60%;
-}
-
-.plus .container1{
-    display: flex;
-    border-radius: 15px;
     background-color: white;
-    width: 100%;
-    height: 62%;
-}
-
-.plus .container2{
-    display: flex;
     border-radius: 15px 15px 0 0;
-    background-color: white;
-    width: 100%;
-    height: 35%;
 }
 
+.plus h2{
+    margin: 20px 0 0 20px;
+    width: fit-content;
+}
 
-
-
+.plus .dashboard{
+    display: flex;
+    align-items: center;
+        margin: 20px 20px 0 20px;
+    height: 80%;    
+}
