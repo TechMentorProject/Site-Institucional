@@ -18,24 +18,20 @@
 
 </head>
 
-<body>
-
+<body onload="onStateClick('BR-SP')">
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
             <img src="../assets/logo-techmentor.svg" alt="Logo">
-            <nav id="nav">
-                <ul class="menu" id="menu" role="menu">
-                    <li><a href="cadastro.html">Minha Conta</a></li>
-                </ul>
-            </nav>
 
-            <a href="cadastro.html">
-                <li class="botaoConta nav-padrao"><img src="../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+            <div>
+                <li class="botaoConta">
+                    <img src="../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+                    <div class="encerrar">
+                        <div class="botao"><img src="../assets/deslogar.png" alt=""><span>Encerrar sessão</span></div>
+                    </div>
                 </li>
-            </a>
-
-
+            </div>
         </div>
     </div>
 
@@ -58,7 +54,7 @@
 
                     <div class="dropdown">
                         <a href="">
-                            <div class="ancora" >
+                            <div class="ancora">
                                 <img src="../assets/grafico-de-barras.png" alt="">
                                 <span class="selecionado">Dashboards<span class="dropdown-icon">></span></span>
                             </div>
@@ -111,21 +107,21 @@
                         </div>
                         <div class="cards">
                             <div class="filtro">
-                                <div class="caixa">
+                                <div class="caixa" onclick="mudar('5G')">
                                     <div class="texto">5G</div>
-                                    <div class="abaixo"></div>
+                                    <div class="abaixo" id="5G"></div>
                                 </div>
-                                <div class="caixa">
+                                <div class="caixa" onclick="mudar('4G')">
                                     <div class="texto">4G</div>
-                                    <div class="abaixo"></div>
+                                    <div class="abaixo" id="4G"></div>
                                 </div>
-                                <div class="caixa">
+                                <div class="caixa" onclick="mudar('3G')">
                                     <div class="texto">3G</div>
-                                    <div class="abaixo"></div>
+                                    <div class="abaixo" id="3G"></div>
                                 </div>
-                                <div class="caixa">
+                                <div class="caixa" onclick="mudar('2G')">
                                     <div class="texto">2G</div>
-                                    <div class="abaixo"></div>
+                                    <div class="abaixo" id="2G"></div>
                                 </div>
                             </div>
                             <div class="card">
@@ -150,12 +146,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<script type="text/javascript">
+<script>
     google.charts.load('current', {
         'packages': ['geochart'],
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
     });
     google.charts.setOnLoadCallback(drawRegionsMap);
+
+    let state = 'BR-SP';
 
     function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable([
@@ -181,63 +179,59 @@
         var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
         chart.draw(data, options);
 
-        // Customização do Tooltip
-        google.visualization.events.addListener(chart, 'ready', function () {
-            const tooltips = document.querySelectorAll('.google-visualization-tooltip');
-            tooltips.forEach((tooltip, index) => {
-                const value = data.getValue(index, 1);
-                tooltip.innerHTML = value === 0 ? '0%' : value + '%';
-            });
-        });
-
         google.visualization.events.addListener(chart, 'select', function () {
             var selectedItem = chart.getSelection()[0];
             if (selectedItem) {
-                var state = data.getValue(selectedItem.row, 0);
-                var value = data.getValue(selectedItem.row, 1);
-
-                // Chama a função personalizada para o estado selecionado
-                onStateClick(state, value);
+                state = data.getValue(selectedItem.row, 0); // Atualiza o estado selecionado
+                onStateClick(state); // Chama a função personalizada para o estado selecionado
             }
         });
     }
 
+    // Função para obter o nome do estado baseado no código
+    function getEstadoNome(state) {
+        switch (state) {
+            case 'BR-ES': return 'Espírito Santo';
+            case 'BR-MG': return 'Minas Gerais';
+            case 'BR-RJ': return 'Rio de Janeiro';
+            case 'BR-SP': return 'São Paulo';
+            default: return 'Estado desconhecido';
+        }
+    }
+
     // Função personalizada ao clicar em um estado
-    function onStateClick(state, value) {
-        var texto = '';
-        var frase = '';
+    function onStateClick(state) {
+        let frase = '';
+        let texto = '';
 
-        if (state == 'BR-ES') {
-            frase = `No estado de Espírito Santo, os municípios com menor porcentagem de cobertura 5G de seus domicílios:`;
+        // Mantém a frase padrão e atualiza a tecnologia selecionada
+        frase = `No estado ${getEstadoNome(state)}, os municípios com menor porcentagem de cobertura ${selecionado} de seus domicílios:`;
+
+        // Define o texto baseado no estado
+        if (state === 'BR-ES') {
             texto = `• Cachoeiro de Itapemirim - 0,004727775%
-                <br>• São José do Calçado - 0,055969787%
-                <br>• Mimoso do Sul  - 0,901983249%
-                <br>• Muqui - 2,972492613%
-                <br>• Apiacá - 4,041073559%`;
-
-        } else if (state == 'BR-MG') {
-            frase = `No estado de Minas Gerais, os municípios com menor porcentagem de cobertura 5G de seus domicílios:`;
+            <br>• São José do Calçado - 0,055969787%
+            <br>• Mimoso do Sul  - 0,901983249%
+            <br>• Muqui - 2,972492613%
+            <br>• Apiacá - 4,041073559%`;
+        } else if (state === 'BR-MG') {
             texto = `• Timóteo - 0,003185359%
-                <br>• Belmiro Braga - 0,027222581%
-                <br>• Alpercata - 0,147474615%
-                <br>• Pedrinópolis - 0,309194185%
-                <br>• Paiva - 1,588189695%`;
-
-        } else if (state == 'BR-RJ') {
-            frase = `No estado do Rio de Janeiro, os municípios com menor porcentagem de cobertura 5G de seus domicílios:`;
+            <br>• Belmiro Braga - 0,027222581%
+            <br>• Alpercata - 0,147474615%
+            <br>• Pedrinópolis - 0,309194185%
+            <br>• Paiva - 1,588189695%`;
+        } else if (state === 'BR-RJ') {
             texto = `• Itaperuna - 0,000438401%
-                <br>• São Fidélis - 0,013169717%
-                <br>• Teresópolis - 0,075377723%
-                <br>• Paraíba do Sul - 0,348082186%
-                <br>• São João da Barra - 1,3278558%`;
-
-        } else if (state == 'BR-SP') {
-            frase = `No estado de São Paulo, os municípios com menor porcentagem de cobertura 5G de seus domicílios:`;
+            <br>• São Fidélis - 0,013169717%
+            <br>• Teresópolis - 0,075377723%
+            <br>• Paraíba do Sul - 0,348082186%
+            <br>• São João da Barra - 1,3278558%`;
+        } else if (state === 'BR-SP') {
             texto = `• Santa Gertrudes - 0,000945242%
-                <br>• Itanhaém - 0,002213689%
-                <br>• Barrinha - 0,00590997%
-                <br>• Monteiro Lobato - 0,007708764%
-                <br>• Guariba - 0,011074511%`;
+            <br>• Itanhaém - 0,002213689%
+            <br>• Barrinha - 0,00590997%
+            <br>• Monteiro Lobato - 0,007708764%
+            <br>• Guariba - 0,011074511%`;
         }
 
         // Atualiza o conteúdo da div com o id 'estado' e 'municipios'
@@ -245,4 +239,24 @@
         document.getElementById('municipios').innerHTML = texto;
     }
 
+    let selecionado = '5G';
+
+    function mudar(tecnologia) {
+        // Reseta a cor da div previamente selecionada
+        document.getElementById(selecionado).style.backgroundColor = '#9f9f9f';
+
+        // Atualiza o selecionado com a nova opção
+        selecionado = tecnologia;
+
+        // Muda a cor da nova opção selecionada
+        document.getElementById(selecionado).style.backgroundColor = '#43BAFF';
+
+        // Atualiza a exibição para o estado atual com a nova tecnologia
+        onStateClick(state);
+    }
+
+    window.onload = function () {
+        document.getElementById(selecionado).style.backgroundColor = '#43BAFF';
+        onStateClick(state);
+    };
 </script>

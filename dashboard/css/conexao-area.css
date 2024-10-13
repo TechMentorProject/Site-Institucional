@@ -24,7 +24,6 @@ body {
     justify-content: center;
     width: 100vw;
     height: 8vh;
-
 }
 
 #nav {
@@ -57,10 +56,13 @@ body {
     font-weight: 650;
     user-select: none;
     transition: 0.3s ease-in-out;
+    position: relative;
 }
 
 .botaoConta {
     color: var(--cor-azul-claro) !important;
+    padding-top: 5px;
+    height: 30px;
 }
 
 .botaoConta img {
@@ -75,8 +77,42 @@ body {
 
 .navbar li:hover {
     transform: scale(1.1);
-    color: var(--cor-azul-claro);
+    color: white;
+}
 
+.encerrar {
+    display: none;
+    position: absolute;
+    background-color: #000000c0;
+    border-radius: 15px;
+    margin-top: 5px;
+    height: 50px;
+    width: 200px;
+    right: 10px;
+}
+
+.navbar li:hover .encerrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.encerrar .botao {
+    display: flex;
+    align-items: center;
+    color: black;
+    border-radius: 8px;
+    background-color: #ffffff;
+    width: 90%;
+    height: 60%;
+    font-size: 14px;
+}
+
+.botao img{
+    margin-left: 10px;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
 }
 
 /* SEÇÃO 1 */
@@ -335,6 +371,7 @@ body {
     border-radius: 15px 15px;
     height: 100%;
     width: 15%;
+    cursor: pointer;
 }
 
 .caixa .texto{
@@ -351,8 +388,8 @@ body {
     height: 15%;
     background-color: #9f9f9f;
     bottom: 5px;
-    /* background-color: #43BAFF; */
 }
+
 
 /* CARDS */
 .dashboard .cards{
