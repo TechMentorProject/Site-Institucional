@@ -5,11 +5,13 @@ body {
     padding: 0;
 }
 
+/* Nav Bar */
 .navbar {
     display: flex;
     justify-content: center;
     width: 100vw;
     height: 8vh;
+
 }
 
 #nav {
@@ -44,16 +46,30 @@ body {
     transition: 0.3s ease-in-out;
 }
 
-.navbar a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
+.botaoConta {
+    color: var(--cor-azul-claro) !important;
+}
+
+.botaoConta img {
+    width: 15%;
+    margin-right: 5px;
+    margin-bottom: -5px;
+}
+
+.botaoConta:hover {
+    color: #ffffff !important;
+}
+
+.navbar li:hover {
+    transform: scale(1.1);
+    color: var(--cor-azul-claro);
+
 }
 
 .secao1 {
     width: 100vw;
     height: 102vh;
-    margin-top: -12vh;
+    margin-top: -10vh;
     background-image: url("../assets/background-login.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -63,7 +79,8 @@ body {
     display: flex;
 }
 
-.sub1 .menu {
+/* MENU */
+.sub1 .menu{
     color: white;
     display: flex;
     flex-direction: column;
@@ -72,23 +89,14 @@ body {
     height: 100%;
     border-radius: 15px 0px 0px 15px;
     background-color: #000000c0;
-    transition: width 0.6s;
+    transition: width 0.6s; 
 }
 
 .menu:hover {
     width: 25%;
 }
 
-.menu .selecionado {
-    color: #43BAFF;
-    font-weight: bold;
-}
-
-.menu a:hover span {
-    color: #43BAFF;
-}
-
-.menu .icone-menu {
+.menu .icone-menu{
     transition: transform 0.6s ease-out;
     display: flex;
     align-items: center;
@@ -113,7 +121,7 @@ body {
     transition-delay: 1s;
 }
 
-.menu .icone-menu img {
+.menu .icone-menu img{
     transition: transform 0.6s ease-out;
     margin-left: 5px;
     width: 50px;
@@ -143,21 +151,52 @@ body {
     width: 100%;
     height: 8%;
     color: white;
-    text-decoration: none;
+    text-decoration: none; 
 }
 
 .ancora {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    width: 100%;
+    height: 100%;
 }
 
 .ancora img {
-    margin-right: 10px;
+    transition: margin-left 0.6s ease-out;
+    margin-left: 15px;
+    width: 30px;
+    height: 30px;
+}
+
+.menu:hover .ancora img {
+    margin-left: 10px;
 }
 
 .ancora span {
-    color: white;
+    font-size: 13px;
+}
+
+.menu .configuracoes {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.6s ease-out;
+    align-items: center;
+    margin: 10px;
+    width: 75%;
+    height: 10%;
+}
+
+.configuracoes .ancora {
+    height: 100%;
+}
+
+.menu .selecionado {
+    color: #43BAFF;
+    font-weight: bold;
+}
+
+.menu a:hover span {
+    color: #43BAFF;
 }
 
 .sub2 {
@@ -189,7 +228,7 @@ body {
 .image-box {
     background-color: #e0e0e0;
     border: 2px solid #c0c0c0;
-    padding: 5px;
+    padding: 0px;
     border-radius: 10px; 
     display: flex;
     flex-direction: column;
@@ -233,3 +272,12 @@ body {
     width: 300px; 
     height: 300px; 
 }
+
+.azul{
+    background-color: #43BAFF;
+    width: 400px;
+    height: 5vh;
+    margin-top: 5vh;
+    border-radius: 5px;
+}
+
