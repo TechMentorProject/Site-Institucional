@@ -127,7 +127,7 @@
               <div class="card" id="card3">
                 <div class="card-inner">
                   <div class="card-front" id="card3-front">
-                    <p>Estados com maior crescimento populacional</p>
+                    <p>Porcentagem de crescimento populacional</p>
                   </div>
                   <div class="card-back" id="card3-back">
                     <p>Clique no gráfico para visualizar os dados</p>
@@ -238,19 +238,7 @@
         plugins: {
           legend: {
             display: false,
-          },
-          title: {
-            display: true, // Exibe o título
-            text: "Mapeamento de Antenas por Estado", // O título do gráfico
-            font: {
-              size: 18, // Tamanho da fonte
-              weight: "bold", // Coloca o título em negrito
-            },
-            padding: {
-              top: 10, // Espaçamento superior
-              bottom: 30, // Espaçamento inferior
-            },
-          },
+          }
         },
         onClick: function (evt, element) {
           if (element.length > 0) {
