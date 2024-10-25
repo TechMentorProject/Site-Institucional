@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/grafico-antenas.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+    rel="stylesheet" />
+
+  <title>Mapeamento de Antenas</title>
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="nav"></div>
+    <div class="navbar-Child">
+      <img src="./assets/logo-techmentor.svg" alt="Logo">
+
+      <div>
+        <li class="botaoConta">
+          <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+          <div class="encerrar">
+            <div class="botao"><img src="./assets/deslogar.png" alt=""><span>Encerrar sessão</span></div>
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
+
+  <div class="secao1">
+    <div class="sub1">
+      <div class="menu">
+        <div class="icone-menu">
+          <img src="./assets/menu-aberto-white.png" alt="">
+          <span>MENU</span>
+        </div>
+        <div class="ancoras-menu">
+          <a href="home.html">
+            <div class="ancora">
+              <img src="./assets/casa.png" alt="">
+              <span>Home</span>
+            </div>
+          </a>
+
+          <div class="dropdown">
+            <a href="">
+              <div class="ancora">
+                <img src="./assets/grafico-de-barras.png" alt="">
+                <span class="selecionado">Dashboards<span class="dropdown-icon">></span></span>
+              </div>
+            </a>
+            <div class="dropdown-content">
+              <a href="conexao-area.html">Conexão por área</a>
+              <a href="grafico-antenas.html" class="selecionado">Mapeamento de Antenas</a>
+            </div>
+          </div>
+
+          <a href="">
+            <div class="ancora">
+              <img src="./assets/aviso.png" alt="">
+              <span>Alertas</span>
+            </div>
+          </a>
+
+          <div class="dropdown">
+            <a href="#">
+              <div class="ancora">
+                <img src="./assets/painel.png" alt="">
+                <span>Painel<span class="dropdown-icon">></span></span>
+              </div>
+            </a>
+            <div class="dropdown-content">
+              <a href="#">Usuários</a>
+              <a href="#">Antenas</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="configuracoes">
+          <a href="">
+            <div class="ancora">
+              <img src="./assets/configuracoes.png" alt="">
+              <span>Configurações</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="sub2">
+        <div class="painel">
+          <h1>Mapeamento de Antenas</h1>
+          <h2>Distribuição de Antenas por Estado</h2>
+          <div class="dashboard">
+            <div class="dash" id="geochart-colors">
+              <canvas id="myChart" style="height: 400px; width: 1200px"></canvas>
+            </div>
+            <div class="cards">
+              <div class="card" id="card1">
+                <div class="card-inner">
+                  <div class="card-front" id="card1-front">
+                    <p>Percentual de cobertura de antenas</p>
+                  </div>
+                  <div class="card-back" id="card1-back">
+                    <p>Clique no gráfico para visualizar os dados</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" id="card2">
+                <div class="card-inner">
+                  <div class="card-front" id="card2-front">
+                    <p>Operadoras com mais presença</p>
+                  </div>
+                  <div class="card-back" id="card2-back">
+                    <p>Clique no gráfico para visualizar os dados</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" id="card3">
+                <div class="card-inner">
+                  <div class="card-front" id="card3-front">
+                    <p>Porcentagem de crescimento populacional</p>
+                  </div>
+                  <div class="card-back" id="card3-back">
+                    <p>Clique no gráfico para visualizar os dados</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById("myChart");
+
+  const estadoDados = {
+    "Rio de Janeiro": {
+      cobertura: "57%",
+      operadora: "Operadora Tim",
+      crescimento: "Crescimento de 1.2%",
+      color: "rgba(255, 99, 132, 0.7)",
+    },
+    "São Paulo": {
+      cobertura: "71%",
+      operadora: "Operadora Oi",
+      crescimento: "Crescimento de 2.5%",
+      color: "rgba(54, 162, 235, 0.7)",
+    },
+    "Minas Gerais": {
+      cobertura: "42%",
+      operadora: "Operadora Vivo",
+      crescimento: "Crescimento de 1.8%",
+      color: "rgba(75, 192, 192, 0.7)",
+    },
+    "Espírito Santo": {
+      cobertura: "34%",
+      operadora: "Operadora Claro",
+      crescimento: "Crescimento de 0.9%",
+      color: "rgba(153, 102, 255, 0.7)",
+    },
+  };
+
+  function updateCards(label) {
+    const data = estadoDados[label];
+    const cardOneFront = document.getElementById("card1-front");
+    const cardOneBack = document.getElementById("card1-back");
+    const cardTwoFront = document.getElementById("card2-front");
+    const cardTwoBack = document.getElementById("card2-back");
+    const cardThreeFront = document.getElementById("card3-front");
+    const cardThreeBack = document.getElementById("card3-back");
+
+    cardOneBack.querySelector(
+      ".card-back p"
+    ).innerText = `${label} cobre ${data.cobertura}`;
+    cardTwoBack.querySelector(
+      ".card-back p"
+    ).innerText = `${data.operadora} é a líder em ${label}`;
+    cardThreeBack.querySelector(
+      ".card-back p"
+    ).innerText = `${data.crescimento} de crescimento em ${label}`;
+
+    cardOneFront.style.backgroundColor = data.color;
+    cardOneBack.style.backgroundColor = data.color;
+    cardTwoFront.style.backgroundColor = data.color;
+    cardTwoBack.style.backgroundColor = data.color;
+    cardThreeFront.style.backgroundColor = data.color;
+    cardThreeBack.style.backgroundColor = data.color;
+  }
+
+  const myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: [
+        "Rio de Janeiro",
+        "São Paulo",
+        "Minas Gerais",
+        "Espírito Santo",
+      ],
+      datasets: [
+        {
+          label: "Quantidade antenas por estado",
+          data: [12, 19, 3, 5],
+          borderWidth: 2,
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.7)",
+            "rgba(54, 162, 235, 0.7)",
+            "rgba(75, 192, 192, 0.7)",
+            "rgba(153, 102, 255, 0.7)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+          ],
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        }
+      },
+      onClick: function (evt, element) {
+        if (element.length > 0) {
+          const index = element[0].index;
+          const label = myChart.data.labels[index];
+          updateCards(label);
+        }
+      },
+    },
+  });
+
+  function deslogar() {
+    sessionStorage.clear();
+    window.location.href = '../index.html';
+  }
+</script>
