@@ -103,14 +103,14 @@ function cadastrar() {
 }
 
 function entrar() {
-    var usuarioVar = document.getElementById("input_usuario").value;
+    var emailVar = document.getElementById("input_email").value;
     var senhaVar = document.getElementById("input_senha").value;
     var loginValido = true;
 
-    if (usuarioVar == "") {
-        input_usuario.style.borderColor = "red";
-        erro_usuario.style = "font-weight: 700; color: red"
-        erro_usuario.innerHTML = "Usuário deve ser prenchido";
+    if (emailVar == "") {
+        input_email.style.borderColor = "red";
+        erro_email.style = "font-weight: 700; color: red"
+        erro_email.innerHTML = "Usuário deve ser prenchido";
         loginValido = false;
     }
     
@@ -121,14 +121,14 @@ function entrar() {
         loginValido = false;
     }
     
-    if (usuarioVar != 'Techmentor' || senhaVar != '12345678'){
+    if (emailVar != 'Techmentor' || senhaVar != '12345678'){
         input_senha.style.borderColor = "red";
         erro_senha.style = "font-weight: 700; color: red"
         erro_senha.innerHTML = "Senha inválida";
         
-        input_usuario.style.borderColor = "red";
-        erro_usuario.style = "font-weight: 700; color: red"
-        erro_usuario.innerHTML = "Usuário inválido";
+        input_email.style.borderColor = "red";
+        erro_email.style = "font-weight: 700; color: red"
+        erro_email.innerHTML = "E-mail inválido";
         loginValido = false;
     } else {
         console.log("Login concluído")
