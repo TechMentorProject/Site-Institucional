@@ -121,7 +121,7 @@ function entrar() {
         loginValido = false;
     }
     
-    if (senhaVar != "" && usuarioVar != ""){
+    if (usuarioVar != 'Techmentor' || senhaVar != '12345678'){
         input_senha.style.borderColor = "red";
         erro_senha.style = "font-weight: 700; color: red"
         erro_senha.innerHTML = "Senha inválida";
@@ -130,11 +130,11 @@ function entrar() {
         erro_usuario.style = "font-weight: 700; color: red"
         erro_usuario.innerHTML = "Usuário inválido";
         loginValido = false;
-    }
-    
-    if (loginValido) {
+    } else {
         console.log("Login concluído")
+        window.location.href = './dashboard/home.html';
     }
+
 }
 
 
