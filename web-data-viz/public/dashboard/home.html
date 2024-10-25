@@ -28,7 +28,8 @@
                 <li class="botaoConta">
                     <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
                     <div class="encerrar">
-                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt=""><span>Encerrar sessão</span></div>
+                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt=""><span>Encerrar
+                                sessão</span></div>
                     </div>
                 </li>
             </div>
@@ -131,10 +132,10 @@
 
                 <div class="plus">
                     <h2>Cadastro de antenas dos últimos
-                        <select style="font-size: 18px; font-weight: bolder;" name="" id="">
-                            <option value="">7</option>
-                            <option value="">15</option>
-                            <option value="">30</option>
+                        <select style="font-size: 18px; font-weight: bolder;" id="daysSelect">
+                            <option value="7">7</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
                         </select> dias
                     </h2>
 
@@ -142,14 +143,9 @@
                         <canvas id="myChart"></canvas>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
-
-
-</body>
 
 </html>
 
@@ -158,28 +154,56 @@
 
 <script>
     const ctx = document.getElementById('myChart');
-  
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7'],
+            datasets: [{
+                label: 'Cadastro de Antenas',
+                data: [5, 8, 10, 12, 15, 18, 20], // Dados para 7 dias
+                borderColor: '#43BAFF',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            }
         }
-      }
     });
 
-    function deslogar(){
+    // Mock data based on selection
+    $('#daysSelect').change(function () {
+        const value = $(this).val();
+        let newData;
+        let newLabels;
+
+        if (value === "7") {
+            newData = [5, 8, 10, 12, 15, 18, 20]; // Dados para 7 dias
+            newLabels = ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7'];
+        } else if (value === "15") {
+            newData = [2, 4, 6, 8, 10, 12, 14, 15, 18, 20, 22, 25, 28, 30, 32]; // Dados para 15 dias
+            newLabels = ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7', 'Dia 8', 'Dia 9', 'Dia 10', 'Dia 11', 'Dia 12', 'Dia 13', 'Dia 14', 'Dia 15'];
+        } else if (value === "30") {
+            newData = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155]; // Dados para 30 dias
+            newLabels = ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7', 'Dia 8', 'Dia 9', 'Dia 10', 'Dia 11', 'Dia 12', 'Dia 13', 'Dia 14', 'Dia 15', 'Dia 16', 'Dia 17', 'Dia 18', 'Dia 19', 'Dia 20', 'Dia 21', 'Dia 22', 'Dia 23', 'Dia 24', 'Dia 25', 'Dia 26', 'Dia 27', 'Dia 28', 'Dia 29', 'Dia 30'];
+        }
+
+        // Update chart data and labels
+        myChart.data.datasets[0].data = newData;
+        myChart.data.labels = newLabels;
+        myChart.update();
+    });
+
+    function deslogar() {
         sessionStorage.clear();
         window.location.href = '../index.html';
     }
-  </script>
+</script>
