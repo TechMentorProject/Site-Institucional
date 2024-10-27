@@ -121,7 +121,7 @@ function entrar() {
         loginValido = false;
     }
     
-    if (emailVar != 'Techmentor' || senhaVar != '12345678'){
+    if (emailVar != 'jefferson.rodrigues@unifique.com' || senhaVar != '12345678'){
         input_senha.style.borderColor = "red";
         erro_senha.style = "font-weight: 700; color: red"
         erro_senha.innerHTML = "Senha inválida";

@@ -1,8 +1,21 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f0f0f0;
+* {
     margin: 0;
     padding: 0;
+    text-decoration-line: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: "Poppins";
+}
+
+:root {
+    --cor-azul-claro: #43BAFF;
+    --cor-azul-escuro: #080501;
 }
 
 /* Nav Bar */
@@ -102,6 +115,7 @@ body {
     height: 20px;
 }
 
+/* SEÇÃO 1 */
 .secao1 {
     width: 100vw;
     height: 102vh;

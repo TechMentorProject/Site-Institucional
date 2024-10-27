@@ -326,7 +326,7 @@ body {
 }
 
 .info .perfil {
-    background-image: url(../assets/pikachu.jpeg);
+    background-image: url(../assets/usuario.png);
     background-size: cover;
     position: absolute;
     bottom: 420px;
