@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMentor | Dashboard</title>
+    <link rel="stylesheet" href="./css/painel-dashboards.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <link rel="icon" href="./assets/TechMentor-Logo.ico" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="nav"></div>
+        <div class="navbar-Child">
+            <img src="./assets/logo-techmentor.svg" alt="Logo">
+
+            <div>
+                <li class="botaoConta">
+                    <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+                    <div class="encerrar">
+                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt=""><span>Encerrar
+                                sessão</span></div>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </div>
+
+    <div class="secao1">
+        <div class="sub1">
+            <div class="menu">
+                <div class="icone-menu">
+                    <img src="./assets/menu-aberto-white.png" alt="">
+                    <span>MENU</span>
+                </div>
+                <div class="ancoras-menu">
+                    <a href="home.html">
+                        <div class="ancora">
+                            <img src="./assets/casa.png" alt="">
+                            <span>Home</span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown">
+                        <a href="">
+                            <div class="ancora">
+                                <img src="./assets/grafico-de-barras.png" alt="">
+                                <span class="selecionado">Dashboards<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="conexao-area.html">Conexão por área</a>
+                            <a href="grafico-antenas.html">Mapeamento de Antenas</a>
+                        </div>
+                    </div>
+
+                    <a href="">
+                        <div class="ancora">
+                            <img src="./assets/aviso.png" alt="">
+                            <span>Alertas</span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown">
+                        <a href="#">
+                            <div class="ancora">
+                                <img src="./assets/painel.png" alt="">
+                                <span>Painel<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="#">Usuários</a>
+                            <a href="#">Antenas</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="configuracoes">
+                    <a href="">
+                        <div class="ancora">
+                            <img src="./assets/configuracoes.png" alt="">
+                            <span>Configurações</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sub2">
+                <div class="painel">
+                    <div class="container-imagens">
+                        <div class="image-wrapper">
+                            <a href="./conexao-area.html">
+                                <div class="image-box">
+                                    <div class="image-background">
+                                        <img src="./assets/mapa.png" alt="Conexão por Área"
+                                            class="resized-image map-image">
+                                    </div>
+                                    <span class="image-label">Conexão por Área</span>
+                                    <div class="azul"> </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="image-wrapper">
+                            <a href="./grafico-antenas.html">
+                                <div class="image-box">
+                                    <div class="image-background">
+                                        <img src="./assets/antena.png" alt="Mapeamento de Antenas"
+                                            class="resized-image antenna-image">
+                                    </div>
+                                    <span class="image-label">Mapeamento de Antenas</span>
+                                    <div class="azul"> </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function deslogar(){
+        sessionStorage.clear();
+        window.location.href = '../index.html';
+    }
+</script>

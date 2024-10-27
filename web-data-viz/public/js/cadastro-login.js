@@ -2,24 +2,24 @@ var msgErro = document.getElementById("msgError");
 var divErro = document.getElementById("divError");
 
 function cadastrar() {
-    var usuarioVar = document.getElementById("input_usuario").value;
+    var empresaVar = document.getElementById("input_nomeEmpresa").value;
     var emailVar = document.getElementById("input_email").value;
-    var tokenVar = document.getElementById("input_token").value;
+    var nomeResponsavelVar = document.getElementById("input_nomeResponsavel").value;
     var senhaVar = document.getElementById("input_senha").value;
     var cnpjVar = document.getElementById("input_cnpj").value;
     var confirmacaoSenhaVar = document.getElementById("input_confirmaSenha").value;
 
     var cadastroValido = true;
 
-    if (usuarioVar == "") {
-        input_usuario.style.borderColor = "red";
-        erro_usuario.style = "font-weight: 700; color: red"
-        erro_usuario.innerHTML = "Usuário deve ser prenchido";
+    if (empresaVar == "") {
+        input_nomeEmpresa.style.borderColor = "red";
+        erro_nomeEmpresa.style = "font-weight: 700; color: red"
+        erro_nomeEmpresa.innerHTML = "Empresa deve ser prenchido";
         cadastroValido = false;
     } else {
-        erro_usuario.style = "font-weight: 700; color: white"
-        input_usuario.style.borderColor = "white";
-        erro_usuario.innerHTML = "Usuário";
+        erro_nomeEmpresa.style = "font-weight: 700; color: white"
+        input_nomeEmpresa.style.borderColor = "white";
+        erro_nomeEmpresa.innerHTML = "Empresa";
     }
     
     if (emailVar == "") {
@@ -38,20 +38,15 @@ function cadastrar() {
         erro_email.innerHTML = "E-mail";
     }
     
-    if (tokenVar == "") {
-        input_token.style.borderColor = "red";
-        erro_token.style = "font-weight: 700; color: red"
-        erro_token.innerHTML = "Token deve ser prenchido";
-        cadastroValido = false;
-    } else if (tokenVar.indexOf("@") != -1 || tokenVar.indexOf(".") != -1 || tokenVar.indexOf("-") != -1 || tokenVar.indexOf(" ") != -1) {
-        input_token.style.borderColor = "red";
-        erro_token.style = "font-weight: 700; color: red"
-        erro_token.innerHTML = "Token inválido";
+    if (nomeResponsavelVar == "") {
+        input_nomeResponsavel.style.borderColor = "red";
+        erro_nomeResponsavel.style = "font-weight: 700; color: red"
+        erro_nomeResponsavel.innerHTML = "Nome deve ser prenchido";
         cadastroValido = false;
     } else {
-        erro_token.style = "font-weight: 700; color: white"
-        input_token.style.borderColor = "white";
-        erro_token.innerHTML = "Token";
+        erro_nomeResponsavel.style = "font-weight: 700; color: white"
+        input_nomeResponsavel.style.borderColor = "white";
+        erro_nomeResponsavel.innerHTML = "Nome Responsável";
     }
     
     if (cnpjVar == "") {
@@ -108,14 +103,14 @@ function cadastrar() {
 }
 
 function entrar() {
-    var usuarioVar = document.getElementById("input_usuario").value;
+    var emailVar = document.getElementById("input_email").value;
     var senhaVar = document.getElementById("input_senha").value;
     var loginValido = true;
 
-    if (usuarioVar == "") {
-        input_usuario.style.borderColor = "red";
-        erro_usuario.style = "font-weight: 700; color: red"
-        erro_usuario.innerHTML = "Usuário deve ser prenchido";
+    if (emailVar == "") {
+        input_email.style.borderColor = "red";
+        erro_email.style = "font-weight: 700; color: red"
+        erro_email.innerHTML = "Usuário deve ser prenchido";
         loginValido = false;
     }
     
@@ -126,20 +121,20 @@ function entrar() {
         loginValido = false;
     }
     
-    if (senhaVar != "" && usuarioVar != ""){
+    if (emailVar != 'jefferson.rodrigues@unifique.com' || senhaVar != '12345678'){
         input_senha.style.borderColor = "red";
         erro_senha.style = "font-weight: 700; color: red"
         erro_senha.innerHTML = "Senha inválida";
         
-        input_usuario.style.borderColor = "red";
-        erro_usuario.style = "font-weight: 700; color: red"
-        erro_usuario.innerHTML = "Usuário inválido";
+        input_email.style.borderColor = "red";
+        erro_email.style = "font-weight: 700; color: red"
+        erro_email.innerHTML = "E-mail inválido";
         loginValido = false;
-    }
-    
-    if (loginValido) {
+    } else {
         console.log("Login concluído")
+        window.location.href = './dashboard/home.html';
     }
+
 }
 
 
