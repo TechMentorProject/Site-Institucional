@@ -1,6 +1,14 @@
 var msgErro = document.getElementById("msgError");
 var divErro = document.getElementById("divError");
 
+function validar() {
+    if (sessionStorage.EMAIL_USUARIO != null) {
+        window.location = "./dashboard/home.html"
+    } else {
+        window.location = "/login.html"
+    }
+}
+
 function cadastrar() {
     var empresaVar = document.getElementById("input_nomeEmpresa").value;
     var emailVar = document.getElementById("input_email").value;
@@ -21,7 +29,7 @@ function cadastrar() {
         input_nomeEmpresa.style.borderColor = "white";
         erro_nomeEmpresa.innerHTML = "Empresa";
     }
-    
+
     if (emailVar == "") {
         input_email.style.borderColor = "red";
         erro_email.style = "font-weight: 700; color: red"
@@ -37,7 +45,7 @@ function cadastrar() {
         input_email.style.borderColor = "white";
         erro_email.innerHTML = "E-mail";
     }
-    
+
     if (nomeResponsavelVar == "") {
         input_nomeResponsavel.style.borderColor = "red";
         erro_nomeResponsavel.style = "font-weight: 700; color: red"
@@ -48,7 +56,7 @@ function cadastrar() {
         input_nomeResponsavel.style.borderColor = "white";
         erro_nomeResponsavel.innerHTML = "Nome Responsável";
     }
-    
+
     if (cnpjVar == "") {
         input_cnpj.style.borderColor = "red";
         erro_cnpj.style = "font-weight: 700; color: red"
@@ -64,7 +72,7 @@ function cadastrar() {
         input_cnpj.style.borderColor = "white";
         erro_cnpj.innerHTML = "CNPJ";
     }
-    
+
     if (senhaVar == "") {
         input_senha.style.borderColor = "red";
         erro_senha.style = "font-weight: 700; color: red"
@@ -80,7 +88,7 @@ function cadastrar() {
         input_senha.style.borderColor = "white";
         erro_senha.innerHTML = "Senha";
     }
-    
+
     if (confirmacaoSenhaVar == "") {
         input_confirmaSenha.style.borderColor = "red";
         erro_repetir_senha.style = "font-weight: 700; color: red"
@@ -96,9 +104,33 @@ function cadastrar() {
         input_confirmaSenha.style.borderColor = "white";
         erro_repetir_senha.innerHTML = "Repetir Senha";
     }
-    
+
     if (cadastroValido) {
-        console.log("Cadastro concluído")
+        fetch("/usuarios/cadastrarEmpresa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeEmpresa: empresaVar,
+                nomeResponsavel: nomeResponsavelVar,
+                cnpj: cnpjVar,
+                emailResponsavel: emailVar,
+                senha: senhaVar
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+                console.log("CADASTRO REALIZADO!")
+                console.log("INDO PARA LOGIN")
+                setInterval(() => {
+                    window.location = "login.html"
+                }, 4000)
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                return;
+            });
     }
 }
 
@@ -113,29 +145,83 @@ function entrar() {
         erro_email.innerHTML = "Usuário deve ser prenchido";
         loginValido = false;
     }
-    
+
     if (senhaVar == "") {
         input_senha.style.borderColor = "red";
         erro_senha.style = "font-weight: 700; color: red"
         erro_senha.innerHTML = "Senha deve ser prenchido";
         loginValido = false;
     }
-    
-    if (emailVar != 'jefferson.rodrigues@unifique.com' || senhaVar != '12345678'){
-        input_senha.style.borderColor = "red";
-        erro_senha.style = "font-weight: 700; color: red"
-        erro_senha.innerHTML = "Senha inválida";
-        
-        input_email.style.borderColor = "red";
-        erro_email.style = "font-weight: 700; color: red"
-        erro_email.innerHTML = "E-mail inválido";
-        loginValido = false;
-    } else {
-        console.log("Login concluído")
-        window.location.href = './dashboard/home.html';
+
+    if (loginValido) {
+        fetch("/usuarios/autenticarUsuario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: emailVar,
+                senha: senhaVar
+            }),
+        })
+            .then(function (resposta) {
+                console.log(resposta)
+                if (resposta.status != 200) {
+                    fetch("/usuarios/autenticarEmpresa", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            email: emailVar,
+                            senha: senhaVar
+                        }),
+                    })
+                        .then(function (resposta) {
+                            if (resposta.status != 200) {
+                                console.log("DADOS INVÁLIDOS")
+                            } else {
+                                sessionStorage.EMPRESA = true;
+                                resposta.json().then((res) => {
+                                    sessionStorage.NOME_USUARIO = res.nomeResponsavel
+                                    sessionStorage.NOME_EMPRESA = res.nomeEmpresa
+                                    sessionStorage.EMAIL_USUARIO = res.emailResponsavel;
+                                    sessionStorage.SENHA_USUARIO = res.senha;
+                                    sessionStorage.ID_EMPRESA = res.idEmpresa;
+                                })
+                                console.log("LOGIN REALIZADO!")
+                                setInterval(() => {
+                                    window.location = "./dashboard/home.html"
+                                }, 4000)
+                            }
+                        })
+                        .catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                            return;
+                        });
+                    } else {
+                        sessionStorage.EMPRESA = false;
+                        resposta.json().then((res) => {
+                            sessionStorage.NOME_USUARIO = res.nomeUsuario
+                            sessionStorage.EMAIL_USUARIO = res.email;
+                            sessionStorage.SENHA_USUARIO = res.senha;
+                            sessionStorage.ID_CARGO = res.idCargo;
+                            sessionStorage.ID_EMPRESA = res.idEmpresa;
+                        })
+                    console.log("LOGIN REALIZADO!")
+                    setInterval(() => {
+                        window.location = "./dashboard/home.html"
+                    }, 4000)
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                return;
+            });
     }
 
 }
+
 
 
 function mudarOlho(olho, local) {
