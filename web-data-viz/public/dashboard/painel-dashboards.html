@@ -13,9 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <link rel="icon" href="./assets/TechMentor-Logo.ico" />
+
+    <script src="./js/dashboard.js"></script>
 </head>
 
-<body>
+<body onload="validar()">
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
@@ -129,12 +131,4 @@
     </div>
 
 </body>
-
 </html>
-
-<script>
-    function deslogar(){
-        sessionStorage.clear();
-        window.location.href = '../index.html';
-    }
-</script>
