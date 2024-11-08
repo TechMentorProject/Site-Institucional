@@ -1,9 +1,14 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const upload = require('../config/configUpload');
 
-var usuarioController = require("../controllers/usuarioController");
+const usuarioController = require("../controllers/usuarioController");
 
-router.post("/autenticarUsuario", function (req, res) {
+router.get("", (req, res) => {
+    res.render("configuracoes")
+});
+
+router.post("/autenticarUsuario", upload.single('foto'), function (req, res) {
     usuarioController.autenticarUsuario(req, res);
 });
 
@@ -17,6 +22,10 @@ router.post("/cadastrarUsuario", function (req, res) {
 
 router.post("/cadastrarEmpresa", function (req, res) {
     usuarioController.cadastrarEmpresa(req, res);
+})
+
+router.post("/alterarFoto/:idUsuario", upload.single('foto'), (req, res) => {
+    usuarioController.salvarFoto(req, res);
 })
 
 module.exports = router;

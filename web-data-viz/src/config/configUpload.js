@@ -1,8 +1,6 @@
 const multer = require('multer');
 
-// Diretório onde os arquivos serão salvos
-// ATENÇÃO: É necessário manter o diretório 'public' para poder utilizar no front-end
-const diretorio = 'public/assets/';
+const diretorio = 'public/assets/users';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
