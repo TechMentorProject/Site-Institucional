@@ -21,6 +21,7 @@ function autenticarUsuario(req, res) {
                             email: resultado[0].email,
                             cpf: resultado[0].cpf,
                             senha: resultado[0].senha,
+                            imagemPerfil: resultado[0].imagemPerfil,
                             idCargo: resultado[0].idCargo,
                             idEmpresa: resultado[0].idEmpresa,
                         });
@@ -68,9 +69,17 @@ function autenticarEmpresa(req, res) {
 }
 
 function cadastrarUsuario(req, res) {
+    var imagemPerfil = "padraoUsuario.png";
+    console.log("AQUI 2")
+    // console.log(req)
+    // console.log(req.file)
+    // if (req.file != undefined) {
+    //     imagemPerfil = req.file.filename;
+    // }
     var nome = req.body.nome;
     var email = req.body.email;
     var cpf = req.body.cpf;
+    console.log(req.file)
     var senha = req.body.senha;
     var idCargo = req.body.idCargo;
     var idEmpresa = req.body.idEmpresa;
@@ -88,7 +97,7 @@ function cadastrarUsuario(req, res) {
     } else if (idEmpresa == undefined) {
         res.status(400).send("Sua idEmpresa está undefined!");
     } else {
-        usuarioModel.cadastrarEmpresa(nome, email, cpf, senha, idCargo, idEmpresa)
+        usuarioModel.cadastrarUsuario(nome, email, cpf, senha, imagemPerfil, idCargo, idEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -142,9 +151,29 @@ function cadastrarEmpresa(req, res) {
     }
 }
 
+function salvarFoto(req, res) {
+    var imagem = req.file.filename;
+    var idUsuario = req.params.idUsuario;
+
+    if (imagem == undefined) {
+        res.status(400).send("Seu imagem está undefined!");
+    } else if (idUsuario == undefined) {
+        res.status(400).send("Seu idUsuario está undefined!");
+    } else {        
+        usuarioModel.salvarFoto(imagem, idUsuario)
+        .then(resultado => {
+            res.status(201).send("Imagem alterada");
+        }).catch(err => {
+            res.status(500).send(err);
+        });
+    }
+}
+
+
 module.exports = {
     autenticarUsuario,
     autenticarEmpresa,
     cadastrarUsuario,
-    cadastrarEmpresa
+    cadastrarEmpresa,
+    salvarFoto
 }

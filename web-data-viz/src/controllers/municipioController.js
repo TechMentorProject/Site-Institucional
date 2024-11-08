@@ -1,19 +1,22 @@
 const e = require("express");
-var estacoesSMPModel = require("../models/estacoesSMPModel");
+var municipioModel = require("../models/municipioModel");
 
-function pegarQtdAntenasPorEstado(req, res) {
+function pegarCoberturaPercentualPorEstado(req, res) {
+    var ano = req.params.ano;
     var uf = req.params.uf;
 
-    if (uf == undefined) {
-        res.status(400).send("Seu UF está undefined!");
+    if (ano == undefined) {
+        res.status(400).send("Seu ano está undefined!");
+    } else if (uf == undefined) {
+        res.status(400).send("Seu uf está undefined!");
     } else {
-        estacoesSMPModel.pegarQtdAntenasPorEstado(uf)
+        municipioModel.pegarCoberturaPercentualPorEstado(ano, uf)
             .then(
                 (resultado) => {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultado)}`);
                     res.status(200).json({
-                        qtdAntenasPorEstado: resultado[0].qtdAntenasPorEstado
+                        cobertura: resultado[0].cobertura
                     });
                 }
             ).catch((e) => {
@@ -23,19 +26,19 @@ function pegarQtdAntenasPorEstado(req, res) {
     }
 }
 
-function pegarMaiorOperadoraPorEstado(req, res) {
-    var uf = req.params.uf;
+function pegarAreaCoberturaPorCidade(req, res) {
+    var cidade = req.params.cidade;
 
-    if (uf == undefined) {
-        res.status(400).send("Seu UF está undefined!");
+    if (cidade == undefined) {
+        res.status(400).send("Seu cidade está undefined!");
     } else {
-        estacoesSMPModel.pegarMaiorOperadoraPorEstado(uf)
+        municipioModel.pegarCoberturaPercentualPorEstado(cidade)
             .then(
                 (resultado) => {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultado)}`);
                     res.status(200).json({
-                        operadora: resultado[0].operadora
+                        cobertura: resultado[0].areaCobertaPercent
                     });
                 }
             ).catch((e) => {
@@ -46,6 +49,6 @@ function pegarMaiorOperadoraPorEstado(req, res) {
 }
 
 module.exports = {
-    pegarQtdAntenasPorEstado,
-    pegarMaiorOperadoraPorEstado
+    pegarCoberturaPercentualPorEstado,
+    pegarAreaCoberturaPorCidade
 }

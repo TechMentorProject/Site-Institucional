@@ -69,6 +69,7 @@ CREATE TABLE usuario (
     nomeUsuario VARCHAR(100),
     cpf VARCHAR(20),
     senha VARCHAR(100),
+    imagemPerfil varchar(255),
     idEmpresa INT,
     idCargo INT,
     FOREIGN KEY (idEmpresa) REFERENCES empresa(idEmpresa),
