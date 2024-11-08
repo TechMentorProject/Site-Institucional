@@ -23,6 +23,7 @@ var estacoesSMPRouter = require("./src/routes/estacoesSMP");
 var populacaoRouter = require("./src/routes/populacao");
 var municipioRouter = require("./src/routes/municipio");
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -34,6 +35,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/estacoesSMP", estacoesSMPRouter);
 app.use("/populacao", populacaoRouter);
 app.use("/municipio", municipioRouter);
+
 
 app.listen(PORTA_APP, function () {
     console.log(`
