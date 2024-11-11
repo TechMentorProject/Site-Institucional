@@ -1,8 +1,30 @@
-validar()
-
+// validar()
+let coberturas = [
+    ['State', 'Value'],
+    ['', 40],
+    ['', 60],
+    ['BR-ES', 50],
+    ['BR-MG', 50],
+    ['BR-RJ', 50],
+    ['BR-SP', 50],
+    ['BR-PR', 50],
+    ['BR-SC', 50],
+    ['BR-RS', 50],
+    ['BR-MS', 50]
+]
+carregarGraficoMapa()
 
 async function carregarGraficoMapa() {
-    let coberturas = [
+    await google.charts.load('current', {
+        'packages': ['geochart'],
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    await google.charts.setOnLoadCallback(drawRegionsMap(coberturas));
+    await pegarCoberturas()
+}
+
+async function pegarCoberturas() {
+    coberturas = [
         ['State', 'Value'],
         ['', 40],
         ['', 60],
@@ -15,10 +37,6 @@ async function carregarGraficoMapa() {
         ['BR-RS', await pegarCobertura("RS")],
         ['BR-MS', await pegarCobertura("MS")]
     ]
-    await google.charts.load('current', {
-        'packages': ['geochart'],
-        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-    });
     await google.charts.setOnLoadCallback(drawRegionsMap(coberturas));
 }
 
@@ -29,12 +47,12 @@ async function pegarCobertura(uf) {
             "Content-Type": "application/json",
         }
     })
-    .then(resposta => resposta.json())
-    .then(res => Number(res.cobertura).toFixed(2))
-    .catch(error => {
-        console.log(`#ERRO ao buscar antenas: ${error}`);
-        return null;
-    });
+        .then(resposta => resposta.json())
+        .then(res => Number(res.cobertura).toFixed(2))
+        .catch(error => {
+            console.log(`#ERRO ao buscar antenas: ${error}`);
+            return null;
+        });
 }
 
 async function drawRegionsMap(dados) {
@@ -82,10 +100,7 @@ async function getEstadoNome(uf) {
 
 
 async function onStateClick(uf) {
-    console.log(uf)
-    console.log("1")
     const estado = await getEstadoNome(uf)
-    console.log("2")
 
     let populacoes = [
         1, 2
@@ -110,34 +125,34 @@ async function pegarAumentoPopulacional(ano, estado) {
             "Content-Type": "application/json",
         }
     })
-    .then(resposta => resposta.json())
-    .then(res => ({
-        "ano": ano,
-        "populacao": res.aumentoPercentual
-    }))
-    .catch(error => {
-        console.log(`#ERRO ao buscar aumento populacional: ${error}`);
-        return { "ano": ano, "populacao": null };
-    });
+        .then(resposta => resposta.json())
+        .then(res => ({
+            "ano": ano,
+            "populacao": res.aumentoPercentual
+        }))
+        .catch(error => {
+            console.log(`#ERRO ao buscar aumento populacional: ${error}`);
+            return { "ano": ano, "populacao": null };
+        });
 }
 
 async function pegarAntenas(uf) {
-    console.log("antenas")
-    await fetch(`/estacoesSMP/pegarAntenasPorEstado/${uf}`, {
+    console.log("antenas");
+    return fetch(`/estacoesSMP/pegarAntenasPorEstado/${uf}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         }
     })
-    .then(resposta => resposta.json())
-    .then(res => {
-        console.log(res.qtdAntenasPorEstado)
-        return res.qtdAntenasPorEstado
-    })
-    .catch(error => {
-        console.log(`#ERRO ao buscar antenas: ${error}`);
-        return null;
-    })
+        .then(resposta => resposta.json())
+        .then(res => {
+            console.log(res.qtdAntenasPorEstado);
+            return res.qtdAntenasPorEstado;
+        })
+        .catch(error => {
+            console.log(`#ERRO ao buscar antenas: ${error}`);
+            return null;
+        });
 }
 
 async function pegarOperadora(uf) {
@@ -147,20 +162,21 @@ async function pegarOperadora(uf) {
             "Content-Type": "application/json",
         }
     })
-    .then(resposta => resposta.json())
-    .then(res => res.operadora)
-    .catch(error => {
-        console.log(`#ERRO ao buscar operadora: ${error}`);
-        return null;
-    });
+        .then(resposta => resposta.json())
+        .then(res => res.operadora)
+        .catch(error => {
+            console.log(`#ERRO ao buscar operadora: ${error}`);
+            return null;
+        });
 }
 
 function alterarDados(estado, antenas, operadora, populacoes) {
-    let antenasTexto = `No estado ${estado}, existem ${antenas || 'N/A'} antenas`;
-    let operadoraTexto = `No estado ${estado}, a operadora com maior presença é a ${operadora || 'N/A'}`;
-    let populacaoTexto = populacoes.map(p => `Porcentagem de aumento populacional para ${p.ano}: ${p.populacao || 'N/A'}%\n`).join('');
-    
+    let antenasTexto = antenas == null ? 'Dados de antenas inválidos' : `No estado ${estado}, existem ${antenas} antenas`;
+    let operadoraTexto = operadora == null ? 'Dados de operadora inválidos' : `No estado ${estado}, a operadora com maior presença é a ${operadora}`;
+    let populacaoTexto = populacoes[0].populacao == undefined ? 'Dados de população inválidos' : populacoes.map(p => `Porcentagem de aumento populacional para ${p.ano}: ${p.populacao}%\n`).join('');
+
     document.getElementById('antenas-estado').innerHTML = antenasTexto;
     document.getElementById('operadora-estado').innerHTML = operadoraTexto;
     document.getElementById('populacao-estado').innerHTML = populacaoTexto;
+    document.getElementById('titulo-estado').innerHTML = "Estado: " + estado;
 }

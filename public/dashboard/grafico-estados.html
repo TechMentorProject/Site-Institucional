@@ -18,7 +18,7 @@
 
 </head>
 
-<body onload="carregarGraficoMapa()">
+<body>
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
@@ -61,8 +61,8 @@
                             </div>
                         </a>
                         <div class="dropdown-content">
-                            <a href="conexao-area.html" class="selecionado">Conexão por área</a>
-                            <a href="grafico-antenas.html">Mapeamento de Antenas</a>
+                            <a href="grafico-estados.html" class="selecionado">Conexão por Estado</a>
+                            <a href="grafico-cidades.html">Conexão por Cidade</a>
                         </div>
                     </div>
 
@@ -100,15 +100,16 @@
 
             <div class="sub2">
                 <div class="painel">
-                    <h1>Conexão por área</h1>
-                    <h2>Mapeamento da Porcentagem de Conexão por Área Geográfica</h2>
+                    <h1>Porcentagem de Conexão de Internet por Estado</h1>
+                    <!-- <h1>Conexão por área</h1> -->
+                    <!-- <h2>Mapeamento da Porcentagem de Conexão por Área Geográfica</h2> -->
                     <div class="dashboard">
                         <div class="dash" id="geochart-colors">
 
                         </div>
                         <div class="cards">
                             <div class="titulo">
-                                <h1>Selecione um Estado</h1>
+                                <h1 id="titulo-estado">Selecione um Estado</h1>
                             </div>
                             <div class="antenas">
                                 <div class="texto" id="antenas-estado"></div>

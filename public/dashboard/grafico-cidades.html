@@ -26,10 +26,11 @@
 
       <div>
         <li class="botaoConta">
-          <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
-          <div class="encerrar">
-            <div class="botao"><img src="./assets/deslogar.png" alt=""><span>Encerrar sessão</span></div>
-          </div>
+            <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+            <div class="encerrar">
+                <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt=""><span>Encerrar
+                        sessão</span></div>
+            </div>
         </li>
       </div>
     </div>
@@ -58,8 +59,8 @@
               </div>
             </a>
             <div class="dropdown-content">
-              <a href="conexao-area.html">Conexão por área</a>
-              <a href="grafico-antenas.html" class="selecionado">Mapeamento de Antenas</a>
+              <a href="grafico-estados.html">Conexão por Estado</a>
+              <a href="grafico-cidades.html" class="selecionado">Conexão por Cidade</a>
             </div>
           </div>
 
@@ -97,8 +98,9 @@
 
       <div class="sub2">
         <div class="painel">
-          <h1>Mapeamento de Antenas</h1>
-          <h2>Distribuição de Antenas por Estado</h2>
+          <h1>Cidades com menores coberturas de domicílio</h1>
+          <!-- <h1>Mapeamento de Antenas</h1> -->
+          <!-- <h2>Distribuição de Antenas por Estado</h2> -->
           <div class="dashboard">
             <div class="area">
               <div class="area-filha">
@@ -157,6 +159,24 @@
                       <td id="geracao7">---</td>
                       <td id="tecnologia7">---</td>
                       <td id="cobertura7">---</td>
+                    </tr>
+                    <tr>
+                      <td id="cidade8">---</td>
+                      <td id="geracao8">---</td>
+                      <td id="tecnologia8">---</td>
+                      <td id="cobertura8">---</td>
+                    </tr>
+                    <tr>
+                      <td id="cidade9">---</td>
+                      <td id="geracao9">---</td>
+                      <td id="tecnologia9">---</td>
+                      <td id="cobertura9">---</td>
+                    </tr>
+                    <tr>
+                      <td id="cidade10">---</td>
+                      <td id="geracao10">---</td>
+                      <td id="tecnologia10">---</td>
+                      <td id="cobertura10">---</td>
                     </tr>
                   </tbody>
                 </table>
