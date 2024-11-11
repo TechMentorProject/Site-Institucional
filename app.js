@@ -1,11 +1,9 @@
 // var ambiente_processo = 'producao';
 var ambiente_processo = 'desenvolvimento';
 
+// Se .:desenvolvimento:. você está se conectando ao banco local.
+// Se .:producao:. você está se conectando ao banco remoto.
 var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
-// Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
-// A sintaxe do operador ternário é: condição ? valor_se_verdadeiro : valor_se_falso
-// \tSe .:desenvolvimento:. você está se conectando ao banco local. \n
-// \tSe .:producao:. você está se conectando ao banco remoto. \n\n
 
 require("dotenv").config({ path: caminho_env });
 
@@ -14,20 +12,18 @@ var cors = require("cors");
 var path = require("path");
 var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
-
 var app = express();
 
-var indexRouter = require("./src/routes/index");
-var usuarioRouter = require("./src/routes/usuarios");
-var estacoesSMPRouter = require("./src/routes/estacoesSMP");
-var populacaoRouter = require("./src/routes/populacao");
-var municipioRouter = require("./src/routes/municipio");
+var indexRouter = require("./src/routes/indexRoute");
+var usuarioRouter = require("./src/routes/usuarioRoute");
+var estacoesSMPRouter = require("./src/routes/estacoesSMPRoute");
+var populacaoRouter = require("./src/routes/populacaoRoute");
+var municipioRouter = require("./src/routes/municipioRoute");
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use(cors());
 
 app.use("/", indexRouter);
