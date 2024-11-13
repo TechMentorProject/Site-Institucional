@@ -105,91 +105,170 @@
             <div class="area">
               <div class="area-filha">
                 <div class="filtros">
-                  <div class="filtro-tecnologia"></div>
-                  <div class="filtro-estado"></div>
+                  <div class="filtro-tecnologia">
+                    <div onclick="filtrarPorTecnologia('NA')">Todas</div>
+                    <div onclick="filtrarPorTecnologia('5G')">5G</div>
+                    <div onclick="filtrarPorTecnologia('4G')">4G</div>
+                    <div onclick="filtrarPorTecnologia('3G')">3G</div>
+                    <div onclick="filtrarPorTecnologia('2G')">2G</div>
+                  </div>
+                  <div class="filtro-estado">
+                    <div onclick="filtrarPorEstado('NA')">Todos</div>
+                    <div onclick="filtrarPorEstado('Espírito Santo')">ES</div>
+                    <div onclick="filtrarPorEstado('Minas Gerais')">MG</div>
+                    <div onclick="filtrarPorEstado('Rio de Janeiro')">RJ</div>
+                    <div onclick="filtrarPorEstado('São Paulo')">SP</div>
+                    <div onclick="filtrarPorEstado('Paraná')">PR</div>
+                    <div onclick="filtrarPorEstado('Santa Catarina')">SC</div>
+                    <div onclick="filtrarPorEstado('Rio Grande do Sul')">RS</div>
+                  </div>
                 </div>
                 <table class="tabela">
                   <thead>
                     <tr>
-                      <th>Cidade e Estado</th>
-                      <th>Geração</th>
-                      <th>tecnologia</th>
+                      <th>Posição</th>
+                      <th>Estado</th>
+                      <th>Cidade</th>
                       <th>Porcentagem de cobertura</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr onclick="pegarDadosCards(this, 1)">
+                      <td id="posicao1">---</td>
+                      <td id="estado1">---</td>
                       <td id="cidade1">---</td>
-                      <td id="geracao1">---</td>
-                      <td id="tecnologia1">---</td>
                       <td id="cobertura1">---</td>
                     </tr>
-                    <tr>
+                    <tr onclick="pegarDadosCards(this, 2)">
+                      <td id="posicao2">---</td>
+                      <td id="estado2">---</td>
                       <td id="cidade2">---</td>
-                      <td id="geracao2">---</td>
-                      <td id="tecnologia2">---</td>
                       <td id="cobertura2">---</td>
                     </tr>
-                    <tr>
+                    <tr onclick="pegarDadosCards(this, 3)">
+                      <td id="posicao3">---</td>
+                      <td id="estado3">---</td>
                       <td id="cidade3">---</td>
-                      <td id="geracao3">---</td>
-                      <td id="tecnologia3">---</td>
                       <td id="cobertura3">---</td>
                     </tr>
-                    <tr>
+                    <tr onclick="pegarDadosCards(this, 4)">
+                      <td id="posicao4">---</td>
+                      <td id="estado4">---</td>
                       <td id="cidade4">---</td>
-                      <td id="geracao4">---</td>
-                      <td id="tecnologia4">---</td>
                       <td id="cobertura4">---</td>
                     </tr>
-                    <tr>
+                    <tr onclick="pegarDadosCards(this, 5)">
+                      <td id="posicao5">---</td>
+                      <td id="estado5">---</td>
                       <td id="cidade5">---</td>
-                      <td id="geracao5">---</td>
-                      <td id="tecnologia5">---</td>
                       <td id="cobertura5">---</td>
                     </tr>
-                    <tr>
+                    <tr onclick="pegarDadosCards(this, 6)">
+                      <td id="posicao6">---</td>
+                      <td id="estado6">---</td>
                       <td id="cidade6">---</td>
-                      <td id="geracao6">---</td>
-                      <td id="tecnologia6">---</td>
                       <td id="cobertura6">---</td>
                     </tr>
-                    <tr>
+                    <tr onclick="pegarDadosCards(this, 7)">
+                      <td id="posicao7">---</td>
+                      <td id="estado7">---</td>
                       <td id="cidade7">---</td>
-                      <td id="geracao7">---</td>
-                      <td id="tecnologia7">---</td>
                       <td id="cobertura7">---</td>
                     </tr>
-                    <tr>
+                    <tr onclick="pegarDadosCards(this, 8)">
+                      <td id="posicao8">---</td>
+                      <td id="estado8">---</td>
                       <td id="cidade8">---</td>
-                      <td id="geracao8">---</td>
-                      <td id="tecnologia8">---</td>
                       <td id="cobertura8">---</td>
                     </tr>
-                    <tr>
+                    <tr onclick="pegarDadosCards(this, 9)">
+                      <td id="posicao9">---</td>
+                      <td id="estado9">---</td>
                       <td id="cidade9">---</td>
-                      <td id="geracao9">---</td>
-                      <td id="tecnologia9">---</td>
                       <td id="cobertura9">---</td>
                     </tr>
-                    <tr>
+                    <tr onclick="pegarDadosCards(this, 10)">
+                      <td id="posicao10">---</td>
+                      <td id="estado10">---</td>
                       <td id="cidade10">---</td>
-                      <td id="geracao10">---</td>
-                      <td id="tecnologia10">---</td>
                       <td id="cobertura10">---</td>
+                    </tr>
+
+                    <tr onclick="pegarDadosCards(this, 11)">
+                      <td id="posicao11">---</td>
+                      <td id="estado11">---</td>
+                      <td id="cidade11">---</td>
+                      <td id="cobertura11">---</td>
+                    </tr>
+                    <tr onclick="pegarDadosCards(this, 12)">
+                      <td id="posicao12">---</td>
+                      <td id="estado12">---</td>
+                      <td id="cidade12">---</td>
+                      <td id="cobertura12">---</td>
+                    </tr>
+                    <tr onclick="pegarDadosCards(this, 13)">
+                      <td id="posicao13">---</td>
+                      <td id="estado13">---</td>
+                      <td id="cidade13">---</td>
+                      <td id="cobertura13">---</td>
+                    </tr>
+                    <tr onclick="pegarDadosCards(this, 14)">
+                      <td id="posicao14">---</td>
+                      <td id="estado14">---</td>
+                      <td id="cidade14">---</td>
+                      <td id="cobertura14">---</td>
+                    </tr>
+                    <tr onclick="pegarDadosCards(this, 15)">
+                      <td id="posicao15">---</td>
+                      <td id="estado15">---</td>
+                      <td id="cidade15">---</td>
+                      <td id="cobertura15">---</td>
+                    </tr>
+                    <tr onclick="pegarDadosCards(this, 16)">
+                      <td id="posicao16">---</td>
+                      <td id="estado16">---</td>
+                      <td id="cidade16">---</td>
+                      <td id="cobertura16">---</td>
+                    </tr>
+                    <tr onclick="pegarDadosCards(this, 17)">
+                      <td id="posicao17">---</td>
+                      <td id="estado17">---</td>
+                      <td id="cidade17">---</td>
+                      <td id="cobertura17">---</td>
+                    </tr>
+                    <tr onclick="pegarDadosCards(this, 18)">
+                      <td id="posicao18">---</td>
+                      <td id="estado18">---</td>
+                      <td id="cidade18">---</td>
+                      <td id="cobertura18">---</td>
+                    </tr>
+                    <tr onclick="pegarDadosCards(this, 19)">
+                      <td id="posicao19">---</td>
+                      <td id="estado19">---</td>
+                      <td id="cidade19">---</td>
+                      <td id="cobertura19">---</td>
+                    </tr>
+                    <tr onclick="pegarDadosCards(this, 20)">
+                      <td id="posicao20">---</td>
+                      <td id="estado20">---</td>
+                      <td id="cidade20">---</td>
+                      <td id="cobertura20">---</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <div class="cards">
+                <div class="titulo">
+                  <h1 id="titulo-cidade">Selecione uma Cidade</h1>
+              </div>
                 <div class="card">
-
+                  <div class="texto" id="populacao-cidade"></div>
                 </div>
                 <div class="card">
-
+                  <div class="texto" id="domicilios-cidade"></div>
                 </div>
                 <div class="card">
-
+                  <div class="texto" id="densidade-cidade"></div>
                 </div>
               </div>
             </div>

@@ -1,22 +1,22 @@
 const e = require("express");
-var populacaoModel = require("../models/populacaoModel");
+var censoIBGEModel = require("../models/censoIBGEModel");
 
-function pegarAumentoPopulacionalPercentual(req, res) {
-    var ano = req.params.ano;
+function pegarDensidadePorCidade(req, res) {
+    var cidade = req.params.cidade;
     var estado = req.params.estado;
 
-    if (ano == undefined) {
-        res.status(400).send("Seu ano está undefined!");
+    if (cidade == undefined) {
+        res.status(400).send("Seu cidade está undefined!");
     } else if (estado == undefined) {
         res.status(400).send("Seu estado está undefined!");
     } else {
-        populacaoModel.pegarAumentoPopulacionalPercentual(ano, estado)
+        censoIBGEModel.pegarDensidadePorCidade(cidade, estado)
             .then(
                 (resultado) => {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultado)}`);
                     res.status(200).json({
-                        aumentoPercentual: resultado[0].aumentoPercentual
+                        densidadeDemografica: resultado[0].densidadeDemografica
                     });
                 }
             ).catch((e) => {
@@ -27,5 +27,5 @@ function pegarAumentoPopulacionalPercentual(req, res) {
 }
 
 module.exports = {
-    pegarAumentoPopulacionalPercentual
+    pegarDensidadePorCidade
 }

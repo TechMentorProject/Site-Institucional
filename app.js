@@ -17,7 +17,7 @@ var app = express();
 var indexRouter = require("./src/routes/indexRoute");
 var usuarioRouter = require("./src/routes/usuarioRoute");
 var estacoesSMPRouter = require("./src/routes/estacoesSMPRoute");
-var populacaoRouter = require("./src/routes/populacaoRoute");
+var projecaoRouter = require("./src/routes/projecaoRoute");
 var municipioRouter = require("./src/routes/municipioRoute");
 
 
@@ -29,7 +29,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/estacoesSMP", estacoesSMPRouter);
-app.use("/populacao", populacaoRouter);
+app.use("/projecao", projecaoRouter);
 app.use("/municipio", municipioRouter);
 
 
