@@ -3,12 +3,12 @@ var router = express.Router();
 
 var municipioController = require("../controllers/municipioController");
 
-router.get("/pegarCoberturaPercentualPorEstado/:ano/:uf", function (req, res) {
+router.get("/pegarCoberturaPercentualPorEstado/:ano/:estado", function (req, res) {
     municipioController.pegarCoberturaPercentualPorEstado(req, res);
 });
 
-router.get("/pegarAreaCoberturaPorCidade/:cidade", function (req, res) {
-    municipioController.pegarAreaCoberturaPorCidade(req, res);
+router.get("/pegarMenoresCoberturas/:estado/:tecnologia", function (req, res) {
+    municipioController.pegarMenoresCoberturas(req, res);
 });
 
 module.exports = router;

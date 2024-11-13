@@ -1,19 +1,56 @@
 var database = require("../database/config")
 
-function pegarQtdAntenasPorEstado(uf) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarQtdAntenasPorEstado(): ", uf)
+function pegarQtdAntenasPorEstado(estado) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarQtdAntenasPorEstado(): ", estado)
     var instrucaoSql = `
-        SELECT COUNT(idEstacoesSMP) AS 'qtdAntenasPorEstado' FROM estacoesSMP WHERE cidade LIKE '%${uf}';
+        SELECT COUNT(*) AS qtdAntenasPorEstado FROM estacoesSMP
+            JOIN cidade ON cidade.nomeCidade = estacoesSMP.fkCidade
+            WHERE cidade.fkEstado = '${estado}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function pegarMaiorOperadoraPorEstado(uf) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarMaiorOperadoraPorEstado(): ", uf)
+function pegarMaiorOperadoraPorEstado(estado) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarMaiorOperadoraPorEstado(): ", estado)
     var instrucaoSql = `
-        SELECT operadora, COUNT(*) AS aparicoes FROM estacoesSMP WHERE cidade LIKE '%${uf}'
+        SELECT operadora, COUNT(*) AS aparicoes FROM estacoesSMP
+            JOIN cidade ON cidade.nomeCidade = estacoesSMP.fkCidade
+            WHERE cidade.fkEstado = '${estado}'
             GROUP BY operadora ORDER BY aparicoes DESC LIMIT 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function pegarDensidadePorCidade(cidade, estado) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarDensidadePorCidade(): ", cidade, estado)
+    var instrucaoSql = `
+        SELECT densidadeDemografica FROM censoIBGE 
+            JOIN cidade ON cidade.nomeCidade = censoIBGE.fkCidade
+            WHERE cidade.nomeCidade = '${cidade}' AND cidade.fkEstado = '${estado}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function pegarDomiciliosCobertosPorCidade(cidade, estado) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarDomiciliosCobertosPorCidade(): ", cidade, estado)
+    var instrucaoSql = `
+        SELECT AVG(domiciliosCobertosPercent) AS domiciliosCobertos FROM municipio 
+            JOIN cidade ON cidade.nomeCidade = municipio.fkCidade
+            WHERE fkCidade = '${cidade}' AND fkEstado = '${estado}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function pegarPopulacaoPorCidade(cidade, estado) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarPopulacaoPorCidade(): ", cidade, estado)
+    var instrucaoSql = `
+        SELECT SUM(area * densidadeDemografica) AS populacao FROM censoIBGE 
+            JOIN cidade ON cidade.nomeCidade = censoIBGE.fkCidade
+            WHERE fkCidade = '${cidade}' AND fkEstado = '${estado}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -21,5 +58,8 @@ function pegarMaiorOperadoraPorEstado(uf) {
 
 module.exports = {
     pegarQtdAntenasPorEstado,
-    pegarMaiorOperadoraPorEstado
+    pegarMaiorOperadoraPorEstado,
+    pegarDensidadePorCidade,
+    pegarDomiciliosCobertosPorCidade,
+    pegarPopulacaoPorCidade
 };
