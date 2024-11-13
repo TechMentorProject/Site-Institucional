@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/grafico-cidades.css" />
+  <link rel="stylesheet" href="./css/grafico-cidades2.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,11 +26,11 @@
 
       <div>
         <li class="botaoConta">
-            <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
-            <div class="encerrar">
-                <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt=""><span>Encerrar
-                        sessão</span></div>
-            </div>
+          <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+          <div class="encerrar">
+            <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt=""><span>Encerrar
+                sessão</span></div>
+          </div>
         </li>
       </div>
     </div>
@@ -98,7 +98,18 @@
 
       <div class="sub2">
         <div class="painel">
-          <h1>Cidades com menores coberturas de domicílio</h1>
+          <h1>Cidades com menores coberturas de domicílio, selecione uma Cidade:</h1>
+          <div class="cards">
+            <div class="card">
+              <div class="texto" id="populacao-cidade"></div>
+            </div>
+            <div class="card">
+              <div class="texto" id="domicilios-cidade"></div>
+            </div>
+            <div class="card">
+              <div class="texto" id="densidade-cidade"></div>
+            </div>
+          </div>
           <!-- <h1>Mapeamento de Antenas</h1> -->
           <!-- <h2>Distribuição de Antenas por Estado</h2> -->
           <div class="dashboard">
@@ -121,6 +132,13 @@
                     <div onclick="filtrarPorEstado('Paraná')">PR</div>
                     <div onclick="filtrarPorEstado('Santa Catarina')">SC</div>
                     <div onclick="filtrarPorEstado('Rio Grande do Sul')">RS</div>
+                  </div>
+                  <div class="filtro-tecnologia">
+                    <div onclick="filtrarPorTecnologia('NA')">Todas</div>
+                    <div onclick="filtrarPorTecnologia('5G')">VIVO</div>
+                    <div onclick="filtrarPorTecnologia('4G')">TIM</div>
+                    <div onclick="filtrarPorTecnologia('3G')">CLARO</div>
+                    <div onclick="filtrarPorTecnologia('2G')">Outras</div>
                   </div>
                 </div>
                 <table class="tabela">
@@ -299,20 +317,7 @@
                   </tbody>
                 </table>
               </div>
-              <div class="cards">
-                <div class="titulo">
-                  <h1 id="titulo-cidade">Selecione uma Cidade</h1>
-              </div>
-                <div class="card">
-                  <div class="texto" id="populacao-cidade"></div>
-                </div>
-                <div class="card">
-                  <div class="texto" id="domicilios-cidade"></div>
-                </div>
-                <div class="card">
-                  <div class="texto" id="densidade-cidade"></div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -324,4 +329,146 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="./js/grafico-cidades.js"></script>
+<script>
+
+  let tecnologiaEscolhida = 'NA'
+  let estadoEscolhido = 'NA'
+  pegarDadosTabela()
+
+  function filtrarPorEstado(estado) {
+    estadoEscolhido = estado
+    pegarDadosTabela()
+  }
+
+  function filtrarPorTecnologia(tecnologia) {
+    tecnologiaEscolhida = tecnologia
+    pegarDadosTabela()
+  }
+
+  async function pegarDadosTabela() {
+    let dados = await buscarDadosTabela(estadoEscolhido, tecnologiaEscolhida)
+    let cidades = dados[0]
+    let estados = dados[1]
+    let coberturas = dados[2]
+    let operadoras = dados[3]
+    let tecnologias = dados[4]
+
+    carregarTabela(cidades, estados, coberturas, operadoras, tecnologias)
+  }
+
+  async function buscarDadosTabela(estado, tecnologia) {
+    return fetch(`/municipio/pegarMenoresCoberturas/${estado}/${tecnologia}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then(resposta => resposta.json())
+      .then(res => {
+        console.log(res)
+        return [res.cidades, res.estados, res.coberturas, res.operadoras, res.tecnologias]
+      })
+      .catch(error => {
+        console.log(`#ERRO ao buscar cobertura: ${error}`);
+        return null;
+      });
+  }
+
+  async function carregarTabela(cidades, estados, coberturas, operadoras, tecnologias) {
+    for (let i = 0; i < cidades.length; i++) {
+      document.getElementById('posicao' + (i + 1)).innerHTML = (i + 1) + "°";
+      document.getElementById('estado' + (i + 1)).innerHTML = estados[i];
+      document.getElementById('cidade' + (i + 1)).innerHTML = cidades[i];
+      document.getElementById('cobertura' + (i + 1)).innerHTML = coberturas[i] + "%";
+      document.getElementById('operadora' + (i + 1)).innerHTML = operadoras[i];
+      document.getElementById('tecnologia' + (i + 1)).innerHTML = tecnologias[i];
+    }
+  }
+
+
+
+
+
+  async function getUfEstado(estado) {
+    switch (estado) {
+      case 'Espírito Santo': return 'ES';
+      case 'Minas Gerais': return 'MG';
+      case 'Rio de Janeiro': return 'RJ';
+      case 'São Paulo': return 'SP';
+      case 'Paraná': return 'PR';
+      case 'Santa Catarina': return 'SC';
+      case 'Rio Grande do Sul': return 'RS';
+      default: return 'Estado desconhecido';
+    }
+  }
+
+  async function pegarDadosCards(linha, i) {
+    let cidade = linha.querySelector('#cidade' + i).innerText
+    let estado = linha.querySelector('#estado' + i).innerText
+    let uf = await getUfEstado(estado)
+
+    let populacao = await pegarPopulacao(cidade, estado)
+    let domicilios = await pegarDomicilios(cidade, estado)
+    let densidade = await pegarDensidade(cidade, estado)
+
+    alterarDados(cidade, uf, populacao, domicilios, densidade)
+  }
+
+  async function pegarPopulacao(cidade, estado) {
+    return fetch(`/estacoesSMP/pegarPopulacaoPorCidade/${cidade}/${estado}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then(resposta => resposta.json())
+      .then(res => res.populacao)
+      .catch(error => {
+        console.log(`#ERRO ao buscar densidade: ${error}`);
+        return null;
+      });
+  }
+
+  async function pegarDomicilios(cidade, estado) {
+    return fetch(`/estacoesSMP/pegarDomiciliosCobertosPorCidade/${cidade}/${estado}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then(resposta => resposta.json())
+      .then(res => res.domiciliosCobertos)
+      .catch(error => {
+        console.log(`#ERRO ao buscar densidade: ${error}`);
+        return null;
+      });
+  }
+
+  async function pegarDensidade(cidade, estado) {
+    return fetch(`/estacoesSMP/pegarDensidadePorCidade/${cidade}/${estado}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then(resposta => resposta.json())
+      .then(res => res.densidadeDemografica)
+      .catch(error => {
+        console.log(`#ERRO ao buscar densidade: ${error}`);
+        return null;
+      });
+  }
+
+
+  function alterarDados(cidade, uf, populacao, domicilios, densidade) {
+    let populacaoTexto = populacao == null ? 'Dados de população inválidos' : `População estimada da cidade: ${Number(populacao).toFixed(0)} pessoas`;
+    let domiciliosTexto = domicilios == null ? 'Dados de domicílios cobertos inválidos' : `Domicílios cobertos: ${Number(domicilios).toFixed(2)}%`;
+    let densidadeTexto = densidade == null ? 'Dados de densidade demográfica inválidos' : `Densidade demográfica: ${Number(densidade).toFixed(2)} habitantes/quilometro²`;
+
+    document.getElementById('populacao-cidade').innerHTML = populacaoTexto;
+    document.getElementById('domicilios-cidade').innerHTML = domiciliosTexto;
+    document.getElementById('densidade-cidade').innerHTML = densidadeTexto;
+    document.getElementById('titulo-cidade').innerHTML = `Cidade: ${cidade} - ${uf}`;
+  }
+
+</script>

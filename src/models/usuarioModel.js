@@ -18,6 +18,15 @@ function autenticarEmpresa(email, senha) {
     return database.executar(instrucaoSql);
 }
 
+function pegarCargo(email, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarCargo(): ", email, senha)
+    var instrucaoSql = `
+        SELECT idEmpresa, nomeEmpresa, nomeResponsavel, cnpj, emailResponsavel, senha FROM empresa WHERE emailResponsavel = '${email}' AND senha = '${senha}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 
 
@@ -38,6 +47,16 @@ function cadastrarEmpresa(nomeEmpresa, nomeResponsavel, cnpj, emailResponsavel, 
 
     var instrucaoSql = `
         INSERT INTO empresa (nomeEmpresa, nomeResponsavel, cnpj, emailResponsavel, senha) VALUES ('${nomeEmpresa}', '${nomeResponsavel}', '${cnpj}', '${emailResponsavel}', '${senha}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function cadastrarCargo(nomeCargo, acessos, fkCnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarCargo():", nomeCargo, acessos, fkCnpj);
+
+    var instrucaoSql = `
+        INSERT INTO cargo (nomeCargo, acessos, fkCnpj) VALUES ('${nomeCargo}', '${acessos}', '${fkCnpj}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -73,6 +92,17 @@ function atualizarEmpresa(nomeEmpresa, nomeResponsavel, cnpj, emailResponsavel, 
     return database.executar(instrucaoSql);
 }
 
+function atualizarCargo(nomeCargo, novoNomeCargo, acessos, fkCnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarCargo():", nomeCargo, novoNomeCargo, acessos, fkCnpj);
+
+    var instrucaoSql = `
+        UPDATE cargo SET acessos = '${acessos}', nomeCargo = '${novoNomeCargo}'
+            WHERE nomeCargo = '${nomeCargo}' AND fkCnpj = '${fkCnpj}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 
 
@@ -100,6 +130,16 @@ function inativarEmpresa(cnpj) {
     return database.executar(instrucaoSql);
 }
 
+function removerCargo(nomeCargo, fkCnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function removerCargo():", nomeCargo, fkCnpj);
+
+    var instrucaoSql = `
+        DELETE FROM cargo WHERE fkCnpj = '${fkCnpj}' AND nomeCargo = '${nomeCargo}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 
 
@@ -119,11 +159,19 @@ function salvarFoto(imagem, idUsuario) {
 module.exports = {
     autenticarUsuario,
     autenticarEmpresa,
+    pegarCargo,
+
     cadastrarUsuario,
     cadastrarEmpresa,
+    cadastrarCargo,
+
     atualizarUsuario,
     atualizarEmpresa,
+    atualizarCargo,
+
     removerUsuario,
     inativarEmpresa,
+    removerCargo,
+
     salvarFoto
 };
