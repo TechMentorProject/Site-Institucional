@@ -17,8 +17,10 @@ async function pegarDadosTabela() {
     let cidades = dados[0]
     let estados = dados[1]
     let coberturas = dados[2]
+    let operadoras = dados[3]
+    let tecnologias = dados[4]
 
-    carregarTabela(cidades, estados, coberturas)
+    carregarTabela(cidades, estados, coberturas, operadoras, tecnologias)
 }
 
 async function buscarDadosTabela(estado, tecnologia) {
@@ -31,7 +33,7 @@ async function buscarDadosTabela(estado, tecnologia) {
         .then(resposta => resposta.json())
         .then(res => {
             console.log(res)
-            return [res.cidades, res.estados, res.coberturas]
+            return [res.cidades, res.estados, res.coberturas, res.operadoras, res.tecnologias]
         })
         .catch(error => {
             console.log(`#ERRO ao buscar cobertura: ${error}`);
@@ -39,12 +41,14 @@ async function buscarDadosTabela(estado, tecnologia) {
         });
 }
 
-async function carregarTabela(cidades, estados, coberturas) {
+async function carregarTabela(cidades, estados, coberturas, operadoras, tecnologias) {
     for (let i = 0; i < cidades.length; i++) {
         document.getElementById('posicao' + (i + 1)).innerHTML = (i+1) + "°";
         document.getElementById('estado' + (i + 1)).innerHTML = estados[i];
         document.getElementById('cidade' + (i + 1)).innerHTML = cidades[i];
         document.getElementById('cobertura' + (i + 1)).innerHTML = coberturas[i] + "%";
+        document.getElementById('operadora' + (i + 1)).innerHTML = operadoras[i];
+        document.getElementById('tecnologia' + (i + 1)).innerHTML = tecnologias[i];
     }
 }
 

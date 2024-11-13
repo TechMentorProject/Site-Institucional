@@ -32,6 +32,8 @@ function pegarMenoresCoberturas(req, res) {
     var listaCidades = []
     var listaEstados = []
     var listaCoberturas = []
+    var listaOperadoras = []
+    var listaTecnologias = []
     console.log(estado)
     console.log(tecnologia)
 
@@ -50,11 +52,15 @@ function pegarMenoresCoberturas(req, res) {
                         listaCidades.push(resultado[i].nomeCidade)
                         listaEstados.push(resultado[i].fkEstado)
                         listaCoberturas.push(resultado[i].areaCoberta)
+                        listaOperadoras.push(resultado[i].operadora)
+                        listaTecnologias.push(resultado[i].tecnologia)
                     }
                     res.status(200).json({
                         cidades: listaCidades,
                         estados: listaEstados,
-                        coberturas: listaCoberturas
+                        coberturas: listaCoberturas,
+                        operadoras: listaOperadoras,
+                        tecnologias: listaTecnologias
                     });
                 }).catch((e) => {console.log(e)});
 
@@ -68,11 +74,15 @@ function pegarMenoresCoberturas(req, res) {
                         listaCidades.push(resultado[i].nomeCidade)
                         listaEstados.push(resultado[i].fkEstado)
                         listaCoberturas.push(resultado[i].areaCoberta)
+                        listaOperadoras.push(resultado[i].operadora)
+                        listaTecnologias.push(resultado[i].tecnologia)
                     }
                     res.status(200).json({
                         cidades: listaCidades,
                         estados: listaEstados,
-                        coberturas: listaCoberturas
+                        coberturas: listaCoberturas,
+                        operadoras: listaOperadoras,
+                        tecnologias: listaTecnologias
                     });
                 }).catch((e) => {console.log(e)});
 
@@ -86,11 +96,15 @@ function pegarMenoresCoberturas(req, res) {
                         listaCidades.push(resultado[i].nomeCidade)
                         listaEstados.push(resultado[i].fkEstado)
                         listaCoberturas.push(resultado[i].areaCoberta)
+                        listaOperadoras.push(resultado[i].operadora)
+                        listaTecnologias.push(resultado[i].tecnologia)
                     }
                     res.status(200).json({
                         cidades: listaCidades,
                         estados: listaEstados,
-                        coberturas: listaCoberturas
+                        coberturas: listaCoberturas,
+                        operadoras: listaOperadoras,
+                        tecnologias: listaTecnologias
                     });
                 }).catch((e) => {console.log(e)});
 
@@ -104,11 +118,15 @@ function pegarMenoresCoberturas(req, res) {
                         listaCidades.push(resultado[i].nomeCidade)
                         listaEstados.push(resultado[i].fkEstado)
                         listaCoberturas.push(resultado[i].areaCoberta)
+                        listaOperadoras.push(resultado[i].operadora)
+                        listaTecnologias.push(resultado[i].tecnologia)
                     }
                     res.status(200).json({
                         cidades: listaCidades,
                         estados: listaEstados,
-                        coberturas: listaCoberturas
+                        coberturas: listaCoberturas,
+                        operadoras: listaOperadoras,
+                        tecnologias: listaTecnologias
                     });
                 }).catch((e) => {console.log(e)});
 

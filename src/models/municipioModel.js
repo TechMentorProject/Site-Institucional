@@ -17,11 +17,11 @@ function pegarCoberturaPercentualPorEstado(ano, estado) {
 function pegarMenoresCoberturas() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarMenoresCoberturas(): ")
     var instrucaoSql = `
-        SELECT nomeCidade, fkEstado, ROUND(AVG(areaCobertaPercent), 4) AS areaCoberta FROM municipio 
+        SELECT nomeCidade, fkEstado, ROUND(areaCobertaPercent, 4) AS areaCoberta, operadora, tecnologia  FROM municipio 
             JOIN cidade ON cidade.nomeCidade = municipio.fkCidade
-            GROUP BY cidade.nomeCidade
+            WHERE operadora = 'Todas' AND tecnologia = '2G, 3G, 4G, 5G'
             ORDER BY areaCoberta ASC 
-            LIMIT 20;    
+            LIMIT 20;      
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -30,12 +30,11 @@ function pegarMenoresCoberturas() {
 function pegarMenoresCoberturasPorEstado(estado) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarMenoresCoberturasPorEstado(): ", estado)
     var instrucaoSql = `
-        SELECT nomeCidade, fkEstado, ROUND(AVG(areaCobertaPercent), 4) AS areaCoberta FROM municipio 
+        SELECT nomeCidade, fkEstado, ROUND(areaCobertaPercent, 4) AS areaCoberta, operadora, tecnologia  FROM municipio 
             JOIN cidade ON cidade.nomeCidade = municipio.fkCidade
-            WHERE fkEstado = '${estado}'
-            GROUP BY cidade.nomeCidade
+            WHERE operadora = 'Todas' AND tecnologia = '2G, 3G, 4G, 5G' AND fkEstado = '${estado}'
             ORDER BY areaCoberta ASC 
-            LIMIT 20;    
+            LIMIT 20;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -44,12 +43,11 @@ function pegarMenoresCoberturasPorEstado(estado) {
 function pegarMenoresCoberturasPorTecnologia(tecnologia) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarMenoresCoberturasPorTecnologia(): ", tecnologia)
     var instrucaoSql = `
-        SELECT nomeCidade, fkEstado, ROUND(AVG(areaCobertaPercent), 4) AS areaCoberta FROM municipio 
+        SELECT nomeCidade, fkEstado, ROUND(areaCobertaPercent, 4) AS areaCoberta, operadora, tecnologia  FROM municipio 
             JOIN cidade ON cidade.nomeCidade = municipio.fkCidade
-            WHERE tecnologia LIKE '%${tecnologia}%'
-            GROUP BY cidade.nomeCidade
+            WHERE operadora = 'Todas' AND tecnologia LIKE '${tecnologia}'
             ORDER BY areaCoberta ASC 
-            LIMIT 20;    
+            LIMIT 20;      
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -58,12 +56,11 @@ function pegarMenoresCoberturasPorTecnologia(tecnologia) {
 function pegarMenoresCoberturasPorEstadoETecnologia(estado, tecnologia) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarMenoresCoberturasPorEstadoETecnologia(): ", estado, tecnologia)
     var instrucaoSql = `
-        SELECT nomeCidade, fkEstado, ROUND(AVG(areaCobertaPercent), 4) AS areaCoberta FROM municipio 
+        SELECT nomeCidade, fkEstado, ROUND(areaCobertaPercent, 4) AS areaCoberta, operadora, tecnologia  FROM municipio 
             JOIN cidade ON cidade.nomeCidade = municipio.fkCidade
-            WHERE fkEstado = '${estado}' AND tecnologia LIKE '%${tecnologia}%'
-            GROUP BY cidade.nomeCidade
+            WHERE operadora = 'Todas' AND tecnologia LIKE '${tecnologia}' AND fkEstado = '${estado}'
             ORDER BY areaCoberta ASC 
-            LIMIT 20;    
+            LIMIT 20;   
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
