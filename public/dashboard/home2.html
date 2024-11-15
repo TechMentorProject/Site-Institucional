@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMentor | Dashboard</title>
+    <link rel="stylesheet" href="./css/home2.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+
+    <link rel="icon" href="./assets/TechMentor-Logo.ico" />
+
+    <!-- <script src="./js/dashboard.js"></script> -->
+</head>
+
+<body onload="validar()">
+    <div class="navbar">
+        <div class="nav"></div>
+        <div class="navbar-Child">
+            <img src="./assets/logo-techmentor.svg" alt="Logo">
+
+            <div>
+                <li class="botaoConta">
+                    <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+                    <div class="encerrar">
+                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt=""><span>Encerrar
+                                sessão</span></div>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="secao1">
+        <div class="sub1">
+            <div class="menu">
+                <div class="icone-menu">
+                    <img src="./assets/menu-aberto-white.png" alt="">
+                    <span>MENU</span>
+                </div>
+                <div class="ancoras-menu">
+                    <a href="">
+                        <div class="ancora">
+                            <img src="./assets/casa.png" alt="">
+                            <span class="selecionado">Home</span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown">
+                        <a href="./painel-dashboards.html">
+                            <div class="ancora">
+                                <img src="./assets/grafico-de-barras.png" alt="">
+                                <span style="margin-top: 5px;">Dashboards<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                          <a href="grafico-estados.html">Conexão por Estado</a>
+                          <a href="grafico-cidades.html">Conexão por Cidade</a>
+                        </div>
+                    </div>
+
+                    <a href="">
+                        <div class="ancora">
+                            <img src="./assets/aviso.png" alt="">
+                            <span>Alertas</span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown">
+                        <a href="#">
+                            <div class="ancora">
+                                <img src="./assets/painel.png" alt="">
+                                <span>Painel <span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="#">Usuários</a>
+                            <a href="#">Antenas</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="configuracoes">
+                    <a href="">
+                        <div class="ancora">
+                            <img src="./assets/configuracoes.png" alt="">
+                            <span>Configurações</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sub2">
+                <div class="info">
+                    <div class="perfil">
+                    </div>
+                    <div class="conteudo">
+                        <h1 style="font-size: 18px;">Jefferson Rodrigues</h1>
+                        <h2 style="font-size: 16px;">Unifique</h2>
+                        <h3 style="font-size: 12px;">Gerente</h3>
+
+                        <div class="sub-conteudo">
+                            <br>
+                            <div class="cadastro">
+                                <p>Foi cadastrado em:</p>
+                                <span>06/06/2024</span>
+                            </div>
+                            <br>
+                            <div class="contato">
+                                <p>Tel:</p>
+                                <span>11 98807-2890</span>
+                                <p>E-mail:</p>
+                                <span>jefferson.rodrigues@unifique.com</span>
+                            </div>
+                            <br>
+                            <div class="suporte">
+                                <h3>Gostaria de suporte?</h3>
+                                <a href="">
+                                    <h3>Clique aqui!</h3>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="plus">
+                    <div>
+                        <div>
+                            <h1>Ultima notificação recebida:</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam excepturi dolor sit quaerat molestias, quam assumenda animi enim in harum ipsum, minima beatae quibusdam commodi nostrum reiciendis?</p>
+                        </div>
+                    </div>
+                    <h2>Quantidade de usuários que acessaram o sistema nos últimos
+                        <select style="font-size: 18px; font-weight: bolder;" id="daysSelect">
+                            <option value="7">5</option>
+                            <option value="15">10</option>
+                            <option value="30">15</option>
+                        </select> dias
+                    </h2>
+
+                    <div class="dashboard">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['05/11', '06/11', '07/11', '08/11', '09/11', '10/11', '11/11', '12/11', 'Ontem', 'Hoje'],
+                datasets: [{
+                    label: 'Usuários logados',
+                    data: [5, 7, 4, 1, 2, 4, 1, 4, 6, 2],
+                    borderColor: '#43BAFF',
+                    backgroundColor: 'rgba(67, 186, 255, 0.2)',
+                    borderWidth: 1,
+                    // Informações de comentário para cada barra
+                    comments: [
+                        'teste.123@gmail.com', 
+                        'teste.123@gmail.com, teste.123@gmail.com, teste.123@gmail.com', 
+                        'teste.123@gmail.com, teste.123@gmail.com, teste.123@gmail.com, teste.123@gmail.com', 
+                        'teste.123@gmail.com',
+                        '', 
+                        '', 
+                        'teste.123@gmail.com', 
+                        'teste.123@gmail.com, teste.123@gmail.com, teste.123@gmail.com, teste.123@gmail.com, teste.123@gmail.com',
+                        'teste.123@gmail.com', 
+                        ''
+                    ]
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const index = context.dataIndex;
+                                const comment = context.dataset.comments[index];
+                                return `${context.dataset.label}: ${context.raw} - ${comment}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    // Mock data based on selection
+    $('#daysSelect').change(function () {
+        const value = $(this).val();
+        let newData;
+        let newLabels;
+
+        if (value === "7") {
+            newData = [5, 8, 10, 12, 15, 18, 20]; // Dados para 7 dias
+            newLabels = ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7'];
+        } else if (value === "15") {
+            newData = [2, 4, 6, 8, 10, 12, 14, 15, 18, 20, 22, 25, 28, 30, 32]; // Dados para 15 dias
+            newLabels = ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7', 'Dia 8', 'Dia 9', 'Dia 10', 'Dia 11', 'Dia 12', 'Dia 13', 'Dia 14', 'Dia 15'];
+        } else if (value === "30") {
+            newData = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155]; // Dados para 30 dias
+            newLabels = ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7', 'Dia 8', 'Dia 9', 'Dia 10', 'Dia 11', 'Dia 12', 'Dia 13', 'Dia 14', 'Dia 15', 'Dia 16', 'Dia 17', 'Dia 18', 'Dia 19', 'Dia 20', 'Dia 21', 'Dia 22', 'Dia 23', 'Dia 24', 'Dia 25', 'Dia 26', 'Dia 27', 'Dia 28', 'Dia 29', 'Dia 30'];
+        }
+
+        // Update chart data and labels
+        myChart.data.datasets[0].data = newData;
+        myChart.data.labels = newLabels;
+        myChart.update();
+    });
+
+    function deslogar() {
+        sessionStorage.clear();
+        window.location.href = '../index.html';
+    }
+</script>

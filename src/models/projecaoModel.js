@@ -3,14 +3,18 @@ var database = require("../database/config")
 function pegarAumentoPopulacionalPercentual(anoInicial, anoFinal, estado) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarAumentoPopulacionalPercentual(): ", anoInicial, anoFinal, estado)
     var instrucaoSql = `
-        SELECT p1.fkEstado AS estado, p1.ano AS ano,
-            ROUND(((p1.projecao - p2.projecao) / p2.projecao) * 100, 2) AS crescimentoPercentualAnual
-        FROM projecaoPopulacional p1
-        JOIN projecaoPopulacional p2 
-            ON p1.fkEstado = p2.fkEstado AND p1.ano = p2.ano + 1
-        WHERE p1.ano BETWEEN ${anoInicial} AND ${anoFinal}
-            AND p1.fkEstado = '${estado}'
-        ORDER BY p1.ano`;  
+        SELECT 
+            p_future.fkEstado AS estado,
+            p_future.ano AS ano,
+            ROUND(((p_future.projecao - p_base.projecao) / p_base.projecao) * 100, 2) AS crescimentoPercentualAnual
+        FROM projecaoPopulacional p_base
+        JOIN 
+            projecaoPopulacional p_future 
+            ON p_base.fkEstado = p_future.fkEstado 
+            AND p_base.ano = ${anoInicial}  -- Ano base para o cálculo
+            AND p_future.ano BETWEEN ${Number(anoInicial) + 1} AND ${anoFinal}
+        WHERE p_base.fkEstado = '${estado}'
+        ORDER BY p_future.ano;`;  
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
