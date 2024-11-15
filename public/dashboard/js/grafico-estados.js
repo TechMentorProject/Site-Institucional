@@ -186,7 +186,7 @@ function alterarDados(estado, antenas, operadora, dadosPopulacoes) {
         populacaoTexto = 'Dados de população inválidos'
     } else {
         for (let i = 0; i < dadosPopulacoes[0].length; i++) {
-            populacaoTexto += `Porcentagem de aumento populacional para ${dadosPopulacoes[0][i]}: ${dadosPopulacoes[1][i]}%\n`
+            populacaoTexto += `Aumento populacional para ${dadosPopulacoes[0][i]}: ${dadosPopulacoes[1][i]}%<br>`
         }
     }
 
