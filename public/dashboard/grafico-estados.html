@@ -54,10 +54,10 @@
                     </a>
 
                     <div class="dropdown">
-                        <a href="./painel-dashboards.html">
+                        <a href="#" class="selecionado">
                             <div class="ancora">
                                 <img src="./assets/grafico-de-barras.png" alt="">
-                                <span class="selecionado">Dashboards<span class="dropdown-icon">></span></span>
+                                <span>Dashboards<span class="dropdown-icon">></span></span>
                             </div>
                         </a>
                         <div class="dropdown-content">
@@ -66,30 +66,23 @@
                         </div>
                     </div>
 
-                    <a href="">
+                    <a href="./alertas.html">
                         <div class="ancora">
                             <img src="./assets/aviso.png" alt="">
                             <span>Alertas</span>
                         </div>
                     </a>
 
-                    <div class="dropdown">
-                        <a href="#">
-                            <div class="ancora">
-                                <img src="./assets/painel.png" alt="">
-                                <span>Painel<span class="dropdown-icon">></span></span>
-                            </div>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="#">Usuários</a>
-                            <a href="#">Antenas</a>
+                    <a href="./cadastroUsuario.html">
+                        <div class="ancora">
+                            <img src="./assets/usuario-icon.png" alt="">
+                            <span>Usuarios</span>
                         </div>
-                    </div>
-
+                    </a>
                 </div>
 
                 <div class="configuracoes">
-                    <a href="">
+                    <a href="./configuracoes.html">
                         <div class="ancora">
                             <img src="./assets/configuracoes.png" alt="">
                             <span>Configurações</span>
@@ -101,8 +94,7 @@
             <div class="sub2">
                 <div class="painel">
                     <h1>Porcentagem de Conexão de Internet por Estado</h1>
-                    <!-- <h1>Conexão por área</h1> -->
-                    <!-- <h2>Mapeamento da Porcentagem de Conexão por Área Geográfica</h2> -->
+
                     <div class="dashboard">
                         <div class="dash" id="geochart-colors">
 
@@ -112,15 +104,32 @@
                                 <h1 id="titulo-estado">Selecione um Estado</h1>
                             </div>
                             <div class="antenas">
-                                <div style="font-size: 15px;" class="texto" id="antenas-estado"></div>
+                                <div class="box">
+                                    <h1>Quantidade de antenas:</h1>
+                                </div>
+                                <div class="texto" id="antenas-estado">
+                                    Clique no Estado
+                                </div>
                             </div>
 
                             <div class="operadora">
-                                <div style="font-size: 15px;" class="texto" id="operadora-estado"></div>
+                                <div class="box">
+                                    <h1>Operadora com maior presença:</h1>
+                                </div>
+                                <div class="texto" id="operadora-estado">
+                                    Clique no Estado
+                                </div>
                             </div>
 
-                            <div  class="populacao">
-                                <div style="font-size: 15px;" class="texto" id="populacao-estado"></div>
+                            <div class="populacao">
+                                <div class="box">
+                                    <h1>Crescimento populacional:</h1>
+
+                                    </h1>
+                                </div>
+                                <div class="texto" id="populacao-estado">
+                                    Clique no Estado
+                                </div>
                             </div>
                         </div>
                     </div>
