@@ -51,42 +51,35 @@
                     </a>
 
                     <div class="dropdown">
-                        <a href="">
+                        <a href="#">
                             <div class="ancora">
                                 <img src="./assets/grafico-de-barras.png" alt="">
-                                <span class="selecionado">Dashboards<span class="dropdown-icon">></span></span>
+                                <span>Dashboards<span class="dropdown-icon">></span></span>
                             </div>
                         </a>
                         <div class="dropdown-content">
-                            <a href="conexao-area.html">Conexão por área</a>
-                            <a href="grafico-antenas.html">Mapeamento de Antenas</a>
+                            <a href="grafico-estados.html">Conexão por Estado</a>
+                            <a href="grafico-cidades.html">Conexão por Cidade</a>
                         </div>
                     </div>
 
-                    <a href="">
+                    <a href="./alertas.html">
                         <div class="ancora">
                             <img src="./assets/aviso.png" alt="">
                             <span>Alertas</span>
                         </div>
                     </a>
 
-                    <div class="dropdown">
-                        <a href="#">
-                            <div class="ancora">
-                                <img src="./assets/painel.png" alt="">
-                                <span>Painel<span class="dropdown-icon">></span></span>
-                            </div>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="#">Usuários</a>
-                            <a href="#">Antenas</a>
+                    <a href="./cadastroUsuario.html">
+                        <div class="ancora">
+                            <img src="./assets/usuario-icon.png" alt="">
+                            <span>Usuarios</span>
                         </div>
-                    </div>
-
+                    </a>
                 </div>
 
                 <div class="configuracoes">
-                    <a href="">
+                    <a href="./configuracoes.html" class="selecionado">
                         <div class="ancora">
                             <img src="./assets/configuracoes.png" alt="">
                             <span>Configurações</span>
@@ -99,9 +92,9 @@
                 <div>
                     <input name="foto" id="foto" type="file" />
                     <button onclick="alterarFotoPerfil()">Enviar Foto de Perfil</button>
-                  </div>
+                </div>
 
-                  <button onclick="mostrarFotoPerfil()">Buscar</button>
+                <button onclick="mostrarFotoPerfil()">Buscar</button>
                 <div id="container">
 
                 </div>
@@ -110,5 +103,6 @@
     </div>
 
 </body>
+
 </html>
 <script src="./js/configuracoes.js"></script>
