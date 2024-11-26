@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMentor | Cadastro Usuário</title>
+    <link rel="stylesheet" href="css/cadastroUsuario.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <link rel="icon" href="../../assets/TechMentor-Logo.ico" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="nav"></div>
+        <div class="navbar-Child">
+            <img src="../../assets/logo-techmentor.svg" alt="Logo">
+
+            <div>
+                <li class="botaoConta">
+                    <img src="../../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+                    <div class="encerrar">
+                        <div class="botao" onclick="deslogar()"><img src="../../assets/deslogar.png" alt=""><span>Encerrar
+                                sessão</span></div>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </div>
+
+    <div class="secao1">
+        <div class="sub1">
+            <div class="menu">
+                <div class="icone-menu">
+                    <img src="../../assets/menu-aberto-white.png" alt="">
+                    <span>MENU</span>
+                </div>
+                <div class="ancoras-menu">
+                    <a href="home.html">
+                        <div class="ancora">
+                            <img src="../../assets/casa.png" alt="">
+                            <span>Home</span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown">
+                        <a href="">
+                            <div class="ancora">
+                                <img src="../../assets/grafico-de-barras.png" alt="">
+                                <span>Dashboards<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="conexao-area.html">Conexão por área</a>
+                            <a href="grafico-antenas.html">Mapeamento de Antenas</a>
+                        </div>
+                    </div>
+
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../../assets/aviso.png" alt="">
+                            <span>Alertas</span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown">
+                        <a href="#">
+                            <div class="ancora">
+                                <img src="../../assets/painel.png" alt="">
+                                <span class="selecionado">Painel<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a class="selecionado" href="#">Usuários</a>
+                            <a href="#">Antenas</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="configuracoes">
+                    <a href="">
+                        <div class="ancora">
+                            <img src="../../assets/configuracoes.png" alt="">
+                            <span>Configurações</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sub2">
+                <div class="painel">
+                    <div class="panel-title">
+                        <p>Usuários</p>
+                    </div>
+                    <div class="search-box">
+                        <div class="search-bar">
+                            <div class="search-icon-container">
+                                <div class="search-icon"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user-panel-header">
+                       <table class="user-table">
+                            <thead class="user-header">
+                                <tr class="user-item">
+                                    <th class="user-info">Nome</th>
+                                    <th class="user-info">Acesso</th>
+                                    <th class="user-info">Editar</th>
+                                </tr>
+                            </thead>
+                            <tbody class="user-list">
+                                <tr class="user-item">
+                                    <td class="user-info">Naomi</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Carminatti</td>
+                                    <td class="user-info">Gerente</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Murilo</td>
+                                    <td class="user-info">Gerente</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Barros</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Barros</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Barros</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Barros</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Barros</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Barros</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Barros</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Barros</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Barros</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="user-item">
+                                    <td class="user-info">Barros</td>
+                                    <td class="user-info">Administrador</td>
+                                    <td class="user-info">
+                                        <div class="container-edit">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    
+                   
+                    
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
