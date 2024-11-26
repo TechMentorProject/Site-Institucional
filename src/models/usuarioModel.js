@@ -18,22 +18,21 @@ function autenticarEmpresa(email, senha) {
     return database.executar(instrucaoSql);
 }
 
-function pegarCargo(email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarCargo(): ", email, senha)
+function pegarCargo(nomeCargo) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarCargo(): ", nomeCargo)
     var instrucaoSql = `
-        SELECT nomeEmpresa, nomeResponsavel, cnpj, emailResponsavel, senha FROM empresa WHERE emailResponsavel = '${email}' AND senha = '${senha}';
+        SELECT nomeCargo, acessos, fkCnpj FROM cargo WHERE nomeCargo = '${nomeCargo}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function pegarCargosEFuncionarioPorEmpresa(cnpj) {
+function pegarFuncionariosPorEmpresa(cnpj) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarCargoPorFuncionario(): ", email, senha)
     var instrucaoSql = `
-        SELECT * FROM usuario JOIN cargo 
+        SELECT nomeUsuario, email, cpf, senha, imagemPerfil, fkNomeCargo, fkCnpj FROM usuario JOIN cargo 
             ON usuario.fkNomeCargo = cargo.nomeCargo AND usuario.fkCnpj = cargo.fkCnpj 
             WHERE fkCnpj = '${cnpj}';
-        SELECT nomeEmpresa, nomeResponsavel, cnpj, emailResponsavel, senha FROM empresa WHERE emailResponsavel = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -173,6 +172,7 @@ module.exports = {
     autenticarUsuario,
     autenticarEmpresa,
     pegarCargo,
+    pegarFuncionariosPorEmpresa,
 
     cadastrarUsuario,
     cadastrarEmpresa,

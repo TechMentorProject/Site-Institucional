@@ -7,9 +7,9 @@ function pegarAumentoPopulacionalPercentual(anoInicial, anoFinal, estado) {
             p_future.fkEstado AS estado,
             p_future.ano AS ano,
             ROUND(((p_future.projecao - p_base.projecao) / p_base.projecao) * 100, 2) AS crescimentoPercentualAnual
-        FROM projecaoPopulacional p_base
+        FROM baseProjecaoPopulacional p_base
         JOIN 
-            projecaoPopulacional p_future 
+            baseProjecaoPopulacional p_future 
             ON p_base.fkEstado = p_future.fkEstado 
             AND p_base.ano = ${anoInicial}  -- Ano base para o cálculo
             AND p_future.ano BETWEEN ${Number(anoInicial) + 1} AND ${anoFinal}

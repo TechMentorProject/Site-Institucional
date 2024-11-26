@@ -4,7 +4,7 @@ var projecaoModel = require("../models/projecaoModel");
 function pegarAumentoPopulacionalPercentual(req, res) {
     var estado = req.params.estado;
     var anoInicial = "2024";
-    var anoFinal = "2030";
+    var anoFinal = "2028";
     let listaCrescimentosPopulacionais = []
     let listaAnos = []
 

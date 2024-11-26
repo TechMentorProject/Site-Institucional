@@ -66,6 +66,65 @@ function autenticarEmpresa(req, res) {
     }
 }
 
+function pegarCargo(req, res) {
+    var nomeCargo = req.body.nomeCargo;
+
+    if (nomeCargo == undefined) {
+        res.status(400).send("Seu nomeCargo está undefined!");
+    } else {
+        usuarioModel.pegarCargo(nomeCargo)
+            .then(
+                (resultado) => {
+                    if (resultado.length == 1) {
+                        console.log(`\nResultados encontrados: ${resultado.length}`);
+                        console.log(`Resultados: ${JSON.stringify(resultado)}`);                        
+                        res.status(200).json({
+                            nomeCargo: resultado[0].nomeCargo,
+                            acessos: resultado[0].acessos,
+                            fkCnpj: resultado[0].fkCnpj
+                        });
+                    } else {
+                        res.status(403).send("Nome de cargo inválido!")
+                    }
+                }
+            ).catch(
+                console.log("Erro na busca de cargo")
+            );
+    }
+}
+
+function pegarFuncionariosPorEmpresa(req, res) {
+    var cnpj = req.body.cnpj;
+
+    if (cnpj == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
+    } else {
+        usuarioModel.pegarFuncionariosPorEmpresa(cnpj)
+            .then(
+                (resultado) => {
+                    if (resultado.length == 1) {
+                        console.log(`\nResultados encontrados: ${resultado.length}`);
+                        console.log(`Resultados: ${JSON.stringify(resultado)}`);                        
+                        res.status(200).json({
+                            nomeUsuario: resultado[0].nomeUsuario,
+                            email: resultado[0].email,
+                            cpf: resultado[0].cpf,
+                            senha: resultado[0].senha,
+                            imagemPerfil: resultado[0].imagemPerfil,
+                            fkNomeCargo: resultado[0].fkNomeCargo,
+                            fkCnpj: resultado[0].fkCnpj
+                        });
+                    } else {
+                        res.status(403).send("Nome de funcionário inválido!")
+                    }
+                }
+            ).catch(
+                console.log("Erro na busca de cargo")
+            );
+    }
+}
+
+
 
 
 
@@ -148,6 +207,41 @@ function cadastrarEmpresa(req, res) {
     }
 }
 
+function cadastrarCargo(req, res) {
+    var nomeCargo = req.body.nomeCargo;
+    var acessos = req.body.acessos;
+    var cnpj = req.body.cnpj;
+
+    if (nomeCargo == undefined) {
+        res.status(400).send("Seu nomeCargo está undefined!");
+    } else if (acessos == undefined) {
+        res.status(400).send("Seu acessos está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Sua cnpj está undefined!");
+    } else {
+        usuarioModel.cadastrarCargo(nomeCargo, acessos, cnpj)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
+
+
+
+
 
 
 
@@ -226,6 +320,41 @@ function atualizarEmpresa(req, res) {
     }
 }
 
+function atualizarCargo(req, res) {
+    var nomeCargo = req.body.nomeCargo;
+    var novoNomeCargo = req.body.novoNomeCargo;
+    var acessos = req.body.acessos;
+    var cnpj = req.body.cnpj;
+
+    if (nomeCargo == undefined) {
+        res.status(400).send("Seu nomeCargo está undefined!");
+    } else if (novoNomeCargo == undefined) {
+        res.status(400).send("Seu novoNomeCargo está undefined!");
+    } else if (acessos == undefined) {
+        res.status(400).send("Sua acessos está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Sua cnpj está undefined!");
+    } else {
+        usuarioModel.atualizarCargo(nomeCargo, novoNomeCargo, acessos, cnpj)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a atualização! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
+
 
 
 
@@ -280,6 +409,33 @@ function inativarEmpresa(req, res) {
     }
 }
 
+function removerCargo(req, res) {
+    var cnpj = req.body.cnpj;
+    var nomeCargo = req.body.nomeCargo;
+    
+    if (cnpj == undefined) {
+        res.status(400).send("Sua cnpj está undefined!");
+    } else if (nomeCargo == undefined) {
+        res.status(400).send("Sua nomeCargo está undefined!");
+    } else {
+        usuarioModel.removerCargo(nomeCargo, cnpj)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a remoção! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 
 
 
@@ -309,11 +465,20 @@ function salvarFoto(req, res) {
 module.exports = {
     autenticarUsuario,
     autenticarEmpresa,
+    pegarCargo,
+    pegarFuncionariosPorEmpresa,
+
     cadastrarUsuario,
     cadastrarEmpresa,
+    cadastrarCargo,
+
     atualizarUsuario,
     atualizarEmpresa,
+    atualizarCargo,
+
     removerUsuario,
     inativarEmpresa,
+    removerCargo,
+
     salvarFoto
 }

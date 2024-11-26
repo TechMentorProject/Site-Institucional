@@ -7,7 +7,7 @@ router.get("/pegarCoberturaPercentualPorEstado/:ano/:estado", function (req, res
     municipioController.pegarCoberturaPercentualPorEstado(req, res);
 });
 
-router.get("/pegarMenoresCoberturas/:estado/:tecnologia", function (req, res) {
+router.get("/pegarMenoresCoberturas/:estado/:tecnologia/:operadora", function (req, res) {
     municipioController.pegarMenoresCoberturas(req, res);
 });
 
