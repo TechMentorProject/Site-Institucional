@@ -1,5 +1,5 @@
-let tecnologiaEscolhida = 'NA'
-let estadoEscolhido = 'NA'
+let tecnologiaEscolhida = '3G'
+let estadoEscolhido = 'ES'
 pegarDadosTabela()
 
 function filtrarPorEstado(estado) {
@@ -23,8 +23,8 @@ async function pegarDadosTabela() {
     carregarTabela(cidades, estados, coberturas, operadoras, tecnologias)
 }
 
-async function buscarDadosTabela(estado, tecnologia) {
-    return fetch(`/municipio/pegarMenoresCoberturas/${estado}/${tecnologia}`, {
+async function buscarDadosTabela(estado, tecnologia, operadora) {
+    return fetch(`/municipio/pegarMenoresCoberturas/${estado}/${tecnologia}/${operadora}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
