@@ -13,10 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <link rel="icon" href="../../assets/TechMentor-Logo.ico" />
+    <!-- <script src="./js/dashboard.js"></script> -->
 
 </head>
 
-<body>
+<body onload="validar()">
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
@@ -26,9 +27,9 @@
                 <li class="botaoConta">
                     <img src="../../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
                     <div class="encerrar">
-                        <div class="botao" onclick="deslogar()"><img src="../../assets/deslogar.png" alt=""><span>Encerrar
-
-                                sessão</span></div>
+                        <div class="botao" onclick="deslogar()"><img src="../../assets/deslogar.png" alt="">
+                            <span>Encerrar sessão</span>
+                        </div>
                     </div>
                 </li>
             </div>
@@ -76,7 +77,7 @@
 
                     <a href="./cadastroUsuario.html" class="selecionado">
                         <div class="ancora">
-                            <img src="../../assets/usuario-icon.png" alt="">
+                            <img src="./assets/usuario-icon.png" alt="">
                             <span>Usuarios</span>
                         </div>
                     </a>
