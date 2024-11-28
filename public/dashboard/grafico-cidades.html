@@ -98,37 +98,37 @@
               <div class="filtros">
                 <div class="filtro estado">
                   <p>Estado</p>
-                  <select>
-                    <option selected value="">ES</option>
-                    <option value="">MG</option>
-                    <option value="">PR</option>
-                    <option value="">RJ</option>
-                    <option value="">RS</option>
-                    <option value="">SC</option>
-                    <option value="">SP</option>
+                  <select id="filtro-est">
+                    <option selected value="Espírito Santo">ES</option>
+                    <option value="Minas Gerais">MG</option>
+                    <option value="Paraná">PR</option>
+                    <option value="Rio de Janeiro">RJ</option>
+                    <option value="Rio Grande do Sul">RS</option>
+                    <option value="Santa Catarina">SC</option>
+                    <option value="São Paulo">SP</option>
                   </select>
                 </div>
                 <div class="filtro operadora">
                   <p>Operadora</p>
-                  <select>
-                    <option selected value="">Todas</option>
-                    <option value="">Claro</option>
-                    <option value="">Oi</option>
-                    <option value="">Tim</option>
-                    <option value="">Vivo</option>
+                  <select id="filtro-ope">
+                    <option selected value="Todas">Todas</option>
+                    <option value="CLARO">Claro</option>
+                    <option value="OI">Oi</option>
+                    <option value="TIM">Tim</option>
+                    <option value="VIVO">Vivo</option>
                   </select>
                 </div>
                 <div class="filtro tecnologia">
                   <p>Tecnologia</p>
-                  <select>
-                    <option selected value="">Todas</option>
-                    <option value="">5G</option>
-                    <option value="">4G</option>
-                    <option value="">3G</option>
-                    <option value="">2G</option>
+                  <select id="filtro-tec">
+                    <option selected value="Todas">Todas</option>
+                    <option value="5G">5G</option>
+                    <option value="4G">4G</option>
+                    <option value="3G">3G</option>
+                    <option value="2G">2G</option>
                   </select>
                 </div>
-                <button>✓</button>
+                <button onclick="pegarDadosTabela()">✓</button>
               </div>
               <div class="tabela">
                 <table>

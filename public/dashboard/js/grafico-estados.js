@@ -135,9 +135,7 @@ async function pegarAumentoPopulacional(estado) {
     })
         .then(resposta => resposta.json())
         .then(res => {
-            
             return [res.anos, res.crescimentosPopulacionais]
-            // {"anos": res.anos, "populacoes": res.crescimentosPopulacionais}
         })
         .catch(error => {
             console.log(`#ERRO ao buscar aumento populacional: ${error}`);

@@ -8,3 +8,10 @@ function deslogar(){
     sessionStorage.clear();
     window.location.href = './../index.html';
 }
+
+function validarCargo(pagina) {
+    let cargo = sessionStorage.CARGO
+    if (cargo.includes(pagina)) {
+        window.location.href = './home.html'
+    }
+}
