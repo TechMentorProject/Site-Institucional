@@ -13,9 +13,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <link rel="icon" href="./assets/TechMentor-Logo.ico" />
+    <!-- <script src="./js/dashboard.js"></script> -->
 </head>
 
-<body>
+<body onload="validar()">
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
@@ -25,8 +26,9 @@
                 <li class="botaoConta">
                     <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
                     <div class="encerrar">
-                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt=""><span>Encerrar
-                                sessão</span></div>
+                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt="">
+                            <span>Encerrar sessão</span>
+                        </div>
                     </div>
                 </li>
             </div>
@@ -49,42 +51,35 @@
                     </a>
 
                     <div class="dropdown">
-                        <a href="">
+                        <a>
                             <div class="ancora">
                                 <img src="./assets/grafico-de-barras.png" alt="">
-                                <span class="selecionado">Dashboards<span class="dropdown-icon">></span></span>
+                                <span>Dashboards<span class="dropdown-icon">></span></span>
                             </div>
                         </a>
                         <div class="dropdown-content">
-                            <a href="conexao-area.html">Conexão por área</a>
-                            <a href="grafico-antenas.html">Mapeamento de Antenas</a>
+                            <a href="grafico-estados.html">Conexão por Estado</a>
+                            <a href="grafico-cidades.html">Conexão por Cidade</a>
                         </div>
                     </div>
 
-                    <a href="">
+                    <a href="alertas.html">
                         <div class="ancora">
                             <img src="./assets/aviso.png" alt="">
                             <span>Alertas</span>
                         </div>
                     </a>
 
-                    <div class="dropdown">
-                        <a href="#">
-                            <div class="ancora">
-                                <img src="./assets/painel.png" alt="">
-                                <span>Painel<span class="dropdown-icon">></span></span>
-                            </div>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="#">Usuários</a>
-                            <a href="#">Antenas</a>
+                    <a href="cadastroUsuario.html">
+                        <div class="ancora">
+                            <img src="./assets/usuario-icon.png" alt="">
+                            <span>Usuarios</span>
                         </div>
-                    </div>
-
+                    </a>
                 </div>
 
                 <div class="configuracoes">
-                    <a href="">
+                    <a href="telaConfig.html" class="selecionado">
                         <div class="ancora">
                             <img src="./assets/configuracoes.png" alt="">
                             <span>Configurações</span>
