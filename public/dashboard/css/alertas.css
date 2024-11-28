@@ -1,7 +1,7 @@
 @import "../css/padrao.css";
 
 /* PAINEL */
-.sub2{
+.sub2 {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -9,40 +9,76 @@
     justify-content: center;
     gap: 15px;
     align-items: flex-end;
+    overflow-y: hidden;
 }
 
 .painel {
+    max-height: 80vh; 
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     border-radius: 15px 15px 0 0;
     background-color: white;
     height: 95%;
     width: 95%;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
+
+.painel::-webkit-scrollbar {
+    width: 1rem;
+}
+
+.painel::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 0 1rem 0 1rem;
+    border: solid black;
+}
+
+.painel::-webkit-scrollbar-thumb {
+    background-color: #43BAFF;
+    border-radius: 0 1rem 0 1rem; 
+    border: 2px solid black;
+}
+
+
 
 .box-title {
     display: flex;
-    height: 20%;
+    height: 10vh;
     width: 30%;
-    justify-content: center;
-    align-items: end;
-    font-size: 2.5rem;
+    align-items: flex-end;
+    font-size: 3rem;
     font-weight: bold;
+    margin-left: 3rem;
 }
 
 .container-alerta {
     display: flex;
-    flex-direction: row;
-    height: 80%;
-    width: 100%;
-    margin-top: 1rem;
-    align-items: start;
+    flex-direction: column; 
+    width: 90%; 
+    gap: 15px; 
+    margin-top: 3rem;
+}
+
+.box-alerta {
+    display: flex; 
+    height: 10rem;
+    width: 75vw;
+    flex-direction: row; 
+    align-items: center;
+    gap: 10px; 
+    padding: 10px;
+    border-radius: 8px; 
+    background-color: #f9f9f9; 
     justify-content: space-evenly;
 }
 
 .icon-alerta {
     height: 8rem;
-    width: 10rem;
+    width: 8rem;
     margin-top: 47px;
     background-image: url("../assets/sino.png");
     background-repeat: no-repeat;
@@ -52,33 +88,33 @@
 
 .box-mensagem {
     display: flex;
-    height: 12rem;
-    width: 48rem;
     flex-direction: column;
-    border-radius: 1rem;
+    justify-content: center; 
+    width: 80%; 
+    height: 10rem;
 }
 
 .container-mensagem {
     display: flex;
-    height: 11rem;
-    border-radius: 1rem 1rem 0 0;
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-start;
+    border-radius: 8px 8px 0 0; 
     background-color: #e3d9d9;
-    justify-content: start;
-    align-items: start;
-    margin-top: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 8rem;
+    width: 60vw;
 }
 
 p {
-    margin-top: 15px;
-    margin-left: 20px;
+    margin: 0; 
+    font-size: 1rem; 
 }
 
 .azul {
-    width: 48rem;
+    width: 60vw; 
     height: 1rem;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 8px 8px;
     background-color: #43BAFF;
-    
 }
-
-
