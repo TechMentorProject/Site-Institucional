@@ -1,19 +1,12 @@
-let tecnologiaEscolhida = '3G'
-let estadoEscolhido = 'ES'
+//validar()
 pegarDadosTabela()
 
-function filtrarPorEstado(estado) {
-    estadoEscolhido = estado
-    pegarDadosTabela()
-}
-
-function filtrarPorTecnologia(tecnologia) {
-    tecnologiaEscolhida = tecnologia
-    pegarDadosTabela()
-}
-
 async function pegarDadosTabela() {
-    let dados = await buscarDadosTabela(estadoEscolhido, tecnologiaEscolhida)
+    let estado = document.getElementById('filtro-est').value
+    let operadora = document.getElementById('filtro-ope').value
+    let tecnologia = document.getElementById('filtro-tec').value
+
+    let dados = await buscarDadosTabela(estado, operadora, tecnologia)
     let cidades = dados[0]
     let estados = dados[1]
     let coberturas = dados[2]
@@ -23,7 +16,7 @@ async function pegarDadosTabela() {
     carregarTabela(cidades, estados, coberturas, operadoras, tecnologias)
 }
 
-async function buscarDadosTabela(estado, tecnologia, operadora) {
+async function buscarDadosTabela(estado, operadora, tecnologia) {
     return fetch(`/municipio/pegarMenoresCoberturas/${estado}/${tecnologia}/${operadora}`, {
         method: "GET",
         headers: {
@@ -42,13 +35,23 @@ async function buscarDadosTabela(estado, tecnologia, operadora) {
 }
 
 async function carregarTabela(cidades, estados, coberturas, operadoras, tecnologias) {
-    for (let i = 0; i < cidades.length; i++) {
-        document.getElementById('posicao' + (i + 1)).innerHTML = (i+1) + "°";
-        document.getElementById('estado' + (i + 1)).innerHTML = estados[i];
-        document.getElementById('cidade' + (i + 1)).innerHTML = cidades[i];
-        document.getElementById('cobertura' + (i + 1)).innerHTML = coberturas[i] + "%";
-        document.getElementById('operadora' + (i + 1)).innerHTML = operadoras[i];
-        document.getElementById('tecnologia' + (i + 1)).innerHTML = tecnologias[i];
+    for (let i = 1; i <= 20; i++) {
+        if (i <= cidades.length) {
+            console.log(i)
+            document.getElementById('posicao' + (i)).innerHTML = (i) + "°";
+            document.getElementById('estado' + (i)).innerHTML = estados[i-1];
+            document.getElementById('cidade' + (i)).innerHTML = cidades[i-1];
+            document.getElementById('cobertura' + (i)).innerHTML = coberturas[i-1] + "%";
+            document.getElementById('operadora' + (i)).innerHTML = operadoras[i-1];
+            document.getElementById('tecnologia' + (i)).innerHTML = tecnologias[i-1];
+        } else {
+            document.getElementById('posicao' + (i)).innerHTML = "-";
+            document.getElementById('estado' + (i)).innerHTML = "-";
+            document.getElementById('cidade' + (i)).innerHTML = "-";
+            document.getElementById('cobertura' + (i)).innerHTML = "-";
+            document.getElementById('operadora' + (i)).innerHTML = "-";
+            document.getElementById('tecnologia' + (i)).innerHTML = "-";
+        }
     }
 }
 
