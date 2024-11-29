@@ -16,7 +16,7 @@
 
     <link rel="icon" href="./assets/TechMentor-Logo.ico" />
 
-    <script src="./js/dashboard.js"></script>
+    <!-- <script src="./js/dashboard.js"></script> -->
 </head>
 
 <body onload="validar()">
@@ -29,8 +29,9 @@
                 <li class="botaoConta">
                     <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
                     <div class="encerrar">
-                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt=""><span>Encerrar
-                                sessão</span></div>
+                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt="">
+                            <span>Encerrar sessão</span>
+                        </div>
                     </div>
                 </li>
             </div>
@@ -54,7 +55,7 @@
                     </a>
 
                     <div class="dropdown">
-                        <a href="#">
+                        <a>
                             <div class="ancora">
                                 <img src="./assets/grafico-de-barras.png" alt="">
                                 <span>Dashboards<span class="dropdown-icon">></span></span>
@@ -66,23 +67,23 @@
                         </div>
                     </div>
 
-                    <a href="./alertas.html">
+                    <a href="alertas.html">
                         <div class="ancora">
                             <img src="./assets/aviso.png" alt="">
                             <span>Alertas</span>
                         </div>
                     </a>
 
-                    <a href="./cadastroUsuario.html">
+                    <a href="cadastroUsuario.html">
                         <div class="ancora">
-                            <img src="../../assets/usuario-icon.png" alt="">
+                            <img src="./assets/usuario-icon.png" alt="">
                             <span>Usuarios</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="configuracoes">
-                    <a href="./configuracoes.html">
+                    <a href="telaConfig.html">
                         <div class="ancora">
                             <img src="./assets/configuracoes.png" alt="">
                             <span>Configurações</span>
@@ -98,7 +99,7 @@
                     <div class="conteudo">
                         <h1 style="font-size: 18px;">Jefferson Rodrigues</h1>
                         <h2 style="font-size: 16px;">Unifique</h2>
-                        <h3 style="font-size: 12px;">Gerente</h3>
+                        <h3 style="font-size: 12px;">Funcionário</h3>
 
                         <div class="sub-conteudo">
                             <br>
@@ -108,8 +109,6 @@
                             </div>
                             <br>
                             <div class="contato">
-                                <p>Tel:</p>
-                                <span>11 98807-2890</span>
                                 <p>E-mail:</p>
                                 <span>jefferson.rodrigues@unifique.com</span>
                             </div>
@@ -119,23 +118,15 @@
                                 <a href="">
                                     <h3>Clique aqui!</h3>
                                 </a>
+                                <button onclick="togglePainelClass('func')">Painel func</button>
+                                <button onclick="togglePainelClass('empresa')">Painel empresa</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="plus">
-                    <h2>Cadastro de antenas dos últimos
-                        <select style="font-size: 18px; font-weight: bolder;" id="daysSelect">
-                            <option value="7">7</option>
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                        </select> dias
-                    </h2>
+                <div class="painel empresa">
 
-                    <div class="dashboard">
-                        <canvas id="myChart"></canvas>
-                    </div>
                 </div>
             </div>
         </div>
@@ -147,57 +138,138 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const ctx = document.getElementById('myChart');
-    const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7'],
-            datasets: [{
-                label: 'Cadastro de Antenas',
-                data: [5, 8, 10, 12, 15, 18, 20], // Dados para 7 dias
-                borderColor: '#43BAFF',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false,
-                }
-            }
-        }
-    });
-
-    // Mock data based on selection
-    $('#daysSelect').change(function () {
-        const value = $(this).val();
-        let newData;
-        let newLabels;
-
-        if (value === "7") {
-            newData = [5, 8, 10, 12, 15, 18, 20]; // Dados para 7 dias
-            newLabels = ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7'];
-        } else if (value === "15") {
-            newData = [2, 4, 6, 8, 10, 12, 14, 15, 18, 20, 22, 25, 28, 30, 32]; // Dados para 15 dias
-            newLabels = ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7', 'Dia 8', 'Dia 9', 'Dia 10', 'Dia 11', 'Dia 12', 'Dia 13', 'Dia 14', 'Dia 15'];
-        } else if (value === "30") {
-            newData = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155]; // Dados para 30 dias
-            newLabels = ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7', 'Dia 8', 'Dia 9', 'Dia 10', 'Dia 11', 'Dia 12', 'Dia 13', 'Dia 14', 'Dia 15', 'Dia 16', 'Dia 17', 'Dia 18', 'Dia 19', 'Dia 20', 'Dia 21', 'Dia 22', 'Dia 23', 'Dia 24', 'Dia 25', 'Dia 26', 'Dia 27', 'Dia 28', 'Dia 29', 'Dia 30'];
-        }
-
-        // Update chart data and labels
-        myChart.data.datasets[0].data = newData;
-        myChart.data.labels = newLabels;
-        myChart.update();
-    });
-
-    function deslogar() {
-        sessionStorage.clear();
-        window.location.href = '../index.html';
+    // Conteúdo para o painel "func"
+    function createFuncContent() {
+        return `
+            <div class="mensagens">
+                <h2>Últimas mensagens</h2>
+                <div class="msg">
+                    <img src="./assets/sino.png">
+                    <div class="texto">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus doloremque non
+                            repudiandae molestias neque! Odit ea sapiente sunt iure, perferendis nihil magni
+                            nesciunt repudiandae quisquam fuga! Voluptate nihil explicabo omnis!
+                        </p>
+                    </div>
+                </div>
+                <div class="msg">
+                    <img src="./assets/sino.png">
+                    <div class="texto">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus doloremque non
+                            repudiandae molestias neque! Odit ea sapiente sunt iure, perferendis nihil magni
+                            nesciunt repudiandae quisquam fuga! Voluptate nihil explicabo omnis!
+                        </p>
+                    </div>
+                </div>
+                <div class="msg">
+                    <img src="./assets/sino.png">
+                    <div class="texto">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus doloremque non
+                            repudiandae molestias neque! Odit ea sapiente sunt iure, perferendis nihil magni
+                            nesciunt repudiandae quisquam fuga! Voluptate nihil explicabo omnis!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="permissoes">
+                <h2>Permissões</h2>
+                <div class="lista">
+                    <li class="desativado">Permissão 1</li>
+                    <li>Permissão 1</li>
+                    <li>Permissão 1</li>
+                    <li>Permissão 1</li>
+                    <li>Permissão 1</li>
+                    <li>Permissão 1</li>
+                </div>
+            </div>
+        `;
     }
+
+    // Conteúdo para o painel "empresa"
+    function createEmpresaContent() {
+        return `
+            <div class="box">
+                <div class="conteudo1">
+                    <h2>Gerenciamento de Acessos</h2>
+                    <div class="dashboard">
+                        <p>Acessos do Funcionário nos Últimos <select id="">
+                        <option value="">7</option>
+                        <option value="">15</option>
+                        <option value="">30</option>
+                        </select> Dias</p>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+                <div class="conteudo2">
+                    <h2>Perfis</h2>
+                    <div class="perfis">
+                        <div class="perfil">
+                            <div class="img-perfil"></div>
+                            <span>Funcionario1</span>
+                        </div>
+                        <div class="perfil">
+                            <div class="img-perfil"></div>
+                            <span>Funcionario</span>
+                        </div>
+                        <div class="perfil">
+                            <div class="img-perfil"></div>
+                            <span>Funcionario3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function togglePainelClass(type) {
+        const painel = document.querySelector('.painel');
+
+        if (!painel) {
+            console.error('Elemento com classe "painel" não encontrado.');
+            return;
+        }
+
+        if (type === 'func') {
+            painel.className = 'painel func';
+            painel.innerHTML = createFuncContent();
+        } else if (type === 'empresa') {
+            painel.className = 'painel empresa';
+            painel.innerHTML = createEmpresaContent();
+
+            // Após atualizar o conteúdo, recrie o gráfico
+            const ctx = document.getElementById('myChart');
+            if (ctx) {
+                const myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Comparecido', 'Não compareceu'],
+                        datasets: [{
+                            data: [12, 19],
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.5)',
+                                'rgba(75, 192, 192, 0.5)',
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(75, 192, 192, 1)',
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }
+                });
+            } else {
+                console.error('Canvas para o gráfico não encontrado.');
+            }
+        } else {
+            console.error('Tipo de painel inválido.');
+        }
+    }
+
 </script>
