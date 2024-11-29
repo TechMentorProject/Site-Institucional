@@ -1,77 +1,84 @@
-CREATE DATABASE techmentor;
+CREATE DATABASE IF NOT EXISTS techmentor;
 USE techmentor;
 
-CREATE TABLE estado (
-    idEstado INT AUTO_INCREMENT PRIMARY KEY,
-    regiao VARCHAR(100),
-    UF CHAR(2)
+CREATE TABLE IF NOT EXISTS estado (
+    nomeEstado VARCHAR(100) PRIMARY KEY,
+    sigla CHAR(2),
+    regiao VARCHAR(100)
 );
 
-CREATE TABLE municipio (
+CREATE TABLE IF NOT EXISTS cidade (
+    nomeCidade VARCHAR(100) PRIMARY KEY,
+    fkEstado VARCHAR(100),
+    FOREIGN KEY (fkEstado) REFERENCES estado(nomeEstado)
+);
+
+CREATE TABLE IF NOT EXISTS baseMunicipio (
     idMunicipio INT AUTO_INCREMENT PRIMARY KEY,
-    ano char(4),
-    cidade VARCHAR(100),
+    fkCidade VARCHAR(100),
+    ano CHAR(4),
     operadora VARCHAR(100),
-    domiciliosCobertosPercent DECIMAL(10,2),
-    areaCobertaPercent DECIMAL(5,2),
-    tecnologia VARCHAR(50)
+    domiciliosCobertosPercentual DECIMAL(5,2),
+    areaCobertaPercentual DECIMAL(5,2),
+    tecnologia VARCHAR(50),
+    FOREIGN KEY (fkCidade) REFERENCES cidade(nomeCidade)
 );
 
-
-CREATE TABLE estacoesSMP (
+CREATE TABLE IF NOT EXISTS baseEstacoesSMP (
     idEstacoesSMP INT AUTO_INCREMENT PRIMARY KEY,
-    cidade VARCHAR(255),
+    fkCidade VARCHAR(255),
     operadora VARCHAR(255),
-    latitude BIGINT,
-    longitude BIGINT,
     codigoIBGE VARCHAR(255),
     tecnologia VARCHAR(255)
 );
 
-
-CREATE TABLE censoIBGE (
+CREATE TABLE IF NOT EXISTS baseCensoIBGE (
     idCensoIBGE INT AUTO_INCREMENT PRIMARY KEY,
-    cidade VARCHAR(100),
+    fkCidade VARCHAR(100),
     area DECIMAL(10,2),
-    densidadeDemografica DECIMAL(10,2)
+    densidadeDemografica DECIMAL(10,2),
+    FOREIGN KEY (fkCidade) REFERENCES cidade(nomeCidade)
 );
 
-
-CREATE TABLE projecaoPopulacional (
+CREATE TABLE IF NOT EXISTS baseProjecaoPopulacional (
     idProjecaoPopulacional INT AUTO_INCREMENT PRIMARY KEY,
-    estado varchar(100),
+    fkEstado VARCHAR(100),
     ano INT,
-    projecao INT
+    projecao INT,
+    FOREIGN KEY (fkEstado) REFERENCES estado(nomeEstado)
 );
 
-CREATE TABLE empresa (
-    idEmpresa INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS empresa (
+    cnpj VARCHAR(20) PRIMARY KEY NOT NULL UNIQUE,
     nomeEmpresa VARCHAR(100) NOT NULL,
     nomeResponsavel VARCHAR(100),
-    cnpj VARCHAR(20) NOT NULL UNIQUE,
     emailResponsavel VARCHAR(100) NOT NULL,
     senha VARCHAR(100) NOT NULL
 );
 
-
-CREATE TABLE cargo (
-    idCargo INT AUTO_INCREMENT PRIMARY KEY,
-    nomeCargo VARCHAR(100) NOT NULL,
-    salario DECIMAL(10,2) NOT NULL,
-    idEmpresa INT,
-    FOREIGN KEY (idEmpresa) REFERENCES empresa(idEmpresa)
+CREATE TABLE IF NOT EXISTS cargo (
+    nomeCargo VARCHAR(100) PRIMARY KEY NOT NULL,
+    acessos VARCHAR(100),
+    fkCnpj VARCHAR(20),
+    FOREIGN KEY (fkCnpj) REFERENCES empresa(cnpj)
 );
 
-
-CREATE TABLE usuario (
-    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS usuario (
+    cpf VARCHAR(20) PRIMARY KEY,
     email VARCHAR(100),
     nomeUsuario VARCHAR(100),
-    cpf VARCHAR(20),
     senha VARCHAR(100),
-    imagemPerfil varchar(255),
-    idEmpresa INT,
-    idCargo INT,
-    FOREIGN KEY (idEmpresa) REFERENCES empresa(idEmpresa),
-    FOREIGN KEY (idCargo) REFERENCES cargo(idCargo)
+    fkCnpj VARCHAR(20),
+    fkNomeCargo VARCHAR(100),
+    FOREIGN KEY (fkCnpj) REFERENCES empresa(cnpj),
+    FOREIGN KEY (fkNomeCargo) REFERENCES cargo(nomeCargo)
+);
+
+CREATE TABLE IF NOT EXISTS notificacao (
+    texto VARCHAR(150),
+    dataCriacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    enviado BOOL,
+    paraEmpresa BOOL,
+    fkCnpj VARCHAR(20),
+    FOREIGN KEY (fkCnpj) REFERENCES empresa(cnpj)
 );
