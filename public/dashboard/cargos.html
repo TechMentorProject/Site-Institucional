@@ -165,39 +165,6 @@
                                             <div class="remove-button"></div>
                                         </div>
                                     </div>
-                                    <div class="cargo">
-                                        <div class="ponto"></div>
-                                        <div class="texto">
-                                            <h3>Nome do cargo</h3>
-                                            <h4>Permissões:</h4>
-                                        </div>
-                                        <div class="edicao-exclusao">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </div>
-                                    <div class="cargo">
-                                        <div class="ponto"></div>
-                                        <div class="texto">
-                                            <h3>Nome do cargo</h3>
-                                            <h4>Permissões:</h4>
-                                        </div>
-                                        <div class="edicao-exclusao">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </div>
-                                    <div class="cargo">
-                                        <div class="ponto"></div>
-                                        <div class="texto">
-                                            <h3>Nome do cargo</h3>
-                                            <h4>Permissões:</h4>
-                                        </div>
-                                        <div class="edicao-exclusao">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -221,16 +188,16 @@
         <div class="modal-edit">
             <h2>Editar Cargo</h2>
             <form id="edit-user-form">
-                <div>
-                    <label for="cargo-name">Nome do Cargo:</label>
+                <div class="nome">
+                    <label for="cargo-name">Nome do Cargo:</label><br>
                     <input type="text" id="cargo-name" name="cargo-name" required />
                 </div>
 
                 <div class="permissoes">
-                    <h3>Permissões</h3>
+                    <p>Permissões:</p>
                     <div class="div">
                         <div class="estados">
-                            <h4>Estados</h4>
+                            <span>Estados</span>
                             <div class="check">
                                 <input type="checkbox" id="estado-es" name="estado" value="ES"><span>ES</span>
                             </div>
@@ -252,7 +219,7 @@
                         </div>
 
                         <div class="operadoras">
-                            <h4>Operadoras</h4>
+                            <span>Operadoras</span>
                             <div class="check">
                                 <input type="checkbox" id="operadora-claro" name="operadora"
                                     value="Claro"><span>Claro</span>
