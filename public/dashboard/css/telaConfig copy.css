@@ -31,7 +31,7 @@
     font-weight: bold;
 }
 
-.container-nome-empresa {
+.container-nome {
     width: 90%;
     height: 8%;
     display: flex;
@@ -39,7 +39,7 @@
     justify-content: end;
 }
 
-.box-nome-empresa {
+.box-nome {
     width: 20%;
     height: 100%;
     display: flex;
