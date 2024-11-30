@@ -16,10 +16,10 @@
 
     <link rel="icon" href="./assets/TechMentor-Logo.ico" />
 
-    <!-- <script src="./js/dashboard.js"></script> -->
+    <script src="./js/dashboard.js"></script>
 </head>
 
-<body onload="validar()">
+<body>
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
@@ -100,23 +100,25 @@
 
             <div class="sub2">
                 <div class="info">
-                    <div class="perfil">
+                    <div id="perfil" class="perfil">
                     </div>
                     <div class="conteudo">
-                        <h1 style="font-size: 18px;">Jefferson Rodrigues</h1>
-                        <h2 style="font-size: 16px;">Unifique</h2>
-                        <h3 style="font-size: 12px;">Funcionário</h3>
+                        <h1 id="dado1" style="font-size: 18px;">Jefferson Rodrigues</h1>
+                        <h2 id="dado2" style="font-size: 16px;">Unifique</h2>
+                        <h3 id="dado3" style="font-size: 12px;">Funcionário</h3>
 
                         <div class="sub-conteudo">
                             <br>
                             <div class="cadastro">
-                                <p>Foi cadastrado em:</p>
-                                <span>06/06/2024</span>
+                                <p>CPF/CNPJ:</p>
+                                <span id="dado4"></span>
+                                <!-- <p>Foi cadastrado em:</p>
+                                <span>06/06/2024</span> -->
                             </div>
                             <br>
                             <div class="contato">
                                 <p>E-mail:</p>
-                                <span>jefferson.rodrigues@unifique.com</span>
+                                <span id="email">jefferson.rodrigues@unifique.com</span>
                             </div>
                             <br>
                             <div class="suporte">
@@ -133,8 +135,8 @@
 
                 <div class="painel func">
                     <div class="mensagens">
-                        <h2>Últimas mensagens</h2>
-                        <div class="msg">
+                        <h2 id="titulo-utlimas-mensagens">Últimas mensagens</h2>
+                        <!-- <div class="msg">
                             <img src="./assets/sino.png">
                             <div class="texto">
                                 <p>
@@ -163,17 +165,17 @@
                                     nesciunt repudiandae quisquam fuga! Voluptate nihil explicabo omnis!
                                 </p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="permissoes">
                         <h2>Permissões</h2>
-                        <div class="lista">
+                        <div id="lista-permissoes" class="lista">
                             <li class="desativado">Permissão 1</li>
-                            <li>Permissão 1</li>
-                            <li>Permissão 1</li>
-                            <li>Permissão 1</li>
-                            <li>Permissão 1</li>
-                            <li>Permissão 1</li>
+                            <li>Permissão 6</li>
+                            <li>Permissão 2</li>
+                            <li>Permissão 3</li>
+                            <li>Permissão 4</li>
+                            <li>Permissão 5</li>
                         </div>
                     </div>
                 </div>
@@ -183,142 +185,6 @@
 
 </html>
 
+<script src="./js/home.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-    // Conteúdo para o painel "func"
-    function createFuncContent() {
-        return `
-            <div class="mensagens">
-                <h2>Últimas mensagens</h2>
-                <div class="msg">
-                    <img src="./assets/sino.png">
-                    <div class="texto">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus doloremque non
-                            repudiandae molestias neque! Odit ea sapiente sunt iure, perferendis nihil magni
-                            nesciunt repudiandae quisquam fuga! Voluptate nihil explicabo omnis!
-                        </p>
-                    </div>
-                </div>
-                <div class="msg">
-                    <img src="./assets/sino.png">
-                    <div class="texto">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus doloremque non
-                            repudiandae molestias neque! Odit ea sapiente sunt iure, perferendis nihil magni
-                            nesciunt repudiandae quisquam fuga! Voluptate nihil explicabo omnis!
-                        </p>
-                    </div>
-                </div>
-                <div class="msg">
-                    <img src="./assets/sino.png">
-                    <div class="texto">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus doloremque non
-                            repudiandae molestias neque! Odit ea sapiente sunt iure, perferendis nihil magni
-                            nesciunt repudiandae quisquam fuga! Voluptate nihil explicabo omnis!
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="permissoes">
-                <h2>Permissões</h2>
-                <div class="lista">
-                    <li class="desativado">Permissão 1</li>
-                    <li>Permissão 1</li>
-                    <li>Permissão 1</li>
-                    <li>Permissão 1</li>
-                    <li>Permissão 1</li>
-                    <li>Permissão 1</li>
-                </div>
-            </div>
-        `;
-    }
-
-    // Conteúdo para o painel "empresa"
-    function createEmpresaContent() {
-        return `
-            <div class="box">
-                <div class="conteudo1">
-                    <h2>Gerenciamento de Acessos</h2>
-                    <div class="dashboard">
-                        <p>Acessos do Funcionário nos Últimos <select id="">
-                        <option value="">7</option>
-                        <option value="">15</option>
-                        <option value="">30</option>
-                        </select> Dias</p>
-                        <canvas id="myChart"></canvas>
-                    </div>
-                </div>
-                <div class="conteudo2">
-                    <h2>Perfis</h2>
-                    <div class="perfis">
-                        <div class="perfil">
-                            <div class="img-perfil"></div>
-                            <span>Funcionario1</span>
-                        </div>
-                        <div class="perfil">
-                            <div class="img-perfil"></div>
-                            <span>Funcionario</span>
-                        </div>
-                        <div class="perfil">
-                            <div class="img-perfil"></div>
-                            <span>Funcionario3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-
-    function togglePainelClass(type) {
-        const painel = document.querySelector('.painel');
-
-        if (!painel) {
-            console.error('Elemento com classe "painel" não encontrado.');
-            return;
-        }
-
-        if (type === 'func') {
-            painel.className = 'painel func';
-            painel.innerHTML = createFuncContent();
-        } else if (type === 'empresa') {
-            painel.className = 'painel empresa';
-            painel.innerHTML = createEmpresaContent();
-
-            // Após atualizar o conteúdo, recrie o gráfico
-            const ctx = document.getElementById('myChart');
-            if (ctx) {
-                const myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Comparecido', 'Não compareceu'],
-                        datasets: [{
-                            data: [12, 19],
-                            backgroundColor: [
-                                'rgba(54, 162, 235, 0.5)',
-                                'rgba(75, 192, 192, 0.5)',
-                            ],
-                            borderColor: [
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(75, 192, 192, 1)',
-                            ],
-                            borderWidth: 2
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                    }
-                });
-            } else {
-                console.error('Canvas para o gráfico não encontrado.');
-            }
-        } else {
-            console.error('Tipo de painel inválido.');
-        }
-    }
-
-</script>

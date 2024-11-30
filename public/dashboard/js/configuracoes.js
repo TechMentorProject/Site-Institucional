@@ -4,7 +4,7 @@ function carregarDados() {
     document.getElementById('nome_empresa').placeholder = sessionStorage.NOME_EMPRESA || '';
     document.getElementById('nome_responsavel').placeholder = sessionStorage.NOME_RESPONSAVEL || '';
     document.getElementById('email_responsavel').placeholder = sessionStorage.EMAIL_RESPONSAVEL || '';
-    mostrarFotoPerfil()
+    carregarImagemPerfil(document.getElementById('imagem-perfil'))
 }
 
 function salvarAlteracoes() {
@@ -59,7 +59,12 @@ async function alterarDados(nomeEmp, nomeResp, emailResp) {
                 })
             })
                 .then(resposta => resposta.json())
-                .then(window.location = './configuracoes.html')
+                .then(() => {
+                    sessionStorage.NOME_EMPRESA = nomeEmp == false ? res.nomeEmpresa : nomeEmp
+                    sessionStorage.NOME_RESPONSAVEL = nomeResp == false ? res.nomeResponsavel : nomeResp
+                    sessionStorage.EMAIL_RESPONSAVEL = emailResp == false ? res.emailResponsavel : emailResp
+                    window.location = './configuracoes.html'   
+                })
                 .catch(error => {
                     console.log(`#ERRO ao atualizar os dados: ${error}`);
                     return null;
@@ -122,7 +127,10 @@ async function alterarSenha(senhaNova, cnpj, senhaAntiga) {
         })
     })
         .then(resposta => resposta.json())
-        .then(alert("Senha atualizada com sucesso!"))
+        .then(() => {
+            sessionStorage.SENHA_USUARIO = senhaNova
+            alert("Senha atualizada com sucesso!")
+        })
         .catch(error => {
             console.log(`#ERRO ao atualizar senha: ${error}`);
             return null;
