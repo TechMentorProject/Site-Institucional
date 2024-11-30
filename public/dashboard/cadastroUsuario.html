@@ -13,22 +13,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <link rel="icon" href="../../assets/TechMentor-Logo.ico" />
+    <!-- <script src="./js/dashboard.js"></script> -->
 
 </head>
 
-<body>
+<body onload="validar()">
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
-            <img src="../../assets/logo-techmentor.svg" alt="Logo">
+            <img src="./assets/logo-techmentor.svg" alt="Logo">
 
             <div>
                 <li class="botaoConta">
-                    <img src="../../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+                    <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
                     <div class="encerrar">
-                        <div class="botao" onclick="deslogar()"><img src="../../assets/deslogar.png" alt=""><span>Encerrar
-
-                                sessão</span></div>
+                        <div class="botao" onclick="deslogar()"><img src="../../assets/deslogar.png" alt="">
+                            <span>Encerrar sessão</span>
+                        </div>
                     </div>
                 </li>
             </div>
@@ -39,24 +40,23 @@
         <div class="sub1">
             <div class="menu">
                 <div class="icone-menu">
-                    <img src="../../assets/menu-aberto-white.png" alt="">
+                    <img src="./assets/menu-aberto-white.png" alt="">
 
                     <span>MENU</span>
                 </div>
                 <div class="ancoras-menu">
                     <a href="home.html">
                         <div class="ancora">
-                            <img src="../../assets/casa.png" alt="">
+                            <img src="./assets/casa.png" alt="">
 
                             <span>Home</span>
                         </div>
                     </a>
 
                     <div class="dropdown">
-                        <a href="">
+                        <a>
                             <div class="ancora">
-                                <img src="../../assets/grafico-de-barras.png" alt="">
-
+                                <img src="./assets/grafico-de-barras.png" alt="">
                                 <span>Dashboards<span class="dropdown-icon">></span></span>
                             </div>
                         </a>
@@ -66,26 +66,32 @@
                         </div>
                     </div>
 
-                    <a href="">
+                    <a href="alertas.html">
                         <div class="ancora">
-                            <img src="../../assets/aviso.png" alt="">
+                            <img src="./assets/aviso.png" alt="">
                             <span>Alertas</span>
                         </div>
                     </a>
 
 
-                    <a href="./cadastroUsuario.html" class="selecionado">
-                        <div class="ancora">
-                            <img src="../../assets/usuario-icon.png" alt="">
-                            <span>Usuarios</span>
+                    <div class="dropdown">
+                        <a class="selecionado">
+                            <div class="ancora">
+                                <img src="./assets/painel.png" alt="">
+                                <span>Painel<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="cadastroUsuario.html" class="selecionado">Usuários</a>
+                            <a href="">Cargos</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
 
                 <div class="configuracoes">
-                    <a href="./configuracoes.html">
+                    <a href="./telaConfig.html">
                         <div class="ancora">
-                            <img src="../../assets/configuracoes.png" alt="">
+                            <img src="./assets/configuracoes.png" alt="">
                             <span>Configurações</span>
                         </div>
                     </a>

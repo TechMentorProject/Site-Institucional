@@ -13,10 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <link rel="icon" href="./assets/TechMentor-Logo.ico" />
-    <script src="./js/dashboard.js"></script>
+  
+    <!-- <script src="./js/dashboard.js"></script> -->
 </head>
 
-<body>
+<body onload="validar()">
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
@@ -26,8 +27,9 @@
                 <li class="botaoConta">
                     <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
                     <div class="encerrar">
-                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt=""><span>Encerrar
-                                sessão</span></div>
+                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt="">
+                            <span>Encerrar sessão</span>
+                        </div>
                     </div>
                 </li>
             </div>
@@ -50,7 +52,7 @@
                     </a>
 
                     <div class="dropdown">
-                        <a href="#">
+                        <a>
                             <div class="ancora">
                                 <img src="./assets/grafico-de-barras.png" alt="">
                                 <span>Dashboards<span class="dropdown-icon">></span></span>
@@ -62,23 +64,29 @@
                         </div>
                     </div>
 
-                    <a href="./alertas.html" class="selecionado">
+                    <a href="alertas.html" class="selecionado">
                         <div class="ancora">
                             <img src="./assets/aviso.png" alt="">
                             <span>Alertas</span>
                         </div>
                     </a>
 
-                    <a href="./cadastroUsuario.html">
-                        <div class="ancora">
-                            <img src="./assets/usuario-icon.png" alt="">
-                            <span>Usuarios</span>
+                    <div class="dropdown">
+                        <a>
+                            <div class="ancora">
+                                <img src="./assets/painel.png" alt="">
+                                <span>Painel<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="cadastroUsuario.html">Usuários</a>
+                            <a href="">Cargos</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
 
                 <div class="configuracoes">
-                    <a href="./configuracoes.html">
+                    <a href="telaConfig.html">
                         <div class="ancora">
                             <img src="./assets/configuracoes.png" alt="">
                             <span>Configurações</span>
@@ -171,13 +179,33 @@
                                 <div class="azul"></div>
                             </div>
                         </div>
+                        <div class="box-alerta">
+                            <div class="icon-alerta"></div>
+                        
+                                <div class="box-mensagem">
+                                    <div class="container-mensagem">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quia illum
+                                    blanditiis dolor, maxime quasi accusamus. Laboriosam harum quia assumenda! Explicabo
+                                    odit nisi nobis optio quia repellat ipsam nostrum error?</p>
+                                    </div>
+                                <div class="azul"></div>
+                            </div>
+                        </div>
 
-                       
-
+                        <div class="box-alerta">
+                            <div class="icon-alerta"></div>
+                        
+                                <div class="box-mensagem">
+                                    <div class="container-mensagem">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quia illum
+                                    blanditiis dolor, maxime quasi accusamus. Laboriosam harum quia assumenda! Explicabo
+                                    odit nisi nobis optio quia repellat ipsam nostrum error?</p>
+                                    </div>
+                                <div class="azul"></div>
+                            </div>
+                        </div>                       
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

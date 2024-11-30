@@ -120,12 +120,13 @@ function cadastrar() {
             }),
         })
             .then(function (resposta) {
+                popUpCadastro();
                 console.log("resposta: ", resposta);
                 console.log("CADASTRO REALIZADO!")
                 console.log("INDO PARA LOGIN")
                 setInterval(() => {
                     window.location = "login.html"
-                }, 4000)
+                }, 1000)
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
@@ -181,6 +182,8 @@ function entrar() {
                             if (resposta.status != 200) {
                                 console.log("DADOS INVÁLIDOS")
                             } else {
+                                popUpLogin();
+
                                 sessionStorage.EMPRESA = true;
                                 resposta.json().then((res) => {
                                     sessionStorage.NOME_USUARIO = res.nomeResponsavel
@@ -192,22 +195,24 @@ function entrar() {
                                 console.log("LOGIN REALIZADO!")
                                 setInterval(() => {
                                     window.location = "./dashboard/home.html"
-                                }, 4000)
+                                }, 1000)
                             }
                         })
                         .catch(function (resposta) {
                             console.log(`#ERRO: ${resposta}`);
                             return;
                         });
-                    } else {
-                        sessionStorage.EMPRESA = false;
-                        resposta.json().then((res) => {
-                            sessionStorage.NOME_USUARIO = res.nomeUsuario
-                            sessionStorage.EMAIL_USUARIO = res.email;
-                            sessionStorage.SENHA_USUARIO = res.senha;
-                            sessionStorage.ID_CARGO = res.idCargo;
-                            sessionStorage.ID_EMPRESA = res.idEmpresa;
-                        })
+                } else {
+                    popUpLogin();
+
+                    sessionStorage.EMPRESA = false;
+                    resposta.json().then((res) => {
+                        sessionStorage.NOME_USUARIO = res.nomeUsuario
+                        sessionStorage.EMAIL_USUARIO = res.email;
+                        sessionStorage.SENHA_USUARIO = res.senha;
+                        sessionStorage.ID_CARGO = res.idCargo;
+                        sessionStorage.ID_EMPRESA = res.idEmpresa;
+                    })
                     console.log("LOGIN REALIZADO!")
                     setInterval(() => {
                         window.location = "./dashboard/home.html"
@@ -256,6 +261,39 @@ function mudarOlho(olho, local) {
     }
 }
 
-function abrirEmail() {
-    window.open("mailto:tech.mentor.project@gmail.com?subject=Desejo adquirir um serviço&body=Planos:%0A%0AR$999,99 por mês: plano bronze com acesso a cidades sem antenas%0AR$1499,99 por mês: plano prata com acesso a empresas que estão no raio%0AR$1899,99 por mês: plano ouro com acesso a diversos dados de aumento e diminuição populacional%0AR$2299,99 por mês: plano black com acesso a bairros e locais exatos sem antenas%0A%0APlano escolhido (adicione abaixo o plano desejado):", "_blank");
+function popUpLogin() {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.style.marginTop = "50.5px";
+        }
+    });
+    Toast.fire({
+        iconColor: "#43BAFF",
+        icon: "success",
+        title: "Logado com sucesso!"
+    });
+}
+
+
+function popUpCadastro() {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.style.marginTop = "50.5px";
+        }
+    });
+    Toast.fire({
+        iconColor: "#43BAFF",
+        icon: "success",
+        title: "Cadastrado com sucesso!"
+    });
 }
