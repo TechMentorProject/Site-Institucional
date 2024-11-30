@@ -124,7 +124,7 @@
                                 </div>
 
                                 <div class="container-button">
-                                    <button class="button-perfil">Salvar</button>
+                                    <button class="button-perfil" id="btn-salvar">Salvar</button>
                                 </div>
 
                                 <div class="container-perfil">
@@ -134,7 +134,7 @@
                                 </div>
 
                                 <div class="container-button">
-                                    <button class="button-senha" onclick="confirmarSenha()">Mudar Senha</button>
+                                    <button class="button-senha" id="btn-mudar-senha">Mudar Senha</button>
                                 </div>
 
                                 <div class="container-button-delete">
@@ -145,7 +145,7 @@
                             <div class="container-image">
                                 <div class="box-image"></div>
                                 <div class="container-buttons">
-                                    <div class="button-editar" onclick="editar()"></div>
+                                    <div class="button-editar" onclick="editarImagem()"></div>
                                     <div class="button-excluir" onclick="excluir()"></div>
                                 </div>
                                 
@@ -160,6 +160,26 @@
         </div>
     </div>
 
-</body>
+    <div id="popup-sucesso" class="popup hidden">
+        <p>Dados alterados com sucesso</p>
+    </div>
 
+    <!-- Pop-up de Sucesso -->
+<div id="popup-sucesso" class="popup hidden">
+    <p>Senha alterada com sucesso</p>
+</div>
+
+
+    <div id="modal-confirmacao" class="modal-confirmacao hidden">
+        <div class="modal-content">
+            <p>Tem certeza que deseja apagar sua conta?</p>
+            <div class="modal-buttons">
+                <button id="btn-confirmar" class="btn-confirmar">Confirmar</button>
+                <button id="btn-cancelar" class="btn-cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="js/modalConfig.js" defer></script>
 </html>
