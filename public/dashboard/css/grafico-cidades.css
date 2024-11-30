@@ -1,0 +1,178 @@
+@import "../css/padrao.css";
+
+/* PAINEL */
+.sub2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    gap: 15px;
+    align-items: flex-end;
+
+}
+
+.painel {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px 15px 0 0;
+    background-color: white;
+    height: 95%;
+    width: 95%;
+
+    h1 {
+        height: 10%;
+        margin: 5px 0 0 20px;
+        width: fit-content;
+    }
+}
+
+
+/* TABELA */
+.area {
+    display: flex;
+    justify-content: space-around;
+    height: 90%;
+    align-items: flex-end;
+}
+
+.area-filha {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+
+    .filtros {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        height: 5%;
+
+        .filtro {
+            display: flex;
+            align-items: center;
+            border-radius: 15px;
+
+            p,
+            select {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                width: 50%;
+            }
+
+            p {
+                background: #43BAFF;
+                border-radius: 15px 0 0 15px;
+            }
+
+            select {
+                border-radius: 0 15px 15px 0;
+                font-size: 16px;
+            }
+
+            &.estado {
+                width: 30%;
+            }
+
+            &.operadora {
+                width: 30%;
+            }
+
+            &.tecnologia {
+                width: 30%;
+            }
+        }
+
+        button {
+            width: 5%;
+        }
+    }
+
+    .tabela {
+        width: 100%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+
+        table {
+            border: 1px solid #a0a0a0;
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+
+            thead {
+                position: sticky;
+                top: 0;
+                background-color: #f1f1f1;
+                z-index: 1;
+            }
+        }
+
+
+        .tbody-scroll {
+            display: block;
+            overflow-y: auto;
+            width: 101.8%;
+
+            tr:hover {
+                background-color: #f0f8ff;
+                cursor: pointer;
+            }
+        }
+
+        th,
+        td {
+            font-size: 12px;
+            padding: 10px;
+            border: 1px solid #a0a0a0;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.area-filho {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 25%;
+    height: 100%;
+
+    .titulo{
+        height: 20%;
+        h1{
+            margin: 0;
+            font-size: 25px;
+            height: 100%;
+            width: 100%;
+            font-size: 25px;
+        }
+    }
+    
+    .cards {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+        height: 80%;
+        
+        .card{
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f1f1f1;
+            border-radius: 15px;
+            height: 25%;
+
+            .texto{
+                height: 90%;
+                width: 90%;
+                border: red solid;
+            }
+        }
+    }
+}
