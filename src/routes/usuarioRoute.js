@@ -28,6 +28,10 @@ router.post("/pegarFuncionariosPorEmpresa", function (req, res) {
 
 
 
+
+
+
+
 router.post("/cadastrarUsuario", function (req, res) {
     usuarioController.cadastrarUsuario(req, res);
 });
@@ -42,6 +46,10 @@ router.post("/cadastrarCargo", function (req, res) {
 
 
 
+
+
+
+
 router.put("/atualizarUsuario", upload.single('foto'), function (req, res) {
     usuarioController.atualizarUsuario(req, res);
 });
@@ -50,9 +58,16 @@ router.put("/atualizarEmpresa", function (req, res) {
     usuarioController.atualizarEmpresa(req, res);
 });
 
+router.put("/atualizarSenhaEmpresa", function (req, res) {
+    usuarioController.atualizarSenhaEmpresa(req, res);
+});
+
 router.put("/atualizarCargo", function (req, res) {
     usuarioController.atualizarCargo(req, res);
 });
+
+
+
 
 
 
@@ -62,6 +77,10 @@ router.delete("/removerUsuario", upload.single('foto'), function (req, res) {
 
 router.delete("/inativarEmpresa", function (req, res) {
     usuarioController.inativarEmpresa(req, res);
+});
+
+router.put("/removerImagemEmpresa", function (req, res) {
+    usuarioController.removerImagemEmpresa(req, res);
 });
 
 router.delete("/removerCargo", upload.single('foto'), function (req, res) {
