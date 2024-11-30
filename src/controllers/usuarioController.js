@@ -22,7 +22,7 @@ function autenticarUsuario(req, res) {
                             senha: resultado[0].senha,
                             imagemPerfil: resultado[0].imagemPerfil,
                             fkNomeCargo: resultado[0].fkNomeCargo,
-                            cnpj: resultado[0].fkCnpj,
+                            fkCnpj: resultado[0].fkCnpj,
                         });
                     } else {
                         res.status(403).send("Email ou senha inválido!")
@@ -48,7 +48,7 @@ function autenticarEmpresa(req, res) {
                 (resultado) => {
                     if (resultado.length == 1) {
                         console.log(`\nResultados encontrados: ${resultado.length}`);
-                        console.log(`Resultados: ${JSON.stringify(resultado)}`);                        
+                        console.log(`Resultados: ${JSON.stringify(resultado)}`);
                         res.status(200).json({
                             nomeEmpresa: resultado[0].nomeEmpresa,
                             nomeResponsavel: resultado[0].nomeResponsavel,
@@ -80,7 +80,7 @@ function pegarCargo(req, res) {
                 (resultado) => {
                     if (resultado.length == 1) {
                         console.log(`\nResultados encontrados: ${resultado.length}`);
-                        console.log(`Resultados: ${JSON.stringify(resultado)}`);                        
+                        console.log(`Resultados: ${JSON.stringify(resultado)}`);
                         res.status(200).json({
                             nomeCargo: resultado[0].nomeCargo,
                             acessos: resultado[0].acessos,
@@ -98,7 +98,10 @@ function pegarCargo(req, res) {
 }
 
 function pegarFuncionariosPorEmpresa(req, res) {
-    var cnpj = req.body.cnpj;
+    var cnpj = req.params.cnpj;
+    let listaNomes = []
+    let listaEmails = []
+    let listaCargos = []
 
     if (cnpj == undefined) {
         res.status(400).send("Seu cnpj está undefined!");
@@ -106,24 +109,49 @@ function pegarFuncionariosPorEmpresa(req, res) {
         usuarioModel.pegarFuncionariosPorEmpresa(cnpj)
             .then(
                 (resultado) => {
-                    if (resultado.length == 1) {
-                        console.log(`\nResultados encontrados: ${resultado.length}`);
-                        console.log(`Resultados: ${JSON.stringify(resultado)}`);                        
-                        res.status(200).json({
-                            nomeUsuario: resultado[0].nomeUsuario,
-                            email: resultado[0].email,
-                            cpf: resultado[0].cpf,
-                            senha: resultado[0].senha,
-                            imagemPerfil: resultado[0].imagemPerfil,
-                            fkNomeCargo: resultado[0].fkNomeCargo,
-                            fkCnpj: resultado[0].fkCnpj
-                        });
-                    } else {
-                        res.status(403).send("Nome de funcionário inválido!")
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`);
+                    for (var i = 0; i < resultado.length; i++) {
+                        listaNomes.push(resultado[i].nomeUsuario)
+                        listaEmails.push(resultado[i].email)
+                        listaCargos.push(resultado[i].fkNomeCargo)
                     }
+                    res.status(200).json({
+                        nomes: listaNomes,
+                        emails: listaEmails,
+                        cargos: listaCargos
+                    });
                 }
             ).catch(
-                console.log("Erro na busca de cargo")
+                console.log("Erro na busca de funcionários")
+            );
+    }
+}
+
+function pegarCargosPorEmpresa(req, res) {
+    var cnpj = req.params.cnpj;
+    let listaCargos = []
+    let listaAcessos = []
+
+    if (cnpj == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
+    } else {
+        usuarioModel.pegarCargosPorEmpresa(cnpj)
+            .then(
+                (resultado) => {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`);
+                    for (var i = 0; i < resultado.length; i++) {
+                        listaCargos.push(resultado[i].nomeCargo)
+                        listaAcessos.push(resultado[i].acessos)
+                    }
+                    res.status(200).json({
+                        cargos: listaCargos,
+                        acessos: listaAcessos
+                    });
+                }
+            ).catch(
+                console.log("Erro na busca de cargos")
             );
     }
 }
@@ -288,22 +316,16 @@ function cadastrarCargo(req, res) {
 function atualizarUsuario(req, res) {
     var nome = req.body.nome;
     var email = req.body.email;
-    var cpf = req.body.cpf;
-    var senha = req.body.senha;
     var fkNomeCargo = req.body.fkNomeCargo;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (cpf == undefined) {
-        res.status(400).send("Sua cpf está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
     } else if (fkNomeCargo == undefined) {
         res.status(400).send("Sua fkNomeCargo está undefined!");
     } else {
-        usuarioModel.atualizarUsuario(nome, email, cpf, senha, fkNomeCargo)
+        usuarioModel.atualizarUsuario(nome, email, fkNomeCargo)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -446,21 +468,50 @@ function atualizarCargo(req, res) {
 
 
 function removerUsuario(req, res) {
-    var cpf = req.body.cpf;
+    var email = req.body.email;
+    let cpf;
 
-    if (cpf == undefined) {
-        res.status(400).send("Sua cpf está undefined!");
+    if (email == undefined) {
+        res.status(400).send("Sua email está undefined!");
     } else {
-        usuarioModel.removerUsuario(cpf)
+        usuarioModel.pegarUsuarioPorEmail(email)
             .then(
-                function (resultado) {
-                    res.json(resultado);
+                (resultado) => {
+                    cpf = resultado[0].cpf
+                    usuarioModel.removerCargoUsuario(cpf)
+                        .then(
+                            function (resultado) {
+                                usuarioModel.removerHistoricoUsuario(cpf)
+                                    .then(
+                                        function (resultado) {
+                                            usuarioModel.removerUsuario(cpf)
+                                                .then(
+                                                    function (resultado) {
+                                                        res.json(resultado);
+                                                    }
+                                                ).catch((erro) => {
+                                                    console.log(erro);
+                                                    console.log("\nHouve um erro ao realizar a remoção! Erro: ", erro.sqlMessage);
+                                                    res.status(500).json(erro.sqlMessage);
+                                                });
+                                        }
+                                    ).catch((erro) => {
+                                        console.log(erro);
+                                        console.log("\nHouve um erro ao realizar a remoção do histórico! Erro: ", erro.sqlMessage);
+                                        res.status(500).json(erro.sqlMessage);
+                                    });
+                            }
+                        ).catch((erro) => {
+                            console.log(erro);
+                            console.log("\nHouve um erro ao realizar a remoção do cargo! Erro: ", erro.sqlMessage);
+                            res.status(500).json(erro.sqlMessage);
+                        });
                 }
             ).catch(
                 function (erro) {
                     console.log(erro);
                     console.log(
-                        "\nHouve um erro ao realizar a remoção! Erro: ",
+                        "\nHouve um erro ao realizar a seleção para remoção! Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
@@ -471,7 +522,7 @@ function removerUsuario(req, res) {
 
 function inativarEmpresa(req, res) {
     var cnpj = req.body.cnpj;
-    
+
     if (cnpj == undefined) {
         res.status(400).send("Sua cnpj está undefined!");
     } else {
@@ -520,7 +571,7 @@ function removerImagemEmpresa(req, res) {
 function removerCargo(req, res) {
     var cnpj = req.body.cnpj;
     var nomeCargo = req.body.nomeCargo;
-    
+
     if (cnpj == undefined) {
         res.status(400).send("Sua cnpj está undefined!");
     } else if (nomeCargo == undefined) {
@@ -559,13 +610,13 @@ function salvarFoto(req, res) {
         res.status(400).send("Seu imagem está undefined!");
     } else if (idUsuario == undefined) {
         res.status(400).send("Seu idUsuario está undefined!");
-    } else {        
+    } else {
         usuarioModel.salvarFoto(imagem, idUsuario)
-        .then(resultado => {
-            res.status(201).send("Imagem alterada");
-        }).catch(err => {
-            res.status(500).send(err);
-        });
+            .then(resultado => {
+                res.status(201).send("Imagem alterada");
+            }).catch(err => {
+                res.status(500).send(err);
+            });
     }
 }
 
@@ -575,6 +626,7 @@ module.exports = {
     autenticarEmpresa,
     pegarCargo,
     pegarFuncionariosPorEmpresa,
+    pegarCargosPorEmpresa,
 
     cadastrarUsuario,
     cadastrarEmpresa,
@@ -587,6 +639,7 @@ module.exports = {
 
     removerUsuario,
     inativarEmpresa,
+    removerImagemEmpresa,
     removerCargo,
 
     salvarFoto
