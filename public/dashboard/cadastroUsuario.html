@@ -1,259 +1,364 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TechMentor | Cadastro Usuário</title>
-    <link rel="stylesheet" href="css/cadastroUsuario.css">
+    <link rel="stylesheet" href="css/cadastroUsuario.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="icon" href="../../assets/TechMentor-Logo.ico" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="navbar">
-        <div class="nav"></div>
-        <div class="navbar-Child">
-            <img src="../../assets/logo-techmentor.svg" alt="Logo">
+      <div class="nav"></div>
+      <div class="navbar-Child">
+        <img src="../../assets/logo-techmentor.svg" alt="Logo" />
 
-            <div>
-                <li class="botaoConta">
-                    <img src="../../assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
-                    <div class="encerrar">
-                        <div class="botao" onclick="deslogar()"><img src="../../assets/deslogar.png" alt=""><span>Encerrar
-
-                                sessão</span></div>
-                    </div>
-                </li>
+        <div>
+          <li class="botaoConta">
+            <img src="../../assets/ícone-conta.svg" alt="Ícone Conta" />Minha
+            Conta
+            <div class="encerrar">
+              <div class="botao" onclick="deslogar()">
+                <img src="../../assets/deslogar.png" alt="" /><span
+                  >Encerrar sessão</span
+                >
+              </div>
             </div>
+          </li>
         </div>
+      </div>
     </div>
 
     <div class="secao1">
-        <div class="sub1">
-            <div class="menu">
-                <div class="icone-menu">
-                    <img src="../../assets/menu-aberto-white.png" alt="">
+      <div class="sub1">
+        <div class="menu">
+          <div class="icone-menu">
+            <img src="../../assets/menu-aberto-white.png" alt="" />
 
-                    <span>MENU</span>
+            <span>MENU</span>
+          </div>
+          <div class="ancoras-menu">
+            <a href="home.html">
+              <div class="ancora">
+                <img src="../../assets/casa.png" alt="" />
+
+                <span>Home</span>
+              </div>
+            </a>
+
+            <div class="dropdown">
+              <a href="">
+                <div class="ancora">
+                  <img src="../../assets/grafico-de-barras.png" alt="" />
+
+                  <span>Dashboards<span class="dropdown-icon">></span></span>
                 </div>
-                <div class="ancoras-menu">
-                    <a href="home.html">
-                        <div class="ancora">
-                            <img src="../../assets/casa.png" alt="">
-
-                            <span>Home</span>
-                        </div>
-                    </a>
-
-                    <div class="dropdown">
-                        <a href="">
-                            <div class="ancora">
-                                <img src="../../assets/grafico-de-barras.png" alt="">
-
-                                <span>Dashboards<span class="dropdown-icon">></span></span>
-                            </div>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="grafico-estados.html">Conexão por Estado</a>
-                            <a href="grafico-cidades.html">Conexão por Cidade</a>
-                        </div>
-                    </div>
-
-                    <a href="">
-                        <div class="ancora">
-                            <img src="../../assets/aviso.png" alt="">
-                            <span>Alertas</span>
-                        </div>
-                    </a>
-
-
-                    <a href="./cadastroUsuario.html" class="selecionado">
-                        <div class="ancora">
-                            <img src="../../assets/usuario-icon.png" alt="">
-                            <span>Usuarios</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="configuracoes">
-                    <a href="./configuracoes.html">
-                        <div class="ancora">
-                            <img src="../../assets/configuracoes.png" alt="">
-                            <span>Configurações</span>
-                        </div>
-                    </a>
-                </div>
+              </a>
+              <div class="dropdown-content">
+                <a href="grafico-estados.html">Conexão por Estado</a>
+                <a href="grafico-cidades.html">Conexão por Cidade</a>
+              </div>
             </div>
 
-            <div class="sub2">
-                <div class="painel">
-                    <div class="panel-title">
-                        <p>Usuários</p>
-                    </div>
-                    <div class="search-box">
-                        <div class="search-bar">
-                            <input type="text" placeholder="Digite um nome">
-                        </div>
-                    </div>
+            <a href="">
+              <div class="ancora">
+                <img src="../../assets/aviso.png" alt="" />
+                <span>Alertas</span>
+              </div>
+            </a>
 
-                    <div class="user-panel-header">
-                       <table class="user-table">
-                            <thead class="user-header">
-                                <tr class="user-item">
-                                    <th class="user-info">Nome</th>
-                                    <th class="user-info">Acesso</th>
-                                    <th class="user-info">Editar</th>
-                                </tr>
-                            </thead>
-                            <tbody class="user-list">
-                                <tr class="user-item">
-                                    <td class="user-info">Naomi</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Carminatti</td>
-                                    <td class="user-info">Gerente</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Murilo</td>
-                                    <td class="user-info">Gerente</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Barros</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Barros</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Barros</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Barros</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Barros</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Barros</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Barros</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Barros</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Barros</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="user-item">
-                                    <td class="user-info">Barros</td>
-                                    <td class="user-info">Administrador</td>
-                                    <td class="user-info">
-                                        <div class="container-edit">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <a href="./cadastroUsuario.html" class="selecionado">
+              <div class="ancora">
+                <img src="../../public/assets/" alt="" />
+                <span>Usuarios</span>
+              </div>
+            </a>
+          </div>
 
-                </div>
-
-
-            </div>
+          <div class="configuracoes">
+            <a href="./configuracoes.html">
+              <div class="ancora">
+                <img src="../../public/assets/configuracoes.png" alt="" />
+                <span>Configurações</span>
+              </div>
+            </a>
+          </div>
         </div>
+
+        <div class="sub2">
+          <div class="painel">
+            <div class="container-title">
+              <div class="box-title">
+                <p>Usuários</p>
+              </div>
+            </div>
+
+            <div class="search-box">
+              <div class="search-bar">
+                <input type="text" placeholder="Digite um nome" />
+                <div class="search-icon"></div>
+              </div>
+            </div>
+
+            <div class="user-panel-header">
+              <table class="user-table">
+                <thead class="user-header">
+                  <tr class="user-item">
+                    <th class="user-info">Nome</th>
+                    <th class="user-info">Acesso</th>
+                    <th class="user-info">Editar</th>
+                  </tr>
+                </thead>
+                <tbody class="user-list">
+                  <tr class="user-item">
+                    <td class="user-info">Naomi</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Carminatti</td>
+                    <td class="user-info">Gerente</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Murilo</td>
+                    <td class="user-info">Gerente</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Barros</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Barros</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Barros</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Barros</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Barros</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Barros</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Barros</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Barros</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Barros</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="user-item">
+                    <td class="user-info">Barros</td>
+                    <td class="user-info">Administrador</td>
+                    <td class="user-info">
+                      <div class="container-edit">
+                        <div class="edit-button"></div>
+                        <div
+                          class="remove-button"
+                          role="button"
+                          aria-label="Excluir"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-</body>
+    <div id="modal-container">
+      <div class="modal">
+        <p>Deseja mesmo excluir este usuário?</p>
+        <div class="modal-buttons">
+          <button id="confirm-delete">Confirmar</button>
+          <button id="cancel-delete">Cancelar</button>
+        </div>
+      </div>
+    </div>
 
+    <!-- Modal Container -->
+<div id="edit-modal-container" style="display: none;">
+    <div class="modal-edit">
+      <h2>Editar Usuário</h2>
+      
+      <!-- Formulário para editar usuário -->
+      <form id="edit-user-form">
+        <div>
+          <label for="user-name">Nome:</label>
+          <input type="text" id="user-name" name="user-name" required>
+        </div>
+        
+        <div>
+          <label for="user-cpf">CPF:</label>
+          <input type="text" id="user-cpf" name="user-cpf" required>
+        </div>
+        
+        <div>
+          <label for="user-email">Email:</label>
+          <input type="email" id="user-email" name="user-email" required>
+        </div>
+        
+        <div>
+          <label for="user-role">Cargo:</label>
+          <select id="user-role" name="user-role" required>
+            <option value="admin">Admin</option>
+            <option value="user">Usuário</option>
+            <option value="manager">Gerente</option>
+          </select>
+        </div>
+        
+        <div class="modal-buttons">
+          <button type="submit" id="save-edit">Salvar</button>
+          <button type="button" id="cancel-edit">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  </body>
+  <script src="js/modalUsuario.js" defer></script>
 </html>
