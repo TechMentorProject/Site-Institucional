@@ -163,7 +163,7 @@ function entrar() {
             body: JSON.stringify({
                 email: emailVar,
                 senha: senhaVar
-            }),
+            })
         })
             .then(function (resposta) {
                 console.log(resposta)
@@ -190,7 +190,8 @@ function entrar() {
                                     sessionStorage.NOME_EMPRESA = res.nomeEmpresa
                                     sessionStorage.EMAIL_USUARIO = res.emailResponsavel;
                                     sessionStorage.SENHA_USUARIO = res.senha;
-                                    sessionStorage.ID_EMPRESA = res.idEmpresa;
+                                    sessionStorage.CNPJ = res.cnpj;
+                                    sessionStorage.CPF = res.cpf;
                                 })
                                 console.log("LOGIN REALIZADO!")
                                 setInterval(() => {
@@ -210,8 +211,8 @@ function entrar() {
                         sessionStorage.NOME_USUARIO = res.nomeUsuario
                         sessionStorage.EMAIL_USUARIO = res.email;
                         sessionStorage.SENHA_USUARIO = res.senha;
-                        sessionStorage.ID_CARGO = res.idCargo;
-                        sessionStorage.ID_EMPRESA = res.idEmpresa;
+                        sessionStorage.NOME_CARGO = res.fkNomeCargo;
+                        sessionStorage.CNPJ = res.fkCnpj;
                     })
                     console.log("LOGIN REALIZADO!")
                     setInterval(() => {
