@@ -105,11 +105,6 @@
                                     <h4>Nome do cargo</h3>
                                         <input type="text" placeholder="Nome do cargo">
                                 </div>
-                                <!-- <div class="input">
-                                    <h4>Descrição</h4>
-                                    <input type="text" id="descricao" maxlength="100" placeholder="Descrição">
-                                    <p id="contador">0 / 100</p>
-                                </div> -->
 
                                 <div class="permissoes">
                                     <h3>Permissões</h3>
@@ -117,42 +112,44 @@
                                         <div class="estados">
                                             <h4>Estados</h4>
                                             <div class="check">
-                                                <input type="checkbox"><span>ES</span>
+                                                <input type="checkbox" id="estado-es" name="estado" value="ES"><span>ES</span>
                                             </div>
                                             <div class="check">
-                                                <input type="checkbox"><span>MG</span>
+                                                <input type="checkbox" id="estado-mg" name="estado" value="MG"><span>MG</span>
                                             </div>
                                             <div class="check">
-                                                <input type="checkbox"><span>PR</span>
+                                                <input type="checkbox" id="estado-pr" name="estado" value="PR"><span>PR</span>
                                             </div>
                                             <div class="check">
-                                                <input type="checkbox"><span>RS</span>
+                                                <input type="checkbox" id="estado-rs" name="estado" value="RS"><span>RS</span>
                                             </div>
                                             <div class="check">
-                                                <input type="checkbox"><span>SC</span>
+                                                <input type="checkbox" id="estado-sc" name="estado" value="SC"><span>SC</span>
                                             </div>
                                             <div class="check">
-                                                <input type="checkbox"><span>SP</span>
+                                                <input type="checkbox" id="estado-sp" name="estado" value="SP"><span>SP</span>
                                             </div>
                                         </div>
                                         <div class="operadoras">
                                             <h4>Operadoras</h4>
                                             <div class="check">
-                                                <input type="checkbox"><span>Claro</span>
+                                                <input type="checkbox" id="operadora-claro" name="operadora"
+                                                    value="Claro"><span>Claro</span>
                                             </div>
                                             <div class="check">
-                                                <input type="checkbox"><span>Oi</span>
+                                                <input type="checkbox" id="operadora-oi" name="operadora" value="Oi"><span>Oi</span>
                                             </div>
                                             <div class="check">
-                                                <input type="checkbox"><span>Tim</span>
+                                                <input type="checkbox" id="operadora-tim" name="operadora" value="Tim"><span>Tim</span>
                                             </div>
                                             <div class="check">
-                                                <input type="checkbox"><span>Vivo</span>
+                                                <input type="checkbox" id="operadora-vivo" name="operadora"
+                                                    value="Vivo"><span>Vivo</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button>Adicionar</button>
+                                <button onclick="adicionar()">Adicionar</button>
                             </div>
                             <div class="conteudo2">
                                 <h2>Cargos adicionados</h2>
@@ -163,7 +160,10 @@
                                             <h3>Nome do cargo</h3>
                                             <h4>Permissões:</h4>
                                         </div>
-                                        <div class="edicao-exclusao"></div>
+                                        <div class="edicao-exclusao">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
                                     </div>
                                     <div class="cargo">
                                         <div class="ponto"></div>
@@ -172,8 +172,30 @@
                                             <h4>Permissões:</h4>
                                         </div>
                                         <div class="edicao-exclusao">
-                                            <img src="../assets/icon" alt="">
-                                            <img src="../assets/remove-icon.svg" alt="">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </div>
+                                    <div class="cargo">
+                                        <div class="ponto"></div>
+                                        <div class="texto">
+                                            <h3>Nome do cargo</h3>
+                                            <h4>Permissões:</h4>
+                                        </div>
+                                        <div class="edicao-exclusao">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
+                                        </div>
+                                    </div>
+                                    <div class="cargo">
+                                        <div class="ponto"></div>
+                                        <div class="texto">
+                                            <h3>Nome do cargo</h3>
+                                            <h4>Permissões:</h4>
+                                        </div>
+                                        <div class="edicao-exclusao">
+                                            <div class="edit-button"></div>
+                                            <div class="remove-button"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -185,9 +207,81 @@
         </div>
     </div>
 
+    <div id="remove-modal-container">
+        <div class="modal">
+            <p>Deseja mesmo excluir este cargo?</p>
+            <div class="modal-buttons">
+                <button id="confirm-delete">Confirmar</button>
+                <button id="cancel-delete">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-modal-container" style="display: none">
+        <div class="modal-edit">
+            <h2>Editar Cargo</h2>
+            <form id="edit-user-form">
+                <div>
+                    <label for="cargo-name">Nome do Cargo:</label>
+                    <input type="text" id="cargo-name" name="cargo-name" required />
+                </div>
+
+                <div class="permissoes">
+                    <h3>Permissões</h3>
+                    <div class="div">
+                        <div class="estados">
+                            <h4>Estados</h4>
+                            <div class="check">
+                                <input type="checkbox" id="estado-es" name="estado" value="ES"><span>ES</span>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="estado-mg" name="estado" value="MG"><span>MG</span>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="estado-pr" name="estado" value="PR"><span>PR</span>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="estado-rs" name="estado" value="RS"><span>RS</span>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="estado-sc" name="estado" value="SC"><span>SC</span>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="estado-sp" name="estado" value="SP"><span>SP</span>
+                            </div>
+                        </div>
+
+                        <div class="operadoras">
+                            <h4>Operadoras</h4>
+                            <div class="check">
+                                <input type="checkbox" id="operadora-claro" name="operadora"
+                                    value="Claro"><span>Claro</span>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="operadora-oi" name="operadora" value="Oi"><span>Oi</span>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="operadora-tim" name="operadora" value="Tim"><span>Tim</span>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="operadora-vivo" name="operadora"
+                                    value="Vivo"><span>Vivo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-buttons">
+                <button type="submit" id="save-edit">Salvar</button>
+                <button type="button" id="cancel-edit">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
+
+<script src="./js/modalCargo.js"></script>
 
 <script>
     document.getElementById("descricao").addEventListener("input", function () {
