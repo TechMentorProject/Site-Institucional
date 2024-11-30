@@ -116,7 +116,7 @@ input {
 
 .container-button-delete {
     width: 87%;
-    height: 5rem;
+    height: 10%;
     display: flex;
     justify-content: end;
     align-items: end;
@@ -163,7 +163,7 @@ input {
 .button-apagar-conta {
     border-radius: 10px;
     width: 8rem;
-    height: 10%;
+    height: 2rem;
     background-color: red;
     color: black;
     font-weight: 700;
