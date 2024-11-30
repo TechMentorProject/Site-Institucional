@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMentor | Dashboard</title>
+    <link rel="stylesheet" href="css/cargos.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <link rel="icon" href="./assets/TechMentor-Logo.ico" />
+    <!-- <script src="./js/dashboard.js"></script> -->
+</head>
+
+<body onload="validar()">
+    <div class="navbar">
+        <div class="nav"></div>
+        <div class="navbar-Child">
+            <img src="./assets/logo-techmentor.svg" alt="Logo">
+
+            <div>
+                <li class="botaoConta">
+                    <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+                    <div class="encerrar">
+                        <div class="botao" onclick="deslogar()"><img src="./assets/deslogar.png" alt="">
+                            <span>Encerrar sessão</span>
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </div>
+
+    <div class="secao1">
+        <div class="sub1">
+            <div class="menu">
+                <div class="icone-menu">
+                    <img src="./assets/menu-aberto-white.png" alt="">
+                    <span>MENU</span>
+                </div>
+                <div class="ancoras-menu">
+                    <a href="home.html">
+                        <div class="ancora">
+                            <img src="./assets/casa.png" alt="">
+                            <span>Home</span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown">
+                        <a>
+                            <div class="ancora">
+                                <img src="./assets/grafico-de-barras.png" alt="">
+                                <span>Dashboards<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="grafico-estados.html">Conexão por Estado</a>
+                            <a href="grafico-cidades.html">Conexão por Cidade</a>
+                        </div>
+                    </div>
+
+                    <a href="alertas.html">
+                        <div class="ancora">
+                            <img src="./assets/aviso.png" alt="">
+                            <span>Alertas</span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown">
+                        <a>
+                            <div class="ancora">
+                                <img src="./assets/painel.png" alt="">
+                                <span>Painel<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="cadastroUsuario.html">Usuários</a>
+                            <a href="">Cargos</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="configuracoes">
+                    <a href="telaConfig.html" class="selecionado">
+                        <div class="ancora">
+                            <img src="./assets/configuracoes.png" alt="">
+                            <span>Configurações</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sub2">
+                <div class="painel">
+                    <h1>Cargos</h1>
+                    <div class="box">
+                        <div class="container">
+                            <div class="conteudo1">
+                                <h2>Adicionar cargo</h2>
+                                <div class="input">
+                                    <h4>Nome do cargo</h3>
+                                        <input type="text" placeholder="Nome do cargo">
+                                </div>
+                                <!-- <div class="input">
+                                    <h4>Descrição</h4>
+                                    <input type="text" id="descricao" maxlength="100" placeholder="Descrição">
+                                    <p id="contador">0 / 100</p>
+                                </div> -->
+
+                                <div class="permissoes">
+                                    <h3>Permissões</h3>
+                                    <div class="div">
+                                        <div class="estados">
+                                            <h4>Estados</h4>
+                                            <div class="check">
+                                                <input type="checkbox"><span>ES</span>
+                                            </div>
+                                            <div class="check">
+                                                <input type="checkbox"><span>MG</span>
+                                            </div>
+                                            <div class="check">
+                                                <input type="checkbox"><span>PR</span>
+                                            </div>
+                                            <div class="check">
+                                                <input type="checkbox"><span>RS</span>
+                                            </div>
+                                            <div class="check">
+                                                <input type="checkbox"><span>SC</span>
+                                            </div>
+                                            <div class="check">
+                                                <input type="checkbox"><span>SP</span>
+                                            </div>
+                                        </div>
+                                        <div class="operadoras">
+                                            <h4>Operadoras</h4>
+                                            <div class="check">
+                                                <input type="checkbox"><span>Claro</span>
+                                            </div>
+                                            <div class="check">
+                                                <input type="checkbox"><span>Oi</span>
+                                            </div>
+                                            <div class="check">
+                                                <input type="checkbox"><span>Tim</span>
+                                            </div>
+                                            <div class="check">
+                                                <input type="checkbox"><span>Vivo</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button>Adicionar</button>
+                            </div>
+                            <div class="conteudo2">
+                                <h2>Cargos adicionados</h2>
+                                <div class="cargos">
+                                    <div class="cargo">
+                                        <div class="ponto"></div>
+                                        <div class="texto">
+                                            <h3>Nome do cargo</h3>
+                                            <h4>Permissões:</h4>
+                                        </div>
+                                        <div class="edicao-exclusao"></div>
+                                    </div>
+                                    <div class="cargo">
+                                        <div class="ponto"></div>
+                                        <div class="texto">
+                                            <h3>Nome do cargo</h3>
+                                            <h4>Permissões:</h4>
+                                        </div>
+                                        <div class="edicao-exclusao">
+                                            <img src="../assets/icon" alt="">
+                                            <img src="../assets/remove-icon.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    document.getElementById("descricao").addEventListener("input", function () {
+        const input = this;
+        const maxLength = input.getAttribute("maxlength");
+        const currentLength = input.value.length;
+
+        // Atualiza o contador de caracteres
+        document.getElementById("contador").textContent = `${currentLength} / ${maxLength}`;
+    });
+</script>
