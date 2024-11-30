@@ -15,24 +15,25 @@
     />
 
     <link rel="icon" href="../../assets/TechMentor-Logo.ico" />
-  </head>
+    <!-- <script src="./js/dashboard.js"></script> -->
 
-  <body>
+</head>
+
+<body onload="validar()">
     <div class="navbar">
-      <div class="nav"></div>
-      <div class="navbar-Child">
-        <img src="../../assets/logo-techmentor.svg" alt="Logo" />
+        <div class="nav"></div>
+        <div class="navbar-Child">
+            <img src="./assets/logo-techmentor.svg" alt="Logo">
 
-        <div>
-          <li class="botaoConta">
-            <img src="../../assets/ícone-conta.svg" alt="Ícone Conta" />Minha
-            Conta
-            <div class="encerrar">
-              <div class="botao" onclick="deslogar()">
-                <img src="../../assets/deslogar.png" alt="" /><span
-                  >Encerrar sessão</span
-                >
-              </div>
+            <div>
+                <li class="botaoConta">
+                    <img src="./assets/ícone-conta.svg" alt="Ícone Conta">Minha Conta
+                    <div class="encerrar">
+                        <div class="botao" onclick="deslogar()"><img src="../../assets/deslogar.png" alt="">
+                            <span>Encerrar sessão</span>
+                        </div>
+                    </div>
+                </li>
             </div>
           </li>
         </div>
@@ -40,60 +41,67 @@
     </div>
 
     <div class="secao1">
-      <div class="sub1">
-        <div class="menu">
-          <div class="icone-menu">
-            <img src="../../assets/menu-aberto-white.png" alt="" />
+        <div class="sub1">
+                      <div class="menu">
+                <div class="icone-menu">
+                    <img src="./assets/menu-aberto-white.png" alt="">
 
-            <span>MENU</span>
-          </div>
-          <div class="ancoras-menu">
-            <a href="home.html">
-              <div class="ancora">
-                <img src="../../assets/casa.png" alt="" />
-
-                <span>Home</span>
-              </div>
-            </a>
-
-            <div class="dropdown">
-              <a href="">
-                <div class="ancora">
-                  <img src="../../assets/grafico-de-barras.png" alt="" />
-
-                  <span>Dashboards<span class="dropdown-icon">></span></span>
+                    <span>MENU</span>
                 </div>
-              </a>
-              <div class="dropdown-content">
-                <a href="grafico-estados.html">Conexão por Estado</a>
-                <a href="grafico-cidades.html">Conexão por Cidade</a>
-              </div>
+                <div class="ancoras-menu">
+                    <a href="home.html">
+                        <div class="ancora">
+                            <img src="./assets/casa.png" alt="">
+
+                            <span>Home</span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown">
+                        <a>
+                            <div class="ancora">
+                                <img src="./assets/grafico-de-barras.png" alt="">
+                                <span>Dashboards<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="grafico-estados.html">Conexão por Estado</a>
+                            <a href="grafico-cidades.html">Conexão por Cidade</a>
+                        </div>
+                    </div>
+
+                    <a href="alertas.html">
+                        <div class="ancora">
+                            <img src="./assets/aviso.png" alt="">
+                            <span>Alertas</span>
+                        </div>
+                    </a>
+
+
+                    <div class="dropdown">
+                        <a class="selecionado">
+                            <div class="ancora">
+                                <img src="./assets/painel.png" alt="">
+                                <span>Painel<span class="dropdown-icon">></span></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="cadastroUsuario.html" class="selecionado">Usuários</a>
+                            <a href="">Cargos</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="configuracoes">
+                    <a href="./telaConfig.html">
+                        <div class="ancora">
+                            <img src="./assets/configuracoes.png" alt="">
+                            <span>Configurações</span>
+                        </div>
+                    </a>
+                </div>
             </div>
 
-            <a href="">
-              <div class="ancora">
-                <img src="../../assets/aviso.png" alt="" />
-                <span>Alertas</span>
-              </div>
-            </a>
-
-            <a href="./cadastroUsuario.html" class="selecionado">
-              <div class="ancora">
-                <img src="../../public/assets/" alt="" />
-                <span>Usuarios</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="configuracoes">
-            <a href="./configuracoes.html">
-              <div class="ancora">
-                <img src="../../public/assets/configuracoes.png" alt="" />
-                <span>Configurações</span>
-              </div>
-            </a>
-          </div>
-        </div>
 
         <div class="sub2">
           <div class="painel">
