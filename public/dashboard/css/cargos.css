@@ -1,0 +1,435 @@
+@import "../css/padrao.css";
+
+body {
+    overflow: hidden;
+}
+
+/* PAINEL */
+.sub2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.painel {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px 15px 0 0;
+    background-color: white;
+    height: 95%;
+    width: 95%;
+}
+
+.painel h1 {
+    font-size: 35px;
+    margin: 30px 0 0 61px;
+    width: fit-content;
+}
+
+.painel h2 {
+    margin: 15px 0 15px 0;
+    width: fit-content;
+}
+
+/* BOX e Container */
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 90%;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    border-radius: 15px 15px 0 0;
+    background-color: #0000000e;
+    height: 95%;
+    width: 90%;
+}
+
+.conteudo1 {
+    height: 95%;
+    width: 60%;
+
+    .input {
+        margin-top: 10px;
+
+        #contador {
+            bottom: 39%;
+            font-size: 10px;
+            position: absolute;
+            margin-left: 3px;
+        }
+
+        input {
+            width: 90%;
+            height: 1.5rem;
+            border: white;
+            border-radius: 5px;
+            background-color: #cdcdcd;
+            padding-left: 1rem;
+            color: black;
+            font-weight: bold;
+        }
+    }
+
+    .permissoes {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        height: 45%;
+
+        h3 {
+            width: 100%;
+        }
+
+        .div {
+            gap: 20px;
+            display: flex;
+            height: 100%;
+            width: 80%;
+
+            .estados {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 200px;
+                gap: 2px;
+            }
+
+            .operadoras {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 200px;
+                gap: 5px;
+            }
+
+            .check {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                height: 12%;
+                width: 60%;
+
+                input {
+                    margin-right: 5px;
+                }
+
+                span {
+                    height: auto;
+                    width: 45%;
+                }
+            }
+        }
+
+    }
+
+    button {
+        position: relative;
+        left: 80%;
+        bottom: 32px;
+        font-weight: 600;
+        font-size: 16px;
+        border-radius: 10px;
+        width: 90px;
+        height: 35px;
+        border: none;
+        background-color: #43BAFF;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #87cef8;
+        transform: scale(1.1);
+    }
+}
+
+.conteudo2 {
+    border-radius: 15px 15px 0 0;
+    background-color: #0000002b;
+    height: 95%;
+    width: 30%;
+    padding-left: 20px;
+
+    .cargos {
+        display: flex;
+        gap: 20px;
+        width: 95%;
+        height: 80%;
+        flex-direction: column;
+        box-sizing: border-box;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #43BAFF #ffffff00;
+
+        .cargo {
+            background-color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            min-height: 75px;
+            width: 95%;
+            text-overflow: ellipsis;
+
+            .ponto {
+                bottom: 20px;
+                position: relative;
+                left: 5px;
+                background-color: #43BAFF;
+                height: 10px;
+                width: 10px;
+                border-radius: 100%;
+            }
+
+            .texto {
+                border-radius: 15px;
+                display: flex;
+                flex-direction: column;
+                font-size: 12px;
+                height: 100%;
+                width: 80%;
+                box-sizing: border-box;
+                padding: 10px;
+
+                h4 {
+                    color: gray;
+                    font-size: 10px;
+                    word-break: break-word;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    height: 100%;
+                }
+
+            }
+
+            .edicao-exclusao {
+                display: flex;
+                position: relative;
+                height: 25px;
+                width: 60px;
+                top: 30%;
+                padding: 2px;
+                box-sizing: border-box;
+                gap: 5px;
+
+                .edit-button {
+                    height: 20px;
+                    width: 20px;
+                    background-image: url(../assets/edit-icon.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    cursor: pointer;
+                    transition: transform 0.3s ease
+                }
+
+                .edit-button:hover {
+                    transform: scale(1.1);
+                }
+
+                .remove-button {
+                    height: 20px;
+                    width: 20px;
+                    background-image: url("../../assets/remove-icon.svg");
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    cursor: pointer;
+                    transition: transform 0.3s ease
+                }
+
+                .remove-button:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #43BAFF;
+    border-color: #43BAFF;
+}
+
+input[type="checkbox"]:checked::after {
+    content: "✔";
+    /* Adiciona um ícone de check */
+    color: white;
+    font-size: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modais */
+#remove-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.modal {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-buttons button {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#confirm-delete {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+#cancel-delete {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+#edit-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-edit {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 90%;
+    height: 20rem;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .permissoes{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        height: 45%;
+
+        h3 {
+            width: 100%;
+        }
+
+        .div {
+            gap: 20px;
+            display: flex;
+            height: 100%;
+            width: 80%;
+
+            .estados {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 200px;
+                gap: 2px;
+            }
+
+            .operadoras {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 200px;
+                gap: 5px;
+            }
+
+            .check {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                height: 12%;
+                width: 60%;
+
+                input {
+                    margin-right: 5px;
+                }
+
+                span {
+                    height: auto;
+                    width: 45%;
+                }
+            }
+        }
+    }
+}
+
+.modal-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    
+    button {
+        margin: 0.5rem;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+}
+
+#save-edit {
+    background-color: #28a745;
+    color: white;
+}
+
+#cancel-edit {
+    background-color: #f0f0f0;
+    color: #333;
+}
