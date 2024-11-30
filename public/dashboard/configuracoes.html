@@ -103,9 +103,6 @@
 
                     <div class="container-nome-empresa">
                         <div class="box-nome-empresa">
-                            <span>Cargos</span>
-                        </div>
-                        <div class="box-nome-empresa">
                             <span>Empresa</span>
                         </div>
                     </div>
@@ -129,7 +126,7 @@
                                 </div>
 
                                 <div class="container-button">
-                                    <button class="button-perfil">Salvar</button>
+                                    <button onclick="salvarAlteracoes()" class="button-perfil">Salvar</button>
                                 </div>
 
                                 <div class="container-perfil">
@@ -139,7 +136,7 @@
                                 </div>
 
                                 <div class="container-button">
-                                    <button class="button-senha" onclick="confirmarSenha()">Mudar Senha</button>
+                                    <button class="button-senha" onclick="mudarSenha()">Mudar Senha</button>
                                 </div>
 
                                 <div class="container-button-delete">
@@ -148,10 +145,13 @@
                             </div>
 
                             <div class="container-image">
-                                <div class="box-image"></div>
+                                <div id="imagem-perfil" class="box-image"></div>
                                 <div class="container-buttons">
-                                    <div class="button-editar" onclick="editar()"></div>
-                                    <div class="button-excluir" onclick="excluir()"></div>
+                                    <div class="button-editar" onclick="editarImagem()">
+                                        <input id="foto" type="file">
+                                    </div>
+                                    
+                                    <div class="button-excluir" onclick="excluirImagem()"></div>
                                 </div>
                                 
                             </div>

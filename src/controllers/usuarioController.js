@@ -131,6 +131,20 @@ function pegarFuncionariosPorEmpresa(req, res) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function cadastrarUsuario(req, res) {
     var imagemPerfil = "padraoUsuario.png";
     var nome = req.body.nome;
@@ -248,6 +262,25 @@ function cadastrarCargo(req, res) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function atualizarUsuario(req, res) {
     var nome = req.body.nome;
     var email = req.body.email;
@@ -320,6 +353,36 @@ function atualizarEmpresa(req, res) {
     }
 }
 
+function atualizarSenhaEmpresa(req, res) {
+    var senhaNova = req.body.senhaNova;
+    var cnpj = req.body.cnpj;
+    var senha = req.body.senhaAntiga;
+
+    if (nomeEmpresa == undefined) {
+        res.status(400).send("Seu nomeEmpresa está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Sua cnpj está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else {
+        usuarioModel.atualizarSenhaEmpresa(senhaNova, cnpj, senha)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a atualização! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function atualizarCargo(req, res) {
     var nomeCargo = req.body.nomeCargo;
     var novoNomeCargo = req.body.novoNomeCargo;
@@ -352,6 +415,23 @@ function atualizarCargo(req, res) {
             );
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -401,6 +481,30 @@ function inativarEmpresa(req, res) {
                     console.log(erro);
                     console.log(
                         "\nHouve um erro ao realizar a remoção! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function removerImagemEmpresa(req, res) {
+    var cnpj = req.body.cnpj;
+
+    if (cnpj == undefined) {
+        res.status(400).send("Sua cnpj está undefined!");
+    } else {
+        usuarioModel.removerImagemEmpresa(cnpj)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a remoção da imagem! Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
@@ -474,6 +578,7 @@ module.exports = {
 
     atualizarUsuario,
     atualizarEmpresa,
+    atualizarSenhaEmpresa,
     atualizarCargo,
 
     removerUsuario,
