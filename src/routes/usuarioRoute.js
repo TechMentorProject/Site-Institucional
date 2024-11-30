@@ -22,8 +22,12 @@ router.post("/pegarCargo", function (req, res) {
     usuarioController.pegarCargo(req, res);
 });
 
-router.post("/pegarFuncionariosPorEmpresa", function (req, res) {
+router.get("/pegarFuncionariosPorEmpresa/:cnpj", function (req, res) {
     usuarioController.pegarFuncionariosPorEmpresa(req, res);
+});
+
+router.get("/pegarCargosPorEmpresa/:cnpj", function (req, res) {
+    usuarioController.pegarCargosPorEmpresa(req, res);
 });
 
 
@@ -71,7 +75,7 @@ router.put("/atualizarCargo", function (req, res) {
 
 
 
-router.delete("/removerUsuario", upload.single('foto'), function (req, res) {
+router.delete("/removerUsuario", function (req, res) {
     usuarioController.removerUsuario(req, res);
 });
 
@@ -83,7 +87,7 @@ router.put("/removerImagemEmpresa", function (req, res) {
     usuarioController.removerImagemEmpresa(req, res);
 });
 
-router.delete("/removerCargo", upload.single('foto'), function (req, res) {
+router.delete("/removerCargo", function (req, res) {
     usuarioController.removerCargo(req, res);
 });
 

@@ -106,7 +106,7 @@ async function pegarCargo() {
         body: JSON.stringify({
             nomeCargo: sessionStorage.NOME_CARGO,
             cnpj: sessionStorage.CNPJ
-        }),
+        })
     })
         .then(resposta => resposta.json())
         .then(res => {
