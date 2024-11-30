@@ -1,4 +1,4 @@
-
+// validar()
 
 function pegarDadosUsuarios() {
     return fetch(`/usuarios/pegarMenoresCoberturas/${estado}/${tecnologia}`, {

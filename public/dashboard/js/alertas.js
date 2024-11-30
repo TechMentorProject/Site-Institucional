@@ -2,7 +2,7 @@
 pegarNotificacoes()
 
 async function pegarDados() {
-    return fetch(`/notificacao//pegarUltimas/${sessionStorage.CNPJ}`, {
+    return fetch(`/notificacao/pegarUltimas/${sessionStorage.CNPJ}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -19,19 +19,22 @@ async function pegarDados() {
         });
 }
 
-async function pegarNotificacoes(textos, datas) {
+async function pegarNotificacoes() {
     document.getElementsByClassName('container-alerta').innerHTML = ''
-    alterarDados(await pegarDados(textos))
+    alterarDados(await pegarDados())
 }
 
-function alterarDados(textos) {
+function alterarDados(dados) {
+    let textos = dados[0]
+    let datas = dados[1]
+
     for (let i = 0; i < textos.length; i++) {
         document.getElementsByClassName('container-alerta').innerHTML += `
             <div class="box-alerta">
                 <div class="icon-alerta"></div>
                     <div class="box-mensagem">
                         <div class="container-mensagem">
-                        <p>${textos[i]}</p>
+                        <p>${datas[i]} - ${textos[i]}</p>
                         </div>
                     <div class="azul"></div>
                 </div>

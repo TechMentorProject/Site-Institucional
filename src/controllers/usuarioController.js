@@ -22,7 +22,7 @@ function autenticarUsuario(req, res) {
                             senha: resultado[0].senha,
                             imagemPerfil: resultado[0].imagemPerfil,
                             fkNomeCargo: resultado[0].fkNomeCargo,
-                            fkCnpj: resultado[0].fkCnpj,
+                            cnpj: resultado[0].fkCnpj,
                         });
                     } else {
                         res.status(403).send("Email ou senha inválido!")
@@ -52,7 +52,7 @@ function autenticarEmpresa(req, res) {
                         res.status(200).json({
                             nomeEmpresa: resultado[0].nomeEmpresa,
                             nomeResponsavel: resultado[0].nomeResponsavel,
-                            cnpj: resultado[0].cnpj,
+                            cnpj: resultado[0].fkCnpj,
                             emailResponsavel: resultado[0].emailResponsavel,
                             senha: resultado[0].senha
                         });
@@ -68,11 +68,14 @@ function autenticarEmpresa(req, res) {
 
 function pegarCargo(req, res) {
     var nomeCargo = req.body.nomeCargo;
+    var cnpj = req.body.cnpj;
 
     if (nomeCargo == undefined) {
         res.status(400).send("Seu nomeCargo está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
     } else {
-        usuarioModel.pegarCargo(nomeCargo)
+        usuarioModel.pegarCargo(nomeCargo, cnpj)
             .then(
                 (resultado) => {
                     if (resultado.length == 1) {
@@ -81,7 +84,8 @@ function pegarCargo(req, res) {
                         res.status(200).json({
                             nomeCargo: resultado[0].nomeCargo,
                             acessos: resultado[0].acessos,
-                            fkCnpj: resultado[0].fkCnpj
+                            fkCnpj: resultado[0].fkCnpj,
+                            nomeEmpresa: resultado[0].nomeEmpresa
                         });
                     } else {
                         res.status(403).send("Nome de cargo inválido!")
