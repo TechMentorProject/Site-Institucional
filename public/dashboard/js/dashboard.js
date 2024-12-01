@@ -1,6 +1,15 @@
+location.onload()
+
 function validar() {
     if (sessionStorage.EMAIL_USUARIO == null) {
         window.location = "./../index.html"
+    }
+
+    if (sessionStorage.EMPRESA === "false") {
+        const dropdownPainel = document.getElementById('dropdown-painel');
+        if (dropdownPainel) {
+            dropdownPainel.style.display = 'none';
+        }
     }
 }
 

@@ -19,8 +19,7 @@
     <script src="./js/dashboard.js"></script>
 </head>
 
-<script>location.reload()></script>
-<body>
+<body onload="validar()">
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
@@ -75,7 +74,7 @@
                         </div>
                     </a>
 
-                    <div class="dropdown">
+                    <div class="dropdown" id="dropdown-painel">
                         <a>
                             <div class="ancora">
                                 <img src="./assets/painel.png" alt="">
@@ -130,7 +129,7 @@
                     </div>
                 </div>
 
-                <div id="painel-principal" class="painel func">   
+                <div id="painel-principal" class="painel func">
                 </div>
             </div>
         </div>
