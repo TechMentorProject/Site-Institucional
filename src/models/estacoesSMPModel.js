@@ -3,9 +3,7 @@ var database = require("../database/config")
 function pegarQtdAntenasPorEstado(estado) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarQtdAntenasPorEstado(): ", estado)
     var instrucaoSql = `
-        SELECT COUNT(*) AS qtdAntenasPorEstado FROM baseEstacoesSMP
-            JOIN cidade ON cidade.nomeCidade = baseEstacoesSMP.fkCidade
-            WHERE cidade.fkEstado = '${estado}';
+        SELECT qtdAntenas AS qtdAntenasPorEstado FROM estado WHERE nomeEstado = '${estado}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -14,10 +12,7 @@ function pegarQtdAntenasPorEstado(estado) {
 function pegarMaiorOperadoraPorEstado(estado) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarMaiorOperadoraPorEstado(): ", estado)
     var instrucaoSql = `
-        SELECT operadora, COUNT(*) AS aparicoes FROM baseEstacoesSMP
-            JOIN cidade ON cidade.nomeCidade = baseEstacoesSMP.fkCidade
-            WHERE cidade.fkEstado = '${estado}'
-            GROUP BY operadora ORDER BY aparicoes DESC LIMIT 1;
+        SELECT maiorOperadora as operadora, qtdAntenas as aparicoes from estado where nomeEstado = '${estado}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
