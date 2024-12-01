@@ -12,6 +12,7 @@ async function editarCargo() {
     if (await document.getElementById('estado-es-edit').checked) novosAcessos.push('ES');
     if (await document.getElementById('estado-mg-edit').checked) novosAcessos.push('MG');
     if (await document.getElementById('estado-pr-edit').checked) novosAcessos.push('PR');
+    if (await document.getElementById('estado-rj-edit').checked) novosAcessos.push('RJ');
     if (await document.getElementById('estado-rs-edit').checked) novosAcessos.push('RS');
     if (await document.getElementById('estado-sc-edit').checked) novosAcessos.push('SC');
     if (await document.getElementById('estado-sp-edit').checked) novosAcessos.push('SP');
@@ -69,13 +70,14 @@ async function exibirCargos() {
 
     for (var i = 0; i < cargos.length; i++) {
         estadosAcesso.push([])
-        if (acessos[i].includes('SP')) estadosAcesso[i].push('SP');
+        if (acessos[i].includes('ES')) estadosAcesso[i].push('ES');
         if (acessos[i].includes('MS')) estadosAcesso[i].push('MS');
         if (acessos[i].includes('MG')) estadosAcesso[i].push('MG');
         if (acessos[i].includes('RJ')) estadosAcesso[i].push('RJ');
-        if (acessos[i].includes('ES')) estadosAcesso[i].push('ES');
         if (acessos[i].includes('RS')) estadosAcesso[i].push('RS');
         if (acessos[i].includes('PR')) estadosAcesso[i].push('PR');
+        if (acessos[i].includes('SC')) estadosAcesso[i].push('SC');
+        if (acessos[i].includes('SP')) estadosAcesso[i].push('SP');
         if (acessos[i].includes('CLARO')) estadosAcesso[i].push('Claro');
         if (acessos[i].includes('OI')) estadosAcesso[i].push('Oi');
         if (acessos[i].includes('TIM')) estadosAcesso[i].push('Tim');
@@ -119,6 +121,7 @@ async function criarCargo() {
     if (await document.getElementById('estado-es').checked) novosAcessos.push('ES');
     if (await document.getElementById('estado-mg').checked) novosAcessos.push('MG');
     if (await document.getElementById('estado-pr').checked) novosAcessos.push('PR');
+    if (await document.getElementById('estado-rj').checked) novosAcessos.push('RJ');
     if (await document.getElementById('estado-rs').checked) novosAcessos.push('RS');
     if (await document.getElementById('estado-sc').checked) novosAcessos.push('SC');
     if (await document.getElementById('estado-sp').checked) novosAcessos.push('SP');
