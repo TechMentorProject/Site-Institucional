@@ -16,7 +16,7 @@ function validarCargo(pagina) {
     }
 }
 
-function carregarImagemPerfil(elementoHtml) {
+function carregarImagemPerfil() {
     fetch("/usuarios/autenticarUsuario", {
         method: "POST",
         headers: {
@@ -30,15 +30,15 @@ function carregarImagemPerfil(elementoHtml) {
         .then(function (resposta) {
             if (resposta.status == 200) {
                 resposta.json().then((res) => {
-                    elementoHtml.innerHTML = `<img style="width: 100%; height: auto;"  src='./../assets/users/${res.imagemPerfil || 'padraoUsuario.png'}'>`
+                    return imagemPerfil || 'padraoUsuario.png';
                 })
             } else {
-                elementoHtml.innerHTML = `<img style="width: 100%; height: auto;"  src='./../assets/users/padraoUsuario.png'>`
+                return 'padraoUsuario.png';
             }
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            elementoHtml.innerHTML = `<img style="width: 100%; height: auto;"  src='./../assets/users/padraoUsuario.png'>`
+            return 'padraoUsuario.png';
         });
 
 }

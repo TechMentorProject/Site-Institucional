@@ -101,12 +101,12 @@ function cadastrarCargo(nomeCargo, acessos, fkCnpj) {
 
 
 
-function atualizarUsuario(nome, email, fkNomeCargo) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarUsuario():", nome, email, senha, fkNomeCargo, cpf);
+function atualizarUsuario(nome, email, fkNomeCargo, emailAntigo) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarUsuario():", nome, email, fkNomeCargo, emailAntigo);
 
     var instrucaoSql = `
         UPDATE usuario SET nomeUsuario = '${nome}', email = '${email}', fkNomeCargo = '${fkNomeCargo}'
-            WHERE email = '${email}';
+            WHERE email = '${emailAntigo}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

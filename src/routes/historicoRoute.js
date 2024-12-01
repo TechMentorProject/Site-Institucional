@@ -11,4 +11,8 @@ router.get("/verificarAcessos/:dataAtual/:dias/:cnpj", function (req, res) {
     historicoController.verificarAcessos(req, res);
 });
 
+router.get("/pegarFuncionariosSemAcesso/:dataAtual/:dias/:cnpj", function (req, res) {
+    historicoController.pegarFuncionariosSemAcesso(req, res);
+});
+
 module.exports = router;
