@@ -51,3 +51,28 @@ function carregarImagemPerfil() {
         });
 
 }
+
+function criarNotificaoEmpresa(texto, dataCriacao, cnpj) {
+    fetch("/usuarios/adicionarParaEmpresa", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            texto: texto,
+            dataCriacao: dataCriacao,
+            fkCnpj: cnpj
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.status == 200) {
+                return true
+            } else {
+                return false;
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO ao criar notificação: ${resposta}`);
+            return false;
+        });
+}
