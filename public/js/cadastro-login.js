@@ -191,7 +191,6 @@ function entrar() {
                                     sessionStorage.EMAIL_USUARIO = res.emailResponsavel;
                                     sessionStorage.SENHA_USUARIO = res.senha;
                                     sessionStorage.CNPJ = res.cnpj;
-                                    sessionStorage.CPF = res.cpf;
                                 })
                                 console.log("LOGIN REALIZADO!")
                                 setInterval(() => {
@@ -213,6 +212,7 @@ function entrar() {
                         sessionStorage.SENHA_USUARIO = res.senha;
                         sessionStorage.NOME_CARGO = res.fkNomeCargo;
                         sessionStorage.CNPJ = res.fkCnpj;
+                        sessionStorage.CPF = res.cpf;
                     })
                     console.log("LOGIN REALIZADO!")
                     setInterval(() => {

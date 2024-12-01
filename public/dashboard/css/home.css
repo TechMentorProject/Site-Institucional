@@ -158,11 +158,17 @@
                     height: 90%;
                     align-items: flex-start;
 
-                    #myChart {
-                        margin-top: 40px;
-                        max-width: 380px;
-                        max-height: 300px;
+                    #chartContainer {
+                        overflow: hidden;
+
+                        #myChart {
+                            margin-top: 40px;
+                            display: block;
+                            max-width: 40%;
+                            max-height: 40%;
+                        }
                     }
+
                 }
             }
 

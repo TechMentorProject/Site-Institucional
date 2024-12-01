@@ -4,7 +4,7 @@ function carregarDados() {
     document.getElementById('nome_empresa').placeholder = sessionStorage.NOME_EMPRESA || '';
     document.getElementById('nome_responsavel').placeholder = sessionStorage.NOME_RESPONSAVEL || '';
     document.getElementById('email_responsavel').placeholder = sessionStorage.EMAIL_RESPONSAVEL || '';
-    carregarImagemPerfil(document.getElementById('imagem-perfil'))
+    document.getElementById('imagem-perfil').style.backgroundImage = `url(../assets/${carregarImagemPerfil()})`;
 }
 
 function salvarAlteracoes() {
