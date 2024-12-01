@@ -94,28 +94,40 @@
 
 .container-perfil {
     width: 90%;
-    height: 8rem;
+    height: 12rem;
     display: flex;
     flex-direction: column;
 }
 
 .box-perfil {
      width: 90%;
-     height: 40%;
+     height: 15rem;
      display: flex;
      justify-content: start;
      align-items: center;
      margin-left: 2rem;
      font-weight: bolder;
-     font-size: 25px;
+     font-size: 19px;
+}
+
+.box-senha {
+    width: 90%;
+     height: 2.4rem;
+     display: flex;
+     justify-content: start;
+     align-items: center;
+     margin-left: 2rem;
+     font-weight: bolder;
+     font-size: 19px;
 }
 
 .container-button {
     width: 85%;
-    height: 10%;
+    height: 3rem;
     display: flex;
     justify-content: end;
     align-items: center;
+    margin-top: 10px;
 }
 
 .container-button-delete {
@@ -221,7 +233,7 @@
 .container-buttons {
     width: 10rem;
     height: 5rem;
-    margin-left: 3rem;
+    margin-left: 2.8rem;
     margin-bottom: 6rem;
     display: flex;
     flex-direction: row;
@@ -238,6 +250,11 @@
     background-size: cover;
     cursor: pointer;
     transition: transform 0.3s ease;
+    background-color: rgb(229, 229, 229);;
+}
+
+.hidden-input {
+    display: none;
 }
 
 .button-editar:hover {

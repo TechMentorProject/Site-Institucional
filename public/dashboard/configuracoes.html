@@ -131,9 +131,9 @@
                                 </div>
 
                                 <div class="container-perfil">
-                                    <div class="box-perfil"><span>Mudança de senha</span></div>
-                                    <div class="box-perfil"><input type="password" id="senha_antiga" placeholder="Digite sua senha antiga"></div>
-                                    <div class="box-perfil"><input type="password" id="senha_nova" placeholder="Digite a senha nova"></div>
+                                    <div class="box-senha"><span>Mudança de senha</span></div>
+                                    <div class="box-senha"><input type="password" id="senha_antiga" placeholder="Digite sua senha antiga"></div>
+                                    <div class="box-senha"><input type="password" id="senha_nova" placeholder="Digite a senha nova"></div>
                                 </div>
 
                                 <div class="container-button">
@@ -147,12 +147,14 @@
 
                             <div class="container-image">
                                 <div id="imagem-perfil" class="box-image"></div>
-                                <div class="container-buttons">
-                                    <div class="button-editar" onclick="editarImagem()">
-                                        <input id="foto" type="file">
-                                    </div>
+                                    <div class="container-buttons">
+                                        <!-- Input de arquivo oculto -->
+                                        <input type="file" id="upload-image" class="hidden-input">
                                     
-                                    <div class="button-excluir" onclick="excluirImagem()"></div>
+                                        <!-- Botão de editar -->
+                                        <button class="button-editar" onclick="document.getElementById('upload-image').click();"></button>
+                                        <div class="button-excluir" onclick="excluirImagem()"></div>
+                                    </div>
                                 </div>
                                 
                             </div>
