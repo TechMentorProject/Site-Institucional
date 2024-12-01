@@ -93,6 +93,8 @@ async function exibirCargos() {
         <div class="edicao-exclusao">
             <div onclick="abrirEditarCargo('${cargos[i]}')" class="edit-button"></div>
             <div onclick="abrirExcluir('${cargos[i]}')" class="remove-button"></div>
+            <div onclick="abrirEditarCargo('${cargos[i]}')" class="edit-button"></div>
+            <div onclick="abrirExcluir('${cargos[i]}')" class="remove-button"></div>
         </div>
         </div>`;
     }
@@ -245,3 +247,4 @@ async function removerCargo() {
             return null;
         });
 }
+
