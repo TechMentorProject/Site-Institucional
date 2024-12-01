@@ -298,3 +298,24 @@ function popUpCadastro() {
         title: "Cadastrado com sucesso!"
     });
 }
+
+function mascaraCnpj(input) {
+
+    let cnpj = input.value.replace(/\D/g, "");
+
+    if (cnpj.length > 14) {
+        cnpj = cnpj.slice(0, 14);
+    }
+
+    if (cnpj.length <= 2) {
+        input.value = cnpj;
+    } else if (cnpj.length <= 5) {
+        input.value = cnpj.replace(/(\d{2})(\d{1,})/, "$1.$2");
+    } else if (cnpj.length <= 8) {
+        input.value = cnpj.replace(/(\d{2})(\d{3})(\d{1,})/, "$1.$2.$3");
+    } else if (cnpj.length <= 12) {
+        input.value = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{1,})/, "$1.$2.$3/$4");
+    } else {
+        input.value = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{1,})/, "$1.$2.$3/$4-$5");
+    }
+}
