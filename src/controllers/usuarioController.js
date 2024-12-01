@@ -317,6 +317,7 @@ function atualizarUsuario(req, res) {
     var nome = req.body.nome;
     var email = req.body.email;
     var fkNomeCargo = req.body.fkNomeCargo;
+    var emailAntigo = req.body.emailAntigo;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -324,8 +325,10 @@ function atualizarUsuario(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (fkNomeCargo == undefined) {
         res.status(400).send("Sua fkNomeCargo está undefined!");
+    } else if (emailAntigo == undefined) {
+        res.status(400).send("Sua emailAntigo está undefined!");
     } else {
-        usuarioModel.atualizarUsuario(nome, email, fkNomeCargo)
+        usuarioModel.atualizarUsuario(nome, email, fkNomeCargo, emailAntigo)
             .then(
                 function (resultado) {
                     res.json(resultado);
