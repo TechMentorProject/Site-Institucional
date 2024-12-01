@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <link rel="icon" href="./assets/TechMentor-Logo.ico" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -148,10 +150,7 @@
                             <div class="container-image">
                                 <div id="imagem-perfil" class="box-image"></div>
                                     <div class="container-buttons">
-                                        <!-- Input de arquivo oculto -->
                                         <input type="file" id="upload-image" class="hidden-input">
-                                    
-                                        <!-- Botão de editar -->
                                         <button class="button-editar" onclick="document.getElementById('upload-image').click();"></button>
                                         <div class="button-excluir" onclick="excluirImagem()"></div>
                                     </div>

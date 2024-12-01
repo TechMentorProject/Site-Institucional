@@ -27,12 +27,22 @@ function salvarAlteracoes() {
     }
 
     if (listaAlteracoes.length == 0) {
-        alert("Escolha pelo menos um campo")
+        Swal.fire("Escolha pelo menos um campo")
     } else {
-        alert(`Realmente deseja alterar os campos ${listaAlteracoes}?\nSIM   NÃO`)
-        if (false) {
-            alterarDados(nomeEmpresa, nomeResp, emailResp)
-        }
+        Swal.fire({
+            title: "Confirmação",
+            text: `Realmente deseja alterar os campos: \n${listaAlteracoes.join('\n')}?`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+            cancelButtonText: "Não"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                alterarDados(nomeEmpresa, nomeResp, emailResp).then(() => {
+                    Swal.fire("Sucesso", "Dados alterados com sucesso!", "success");
+                });
+            }
+        });
     }
 }
 
@@ -81,12 +91,12 @@ async function mudarSenha() {
     let dados = await validarSenha(tentativaSenha)
 
     if (dados == false) {
-        alert("Senha anterior inválida")
+        Swal.fire("Senha anterior inválida")
     } else {
         if (tentativaSenha == "") {
-            alert("Senha deve ser prenchida")
+            Swal.fire("Senha deve ser prenchida")
         } else if (tentativaSenha.length < 7) {
-            alert("Senha muito pequena")
+            Swal.fire("Senha muito pequena")
         } else {
             alterarSenha(novaSenha, )
         }
@@ -126,15 +136,19 @@ async function alterarSenha(senhaNova, cnpj, senhaAntiga) {
             senhaAntiga: senhaAntiga,
         })
     })
-        .then(resposta => resposta.json())
-        .then(() => {
-            sessionStorage.SENHA_USUARIO = senhaNova
-            alert("Senha atualizada com sucesso!")
-        })
-        .catch(error => {
-            console.log(`#ERRO ao atualizar senha: ${error}`);
-            return null;
-        });
+    .then((resposta) => {
+        if (resposta.ok) {
+            sessionStorage.SENHA_USUARIO = senhaNova;
+            Swal.fire("Sucesso", "Senha alterada com sucesso!", "success");
+        } else {
+            throw new Error("Erro ao alterar senha.");
+        }
+    })
+    .catch((error) => {
+        console.error(`#ERRO ao atualizar senha: ${error}`);
+        Swal.fire("Erro", "Não foi possível alterar a senha", "error");
+        return null;
+    });
 }
 
 
