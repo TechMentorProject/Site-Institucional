@@ -206,13 +206,12 @@ function validarSenha() {
 function validarCpf() {
     let cpf = document.getElementById('cpf-adicionar').value;
 
-    cpf = cpf.replace(/[^\d]+/g, '');
-
     if (cpf.length !== 11) {
         alert("CPF inválido. Deve conter 11 dígitos.");
         return false;  
     }
 
+    console.log(cpf)
     return true; 
 }
 
