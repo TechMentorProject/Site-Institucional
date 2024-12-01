@@ -23,10 +23,10 @@ async function editarCargo() {
     let nomeNovo = await document.getElementById('cargo-name-edit').value
     if (nomeNovo.length <= 2) {
         alert('nome de cargo muito pequeno')
-    document.getElementById('edit-modal-container').style.display = 'none'
+        document.getElementById('edit-modal-container').style.display = 'none'
     } else if (novosAcessos.length <= 0) {
         alert('selecione um acesso pelo menos')
-    document.getElementById('edit-modal-container').style.display = 'none'
+        document.getElementById('edit-modal-container').style.display = 'none'
     } else {
         atualizarCargo(novosAcessos, nomeNovo)
         document.getElementById('edit-modal-container').style.display = 'none'
@@ -88,7 +88,7 @@ async function exibirCargos() {
         <div class="ponto"></div>
         <div class="texto">
             <h3>${cargos[i]}</h3>
-            <h4>Permissões: ${estadosAcesso}</h4>
+            <h4>Permissões: ${estadosAcesso[i]}</h4>
         </div>
         <div class="edicao-exclusao">
             <div onclick="abrirEditarCargo('${cargos[i]}')" class="edit-button"></div>
@@ -191,7 +191,7 @@ function formatarData(dataInicial) {
     const yyyy = dataInicial.getFullYear();
     const MM = String(dataInicial.getMonth() + 1).padStart(2, '0');
     const dd = String(dataInicial.getDate()).padStart(2, '0');
-        
+
     return pattern
         .replace("yyyy", yyyy)
         .replace("MM", MM)
@@ -206,7 +206,7 @@ async function confirmarExcluir() {
     let dados = await removerCargo()
     let usuariosNaoDeletados = []
 
-    if(dados == null) {
+    if (dados == null) {
         alert('erro ao deletar')
         document.getElementById('remove-modal-container').style.display = 'none'
     } else if (dados == 'deletado') {
@@ -235,8 +235,8 @@ async function removerCargo() {
             cnpj: sessionStorage.CNPJ
         })
     })
-    .then(resposta => resposta.json())
-    .then(res => {
+        .then(resposta => resposta.json())
+        .then(res => {
             console.log(res)
             return res
         })
