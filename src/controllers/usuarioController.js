@@ -52,7 +52,7 @@ function autenticarEmpresa(req, res) {
                         res.status(200).json({
                             nomeEmpresa: resultado[0].nomeEmpresa,
                             nomeResponsavel: resultado[0].nomeResponsavel,
-                            cnpj: resultado[0].fkCnpj,
+                            cnpj: resultado[0].cnpj,
                             emailResponsavel: resultado[0].emailResponsavel,
                             senha: resultado[0].senha
                         });

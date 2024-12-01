@@ -49,6 +49,7 @@ async function pegarCargo() {
 
 
 function carregarVisualEmpresa() {
+    document.getElementById('painel-principal').className = "painel empresa"
     document.getElementById('painel-principal').innerHTML =`
         <div class="box">
             <div class="conteudo1">
@@ -59,7 +60,7 @@ function carregarVisualEmpresa() {
                     <option value="15">15</option>
                     <option value="30">30</option>
                     </select> Dias</p>
-                    <div id="chartContainer" style="position: relative; width: 300px; height: 300px;">
+                    <div id="chartContainer" style="position: relative; min-width: 300px; min-height: 300px;">
                         <canvas id="myChart"></canvas>
                     </div>
                 </div>
@@ -75,9 +76,13 @@ function carregarVisualEmpresa() {
 }
 
 function carregarVisualFuncionario() {
+    document.getElementById('painel-principal').className = "painel func"
     document.getElementById('painel-principal').innerHTML =`
+    <h2 id="titulo-utlimas-mensagens" clas="titulo">Últimas mensagens</h2>
     <div class="mensagens">
-        <h2 id="titulo-utlimas-mensagens">Últimas mensagens</h2>
+        <div class="msg"></div>
+        <div class="msg"></div>
+        <div class="msg"></div>
     </div>
     <div class="permissoes">
         <h2>Permissões</h2>

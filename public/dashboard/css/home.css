@@ -75,18 +75,24 @@
     }
 
     &.func {
+        h2 {
+            width: 90%;
+        }
+
         .mensagens {
             display: flex;
-            justify-content: space-around;
             width: 90%;
-            height: 60%;
+            height: 65%;
             flex-direction: column;
+            gap: 15px;
+            padding-top: 10px;
 
             .msg {
+                border: red solid 0.1px;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                height: 25%;
+                height: 30%;
                 width: 100%;
                 text-overflow: ellipsis;
 
@@ -113,7 +119,7 @@
 
         .permissoes {
             width: 90%;
-            height: 32%;
+            height: 40%;
 
             .lista {
                 display: flex;
@@ -122,7 +128,10 @@
                 padding: 10px;
 
                 li {
-                    width: 35%;
+                    width: 50%;
+                    white-space: nowrap; 
+                    overflow: hidden;
+                    text-overflow: ellipsis;
 
                     &.desativado {
                         color: gray;
@@ -152,23 +161,12 @@
                 width: 60%;
 
                 .dashboard {
+                    gap: 30px;
                     display: flex;
                     flex-direction: column;
                     width: 100%;
                     height: 90%;
-                    align-items: flex-start;
-
-                    #chartContainer {
-                        overflow: hidden;
-
-                        #myChart {
-                            margin-top: 40px;
-                            display: block;
-                            max-width: 40%;
-                            max-height: 40%;
-                        }
-                    }
-
+                    align-items: center;
                 }
             }
 
@@ -187,20 +185,20 @@
                     box-sizing: border-box;
                     scrollbar-width: thin;
                     scrollbar-color: #43BAFF #ffffff;
-                    
+
                     .perfil {
                         width: 100%;
                         display: flex;
                         align-items: center;
-                        
+
                         span {
                             margin-left: 10px;
                             flex-grow: 1;
                             overflow: hidden;
                             white-space: nowrap;
-                            text-overflow: ellipsis; 
+                            text-overflow: ellipsis;
                         }
-                    
+
                         .img-perfil {
                             flex-shrink: 0;
                             background-image: url("../assets/ícone-conta.svg");
