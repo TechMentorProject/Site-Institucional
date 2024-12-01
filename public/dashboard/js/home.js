@@ -82,7 +82,6 @@ function carregarVisualFuncionario() {
     <div class="mensagens">
         <div class="msg"></div>
         <div class="msg"></div>
-        <div class="msg"></div>
     </div>
     <div class="permissoes">
         <h2>Permissões</h2>
