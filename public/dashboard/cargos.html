@@ -16,7 +16,7 @@
     <!-- <script src="./js/dashboard.js"></script> -->
 </head>
 
-<body onload="validar()">
+<body>
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
@@ -71,7 +71,7 @@
                     </a>
 
                     <div class="dropdown">
-                        <a>
+                        <a class="selecionado">
                             <div class="ancora">
                                 <img src="./assets/painel.png" alt="">
                                 <span>Painel<span class="dropdown-icon">></span></span>
@@ -79,13 +79,13 @@
                         </a>
                         <div class="dropdown-content">
                             <a href="cadastroUsuario.html">Usuários</a>
-                            <a href="">Cargos</a>
+                            <a href="cargos.html" class="selecionado">Cargos</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="configuracoes">
-                    <a href="telaConfig.html" class="selecionado">
+                    <a href="telaConfig.html">
                         <div class="ancora">
                             <img src="./assets/configuracoes.png" alt="">
                             <span>Configurações</span>
@@ -153,51 +153,8 @@
                             </div>
                             <div class="conteudo2">
                                 <h2>Cargos adicionados</h2>
-                                <div class="cargos">
-                                    <div class="cargo">
-                                        <div class="ponto"></div>
-                                        <div class="texto">
-                                            <h3>Nome do cargo</h3>
-                                            <h4>Permissões:</h4>
-                                        </div>
-                                        <div class="edicao-exclusao">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </div>
-                                    <div class="cargo">
-                                        <div class="ponto"></div>
-                                        <div class="texto">
-                                            <h3>Nome do cargo</h3>
-                                            <h4>Permissões:</h4>
-                                        </div>
-                                        <div class="edicao-exclusao">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </div>
-                                    <div class="cargo">
-                                        <div class="ponto"></div>
-                                        <div class="texto">
-                                            <h3>Nome do cargo</h3>
-                                            <h4>Permissões:</h4>
-                                        </div>
-                                        <div class="edicao-exclusao">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </div>
-                                    <div class="cargo">
-                                        <div class="ponto"></div>
-                                        <div class="texto">
-                                            <h3>Nome do cargo</h3>
-                                            <h4>Permissões:</h4>
-                                        </div>
-                                        <div class="edicao-exclusao">
-                                            <div class="edit-button"></div>
-                                            <div class="remove-button"></div>
-                                        </div>
-                                    </div>
+                                <div id="cargos" class="cargos">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -221,16 +178,16 @@
         <div class="modal-edit">
             <h2>Editar Cargo</h2>
             <form id="edit-user-form">
-                <div>
-                    <label for="cargo-name">Nome do Cargo:</label>
+                <div class="nome">
+                    <label for="cargo-name">Nome do Cargo:</label><br>
                     <input type="text" id="cargo-name" name="cargo-name" required />
                 </div>
 
                 <div class="permissoes">
-                    <h3>Permissões</h3>
+                    <p>Permissões:</p>
                     <div class="div">
                         <div class="estados">
-                            <h4>Estados</h4>
+                            <span>Estados</span>
                             <div class="check">
                                 <input type="checkbox" id="estado-es" name="estado" value="ES"><span>ES</span>
                             </div>
@@ -252,7 +209,7 @@
                         </div>
 
                         <div class="operadoras">
-                            <h4>Operadoras</h4>
+                            <span>Operadoras</span>
                             <div class="check">
                                 <input type="checkbox" id="operadora-claro" name="operadora"
                                     value="Claro"><span>Claro</span>
@@ -276,20 +233,81 @@
                 <button type="button" id="cancel-edit">Cancelar</button>
             </div>
         </div>
+
+
+        <div id="modal-contain">
+            <div class="modal">
+              <p>Deseja mesmo excluir este usuário?</p>
+              <div class="modal-buttons">
+                <button id="confirm-delete" onclick="excluirUsuario()">Confirmar</button>
+                <button id="cancel-delete" onclick="fechar()">Cancelar</button>
+              </div>
+            </div>
+          </div>
+      
+          <div id="edit-modal-contain" style="display: none">
+            <div class="modal-edit">
+              <h2>Editar Cargo</h2>
+      
+              <form id="edit-user-for">
+                <div>
+                  <label for="user-name">Nome do cargo:</label>
+                  <input type="text" id="user-name" name="user-name" required />
+                </div>
+      
+                <div class="estados">
+                    <span>Estados</span>
+                    <div class="check">
+                        <input type="checkbox" id="estado-es-edit" name="estado" value="ES"><span>ES</span>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="estado-mg-edit" name="estado" value="MG"><span>MG</span>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="estado-pr-edit" name="estado" value="PR"><span>PR</span>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="estado-rs-edit" name="estado" value="RS"><span>RS</span>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="estado-sc-edit" name="estado" value="SC"><span>SC</span>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="estado-sp-edit" name="estado" value="SP"><span>SP</span>
+                    </div>
+                </div>
+
+                <div class="operadoras">
+                    <span>Operadoras</span>
+                    <div class="check">
+                        <input type="checkbox" id="operadora-claro-edit" name="operadora"
+                            value="Claro"><span>Claro</span>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="operadora-oi-edit" name="operadora" value="Oi"><span>Oi</span>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="operadora-tim-edit" name="operadora" value="Tim"><span>Tim</span>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="operadora-vivo-edit" name="operadora"
+                            value="Vivo"><span>Vivo</span>
+                    </div>
+                </div>
+      
+                <div class="modal-buttons">
+                  <button type="button" onclick="atualizarCargo()" id="save-edit">Salvar</button>
+                  <button type="button" onclick="fechar()" id="cancel-edit">Cancelar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+      
+    
     </div>
 </body>
 
 </html>
 
 <script src="./js/modalCargo.js"></script>
-
-<script>
-    document.getElementById("descricao").addEventListener("input", function () {
-        const input = this;
-        const maxLength = input.getAttribute("maxlength");
-        const currentLength = input.value.length;
-
-        // Atualiza o contador de caracteres
-        document.getElementById("contador").textContent = `${currentLength} / ${maxLength}`;
-    });
-</script>
+<script src="./js/cargos.js"></script>
