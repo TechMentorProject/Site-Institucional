@@ -1,4 +1,3 @@
-// // validar()
 carregarFuncionarios()
 let usuarioExcluir;
 let emailAntigo;
@@ -157,6 +156,14 @@ async function adicionarUsuario() {
 }
 
 async function cadastrarUsuario() {
+    
+    if (!validarCpf()) {
+        return; 
+    }
+
+    if (!validarSenha()) {
+        return; 
+    }
 
     return fetch(`/usuarios/cadastrarUsuario`, {
         method: "POST",
@@ -183,4 +190,43 @@ async function cadastrarUsuario() {
             fechar()
             return;
         });
+}
+
+function validarSenha() {
+    const senha = document.getElementById('senha-adicionar').value;
+
+    if (senha.length < 8) {
+        alert("A senha deve ter pelo menos 8 caracteres.");
+        return false;
+    }
+
+    return true; 
+}
+
+function validarCpf() {
+    let cpf = document.getElementById('cpf-adicionar').value;
+
+    cpf = cpf.replace(/[^\d]+/g, '');
+
+    if (cpf.length !== 11) {
+        alert("CPF inválido. Deve conter 11 dígitos.");
+        return false;  
+    }
+
+    return true; 
+}
+
+function mascaraCpf(input) {
+
+    let cpf = input.value.replace(/\D/g, "");
+
+    if (cpf.length <= 3) {
+        input.value = cpf;
+    } else if (cpf.length <= 6) {
+        input.value = cpf.replace(/(\d{3})(\d{1,})/, "$1.$2");
+    } else if (cpf.length <= 9) {
+        input.value = cpf.replace(/(\d{3})(\d{3})(\d{1,})/, "$1.$2.$3");
+    } else {
+        input.value = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{1,})/, "$1.$2.$3-$4");
+    }
 }
