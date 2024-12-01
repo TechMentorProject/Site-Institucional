@@ -135,6 +135,31 @@ function atualizarSenhaEmpresa(senhaNova, cnpj, senha) {
     return database.executar(instrucaoSql);
 }
 
+
+
+
+
+function pegarUsuariosComCargo(nomeCargo, fkCnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarUsuariosComCargo():", nomeCargo, fkCnpj);
+
+    var instrucaoSql = `
+        SELECT cpf, nomeUsuario FROM usuario 
+        WHERE fkNomeCargo = '${nomeCargo}' AND fkCnpj = '${fkCnpj}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizarCargoParaNull(cpf) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarCargoParaNull():", cpf);
+
+    var instrucaoSql = `
+        UPDATE usuario SET fkNomeCargo = null WHERE cpf = '${cpf}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function atualizarCargo(nomeCargo, novoNomeCargo, acessos, fkCnpj) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarCargo():", nomeCargo, novoNomeCargo, acessos, fkCnpj);
 
@@ -142,6 +167,16 @@ function atualizarCargo(nomeCargo, novoNomeCargo, acessos, fkCnpj) {
         UPDATE cargo SET acessos = '${acessos}', nomeCargo = '${novoNomeCargo}'
             WHERE nomeCargo = '${nomeCargo}' AND fkCnpj = '${fkCnpj}';
     `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizarCargoFuncionario(novoNomeCargo, cpf) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarCargoFuncionario():", novoNomeCargo, cpf);
+
+    var instrucaoSql = `
+        UPDATE usuario SET fkNomeCargo = '${novoNomeCargo}'
+        WHERE cpf = '${cpf}';`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -244,11 +279,16 @@ module.exports = {
     atualizarUsuario,
     atualizarEmpresa,
     atualizarSenhaEmpresa,
+
+    pegarUsuariosComCargo,
+    atualizarCargoParaNull,
     atualizarCargo,
+    atualizarCargoFuncionario,
 
     removerCargoUsuario,
     removerHistoricoUsuario,
     removerUsuario,
+
     inativarEmpresa,
     removerImagemEmpresa,
     removerCargo,

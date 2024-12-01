@@ -418,6 +418,8 @@ function atualizarCargo(req, res) {
     var acessos = req.body.acessos;
     var cnpj = req.body.cnpj;
 
+    let listaCpfs = []
+
     if (nomeCargo == undefined) {
         res.status(400).send("Seu nomeCargo está undefined!");
     } else if (novoNomeCargo == undefined) {
@@ -427,21 +429,89 @@ function atualizarCargo(req, res) {
     } else if (cnpj == undefined) {
         res.status(400).send("Sua cnpj está undefined!");
     } else {
-        usuarioModel.atualizarCargo(nomeCargo, novoNomeCargo, acessos, cnpj)
+        usuarioModel.pegarUsuariosComCargo(nomeCargo, cnpj)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    if (resultado.length == 0) {
+                        usuarioModel.atualizarCargo(nomeCargo, novoNomeCargo, acessos, cnpj)
+                            .then(
+                                function (resultado) {
+                                    res.status(200)
+                                }
+                            ).catch((e) => {
+                                console.log(e);
+                                console.log("\nHouve um erro ao realizar a atualização! Erro: ", e.sqlMessage);
+                                res.status(500).json(e.sqlMessage);
+                            }
+                            );
+                    } else {
+
+
+                        for (let i = 0; i < resultado.length; i++) {
+                            listaCpfs.push(resultado[i].cpf)
+                        }
+
+                        for (let i = 0; i < listaCpfs.length; i++) {
+
+                            usuarioModel.atualizarCargoParaNull(listaCpfs[i])
+                                .then(
+                                    function (resultado) {
+                                        console.log(i)
+                                        if (i + 1 == listaCpfs.length) {
+                                            usuarioModel.atualizarCargo(nomeCargo, novoNomeCargo, acessos, cnpj)
+                                                .then(
+                                                    function (resultado) {
+
+
+                                                        for (let i = 0; i < listaCpfs.length; i++) {
+                                                            usuarioModel.atualizarCargoFuncionario(novoNomeCargo, listaCpfs[i])
+                                                                .then(
+                                                                    function (resultado) {
+                                                                        if (i + 1 == listaCpfs.length) {
+                                                                            res.status(200)
+                                                                        }
+                                                                    }
+                                                                ).catch((e) => {
+                                                                    console.log(e);
+                                                                    console.log("\nHouve um erro ao realizar a atualização! Erro: ", e.sqlMessage);
+                                                                    res.status(500).json(e.sqlMessage);
+                                                                }
+                                                                );
+                                                        }
+
+
+                                                    }
+                                                ).catch((e) => {
+                                                    console.log(e);
+                                                    console.log("\nHouve um erro ao realizar a atualização! Erro: ", e.sqlMessage);
+                                                    res.status(500).json(e.sqlMessage);
+                                                }
+                                                );
+                                        }
+
+
+
+
+                                    }
+                                ).catch((e) => {
+                                    console.log(e);
+                                    console.log("\nHouve um erro ao realizar a atualização! Erro: ", e.sqlMessage);
+                                    res.status(500).json(e.sqlMessage);
+                                }
+                                );
+                        }
+
+                    }
+
                 }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar a atualização! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
+            ).catch((e) => {
+                console.log(e);
+                console.log("\nHouve um erro ao realizar a atualização! Erro: ", e.sqlMessage);
+                res.status(500).json(e.sqlMessage);
+            }
             );
+
+
     }
 }
 
@@ -571,29 +641,53 @@ function removerImagemEmpresa(req, res) {
     }
 }
 
+
+
+
+
 function removerCargo(req, res) {
     var cnpj = req.body.cnpj;
     var nomeCargo = req.body.nomeCargo;
+    let listaNomes = []
 
     if (cnpj == undefined) {
         res.status(400).send("Sua cnpj está undefined!");
     } else if (nomeCargo == undefined) {
         res.status(400).send("Sua nomeCargo está undefined!");
     } else {
-        usuarioModel.removerCargo(nomeCargo, cnpj)
+        usuarioModel.pegarUsuariosComCargo(nomeCargo, cnpj)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    console.log('Resultado')
+                    console.log(resultado)
+                    if (resultado.length == 0) {
+                        usuarioModel.removerCargo(nomeCargo, cnpj)
+                            .then(
+                                function (resultado) {
+                                    res.status(200).json('deletado')
+                                }
+                            ).catch((e) => {
+                                console.log(e);
+                                console.log("\nHouve um erro ao realizar a remoção! Erro: ", e.sqlMessage);
+                                res.status(500).json(e.sqlMessage);
+                            }
+                            );
+                    } else {
+                        for (let i = 0; i < resultado.length; i++) {
+                            listaNomes.push(resultado[i].nomeUsuario)
+                        }
+                        
+                        res.status(200).json({
+                            nomes: listaNomes
+                        });
+                    }
+
                 }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar a remoção! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
+            ).catch((e) => {
+                console.log(e);
+                console.log("\nHouve um erro ao realizar a remoção! Erro: ", e.sqlMessage);
+                res.status(500).json(e.sqlMessage);
+            }
             );
     }
 }
