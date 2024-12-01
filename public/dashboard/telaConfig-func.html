@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechMentor | Dashboard</title>
-    <link rel="stylesheet" href="css/telaConfig.css">
+    <link rel="stylesheet" href="css/telaConfig-func.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -96,14 +96,16 @@
 
             <div class="sub2">
                 <div class="painel">
-                    <div class="container-title">
-                        <div class="box-title">
-                            <p>Configurações</p>
-                        </div>
-                    </div>
+                    <h1>Cargos</h1>
 
-                    <div class="container-nome-empresa">
-                        <div class="box-nome-empresa">
+                    <div class="container-nome">
+                        <!-- Funcionario -->
+                        <!-- <div class="box-nome func">
+                            <span>Funcionário</span>
+                        </div> -->
+
+                        <!-- Empresa -->
+                        <div class="box-nome">
                             <span>Empresa</span>
                         </div>
                     </div>
@@ -111,16 +113,34 @@
                     <div class="container-config">
                         <div class="box-config">
                             <div class="container-dados">
-                                <div class="container-text-conta">
-                                    <div class="box-text-conta">
-                                        <span>Conta</span>
+                                <h2>Conta</h2>
+                                
+                                <!-- Funcionario -->
+                                <!-- <div id="func" class="container-perfil">
+                                    <div class="box-perfil">
+                                        <span>Nome de Exibição</span>
+                                        <input type="text" placeholder="[Nome atual]">
                                     </div>
-                                </div>
+                                    <div class="box-perfil">
+                                        <span>E-mail</span>
+                                        <input type="text" placeholder="[E-mail atual]">
+                                    </div>
+                                </div> -->
 
-                                <div class="container-perfil">
-                                    <div class="box-perfil"><span>Perfil</span></div>
-                                    <div class="box-perfil"><input type="text" placeholder="Nome da Empresa"></div>
-                                    <div class="box-perfil"><input type="text" placeholder="E-mail do responsável"></div>
+                                <!-- Empresa -->
+                                <div id="empresa" class="container-perfil">
+                                    <div class="box-perfil">
+                                        <span>Nome da Empresa</span>
+                                        <input type="text" placeholder="[Nome atual]">
+                                    </div>
+                                    <div class="box-perfil">
+                                        <span>Nome do Responsável</span>
+                                        <input type="text" placeholder="[Nome atual]">
+                                    </div>
+                                    <div class="box-perfil">
+                                        <span>E-mail da Empresa</span>
+                                        <input type="text" placeholder="[E-mail atual]">
+                                    </div>
                                 </div>
 
                                 <div class="container-button">
@@ -130,13 +150,20 @@
                                 <div class="container-perfil">
                                     <div class="box-perfil"><span>Mudança de senha</span></div>
                                     <div class="box-perfil"><input type="password" placeholder="Digite sua senha antiga"></div>
-                                    <div class="box-perfil"><input type="password" placeholder="Digite a senha nova"></div>
+                                    <div class="box-perfil"><input type="password" placeholder="Digite a senha nova">
+                                    </div>
                                 </div>
 
                                 <div class="container-button">
                                     <button class="button-senha" id="btn-mudar-senha">Mudar Senha</button>
                                 </div>
 
+                                <!-- Funcionario -->
+                                <!-- <div class="container-button-delete func">
+                                    <button class="button-apagar-conta" onclick="apagarConta()">Apagar Conta</button>
+                                </div> -->
+
+                                <!-- Empresa -->
                                 <div class="container-button-delete">
                                     <button class="button-apagar-conta" onclick="apagarConta()">Apagar Conta</button>
                                 </div>
@@ -148,14 +175,10 @@
                                     <div class="button-editar" onclick="editarImagem()"></div>
                                     <div class="button-excluir" onclick="excluir()"></div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
-                    
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -165,10 +188,9 @@
     </div>
 
     <!-- Pop-up de Sucesso -->
-<div id="popup-sucesso" class="popup hidden">
-    <p>Senha alterada com sucesso</p>
-</div>
-
+    <div id="popup-sucesso" class="popup hidden">
+        <p>Senha alterada com sucesso</p>
+    </div>
 
     <div id="modal-confirmacao" class="modal-confirmacao hidden">
         <div class="modal-content">
@@ -181,5 +203,6 @@
     </div>
 
 </body>
-<script src="js/modalConfig.js" defer></script>
+<script src="js/modalConfig-func.js" defer></script>
+
 </html>

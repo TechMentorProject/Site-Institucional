@@ -1,6 +1,7 @@
 // // validar()
 carregarFuncionarios()
 let usuarioExcluir;
+let emailAntigo;
 
 function carregarTela() {
     if (sessionStorage.EMPRESA == 'true') {
@@ -37,12 +38,12 @@ function exibirFuncionarios(nomes, emails, cargos) {
     document.getElementById('tabela').innerHTML = ''
     for (var i = 0; i < nomes.length; i++) {
         document.getElementById('tabela').innerHTML +=
-            `<tr id="${emails[i]}" class="user-item">
+            `<tr class="user-item">
                 <td id="nome-usuario" class="user-info">${nomes[i]}</td>
                 <td id="cargo-usuario" class="user-info">${cargos[i]}</td>
                 <td class="user-info">
                 <div class="container-edit">
-                <div onclick="editarUsuario(this)" class="edit-button"></div>
+                <div onclick="editarUsuario('${nomes[i]}', '${cargos[i]}', '${emails[i]}')" class="edit-button"></div>
                 <div onclick="abrirExcluir('${emails[i]}')"
                 class="remove-button"
                 role="button"
@@ -83,11 +84,8 @@ async function excluirUsuario() {
         });
 }
 
-function editarUsuario(elemento) {
-    let email = elemento.id;
-    let nome = elemento.querySelector("#nome-usuario").textContent;
-    let cargo = elemento.querySelector("#cargo-usuario").textContent;
-
+function editarUsuario(nome, cargo, email) {
+    emailAntigo = email
     document.getElementById('edit-modal-container').style.display = 'flex'
     document.getElementById('user-name').placeholder = nome
     document.getElementById('user-email').placeholder = email
@@ -103,7 +101,7 @@ function fechar() {
 
 async function atualizarUsuario() {
     return fetch(`/usuarios/atualizarUsuario`, {
-        method: "GET",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
@@ -111,15 +109,18 @@ async function atualizarUsuario() {
             nome: await document.getElementById('user-name').value,
             email: await document.getElementById('user-email').value,
             fkNomeCargo: await document.getElementById('user-role').value,
+            emailAntigo: emailAntigo
         })
     })
         .then(resposta => resposta.json())
         .then(res => {
             console.log(res)
+            window.location.href = ''
             return
         })
         .catch(error => {
             console.log(`#ERRO ao atualizar funcionário: ${error}`);
+            window.location.href = ''
             return null;
         });
 }
