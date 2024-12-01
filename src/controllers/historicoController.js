@@ -35,9 +35,31 @@ function validarAcesso(req, res) {
 
 
 
+
+function subtrairDias(dataInicial, dias, pattern = "yyyy-MM-dd") {
+    const data = new Date(dataInicial);
+    data.setDate(data.getDate() - dias);
+
+    const formatarData = (data) => {
+        const yyyy = data.getFullYear();
+        const MM = String(data.getMonth() + 1).padStart(2, '0');
+        const dd = String(data.getDate()).padStart(2, '0');
+        
+        return pattern
+            .replace("yyyy", yyyy)
+            .replace("MM", MM)
+            .replace("dd", dd);
+    };
+
+    return formatarData(data);
+}
+
+
 function verificarAcessos(req, res) {
-    var dataAtual = res.params.dataAtual;    
-    var dataAcesso = dataAtual.setDate(dataAtual.getDate() - req.params.dias);
+    console.log(req.params.dataAtual)
+    var dataAtual = Date(req.params.dataAtual);
+    var dataAcesso = subtrairDias(dataAtual, Number(req.params.dias))
+    // var dataAcesso = Date(dataAtual.setDate(dataAtual.getDate() - Number(req.params.dias)));
     var cnpj = req.params.cnpj;
 
     var qtdFuncionarios = 0;
@@ -74,7 +96,36 @@ function verificarAcessos(req, res) {
     }
 }
 
+function pegarFuncionariosSemAcesso(req, res) {
+    console.log(req.params.dataAtual)
+    var dataAtual = Date(req.params.dataAtual);
+    var dataAcesso = subtrairDias(dataAtual, Number(req.params.dias))
+    var cnpj = req.params.cnpj;
+    let listaNomes = []
+
+    if (dataAcesso == undefined) {
+        res.status(400).send("Seu dataAtual está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
+    } else {
+        historicoModel.pegarFuncionariosSemAcesso(cnpj, dataAcesso)
+            .then(
+                (resultado) => {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`);
+                    for(var i = 0; i < resultado.length; i++) {
+                        listaNomes.push(resultado[i])
+                    }
+                    res.status(200).json({
+                        nomes: listaNomes
+                    });
+                }
+            ).catch((e) => { console.log(e) });
+    }
+}
+
 module.exports = {
     validarAcesso,
-    verificarAcessos
+    verificarAcessos,
+    pegarFuncionariosSemAcesso
 }
