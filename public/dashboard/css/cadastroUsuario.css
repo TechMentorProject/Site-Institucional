@@ -18,6 +18,7 @@
     background-color: white;
     height: 95%;
     width: 95%;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -100,7 +101,7 @@ input:focus {
     display: flex;
     height: 30rem;
     width: 95%;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
 }
@@ -132,7 +133,8 @@ input:focus {
     min-height: 10rem;
     background-color: #b6b7b8;
     overflow-y: auto;
-    justify-content: space-evenly;
+    gap: 10px;
+    padding-top: 10px;
 }
 
 .user-list::-webkit-scrollbar {
@@ -272,7 +274,7 @@ input:focus {
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 10;
 }
 
 .modal-edit {
@@ -311,7 +313,7 @@ input:focus {
 
 .add-user-btn {
     position: absolute;
-    top: 8rem;
+    top: 12rem;
     right: 12.4rem;
     background-color: #43BAFF;
     color: white;
@@ -337,7 +339,7 @@ input:focus {
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 10;
 }
 
 .user-modal {

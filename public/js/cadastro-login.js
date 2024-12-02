@@ -217,7 +217,7 @@ function entrar() {
                     console.log("LOGIN REALIZADO!")
                     setInterval(() => {
                         window.location = "./dashboard/home.html"
-                    }, 4000)
+                    }, 1000)
                 }
             })
             .catch(function (resposta) {
@@ -267,7 +267,7 @@ function popUpLogin() {
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.style.marginTop = "50.5px";
@@ -286,7 +286,7 @@ function popUpCadastro() {
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.style.marginTop = "50.5px";
