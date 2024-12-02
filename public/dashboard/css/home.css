@@ -22,8 +22,8 @@
     width: 35vh;
 }
 
-.info .perfil {
-    background-image: url(../assets/usuario.png);
+.info .perfil {                    
+    background-position: center center;
     background-size: cover;
     position: absolute;
     bottom: 420px;
@@ -201,8 +201,6 @@
 
                         .img-perfil {
                             flex-shrink: 0;
-                            background-image: url("../assets/ícone-conta.svg");
-                            background-size: cover;
                             width: 60px;
                             height: 60px;
                             border-radius: 100%;

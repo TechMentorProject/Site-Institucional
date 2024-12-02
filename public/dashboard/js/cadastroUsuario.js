@@ -72,11 +72,9 @@ async function excluirUsuario() {
         .then(resposta => resposta.json())
         .then(res => {
             popUpOk('remocao');
-            console.log(res)
             document.getElementById('modal-container').style.display = 'none'
-            setInterval(() => {
-                window.location.reload();
-              }, 1500);
+            criarNotificaoEmpresa(`O funcionário ${document.getElementById('nome-adicionar').value} com o CPF ${document.getElementById('cpf-adicionar').value} foi removido com sucesso!`, sessionStorage.CNPJ)
+            window.location.reload();
             return
         })
         .catch(error => {
@@ -119,12 +117,13 @@ async function atualizarUsuario() {
         .then(resposta => resposta.json())
         .then(res => {
             console.log(res)
-            window.location.href = ''
+            criarNotificaoEmpresa(`O funcionário ${document.getElementById('nome-adicionar').value} com o CPF ${document.getElementById('cpf-adicionar').value} foi atualizado com sucesso!`, sessionStorage.CNPJ)
+            window.location.reload()
             return
         })
         .catch(error => {
             console.log(`#ERRO ao atualizar funcionário: ${error}`);
-            window.location.href = ''
+            window.location.reload()
             return null;
         });
 }
@@ -188,6 +187,7 @@ async function cadastrarUsuario() {
         .then(res => {
             popUpOk('cadastro')
             console.log(res)
+            criarNotificaoEmpresa(`O funcionário ${document.getElementById('nome-adicionar').value} com o CPF ${document.getElementById('cpf-adicionar').value} foi criado com sucesso!`, sessionStorage.CNPJ)
             fechar()
             return;
         })

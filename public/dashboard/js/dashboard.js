@@ -23,31 +23,52 @@ function validarCargo(pagina) {
     }
 }
 
-function carregarImagemPerfil() {
-    fetch("/usuarios/autenticarUsuario", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            email: sessionStorage.EMAIL_USUARIO,
-            senha: sessionStorage.SENHA_USUARIO
-        }),
-    })
-        .then(function (resposta) {
-            if (resposta.status == 200) {
-                resposta.json().then((res) => {
-                    return imagemPerfil || 'padraoUsuario.png';
-                })
-            } else {
-                return 'padraoUsuario.png';
-            }
+async function carregarImagemPerfil(empresa) {
+    if (empresa) {
+        return fetch("/usuarios/autenticarEmpresa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: sessionStorage.EMAIL_USUARIO,
+                senha: sessionStorage.SENHA_USUARIO
+            }),
         })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            return 'padraoUsuario.png';
-        });
-
+            .then(resposta => resposta.json())
+            .then(res => {
+                if (res.imagemPerfil != null && res.imagemPerfil != undefined) {
+                    return res.imagemPerfil
+                }
+                return 'padraoUsuario.png';
+            })
+            .catch(e => {
+                console.log(`#ERRO: ${e}`);
+                return 'padraoUsuario.png';
+            });
+    } else {
+        return fetch("/usuarios/autenticarUsuario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: sessionStorage.EMAIL_USUARIO,
+                senha: sessionStorage.SENHA_USUARIO
+            }),
+        })
+            .then(resposta => resposta.json())
+            .then(res => {
+                if (res.imagemPerfil != null && res.imagemPerfil != undefined) {
+                    return res.imagemPerfil
+                }
+                return 'padraoUsuario.png';
+            })
+            .catch(e => {
+                console.log(`#ERRO: ${e}`);
+                return 'padraoUsuario.png';
+            });
+    }
 }
 
 function criarNotificaoEmpresa(texto, cnpj) {
