@@ -5,11 +5,47 @@ function pegarUltimas(req, res) {
     var fkCnpj = req.params.fkCnpj;
     let listaTextos = []
     let listaDatas = []
+    let listaParaEmpresa = []
 
     if (fkCnpj == undefined) {
         res.status(400).send("Seu fkCnpj está undefined!");
     } else {
         notificacaoModel.pegarUltimas(quantidade, fkCnpj)
+        .then(
+            (resultado) => {
+                console.log(`\nResultados encontrados: ${resultado.length}`);
+                console.log(`Resultados: ${JSON.stringify(resultado)}`);
+                for (var i = 0; i < resultado.length; i++) {
+                    listaTextos.push(resultado[i].texto)
+                    listaDatas.push(resultado[i].dataCriacao)
+                    listaParaEmpresa.push(resultado[i].paraEmpresa)
+                }
+                res.status(200).json({
+                    textos: listaTextos,
+                    datas: listaDatas,
+                    paraEmpresas: listaParaEmpresa
+                });
+            }
+        ).catch((e) => {
+            console.log(e)
+            res.status(500)
+        }
+        );
+    }
+}
+
+
+
+function pegarUltimasFuncionario(req, res) {
+    var quantidade = 10;
+    var fkCnpj = req.params.fkCnpj;
+    let listaTextos = []
+    let listaDatas = []
+
+    if (fkCnpj == undefined) {
+        res.status(400).send("Seu fkCnpj está undefined!");
+    } else {
+        notificacaoModel.pegarUltimasFuncionario(quantidade, fkCnpj)
         .then(
             (resultado) => {
                 console.log(`\nResultados encontrados: ${resultado.length}`);
@@ -30,6 +66,8 @@ function pegarUltimas(req, res) {
         );
     }
 }
+
+
 
 
 
@@ -63,5 +101,6 @@ function adicionarParaEmpresa(req, res) {
 
 module.exports = {
     pegarUltimas,
+    pegarUltimasFuncionario,
     adicionarParaEmpresa
 }

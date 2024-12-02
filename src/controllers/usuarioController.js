@@ -54,7 +54,8 @@ function autenticarEmpresa(req, res) {
                             nomeResponsavel: resultado[0].nomeResponsavel,
                             cnpj: resultado[0].cnpj,
                             emailResponsavel: resultado[0].emailResponsavel,
-                            senha: resultado[0].senha
+                            senha: resultado[0].senha,
+                            imagemPerfil: resultado[0].imagemPerfil
                         });
                     } else {
                         res.status(403).send("Email ou senha inválido!")
@@ -247,6 +248,7 @@ function cadastrarUsuario(req, res) {
 }
 
 function cadastrarEmpresa(req, res) {
+    var imagemPerfil = "padraoUsuario.png";
     var nomeEmpresa = req.body.nomeEmpresa;
     var nomeResponsavel = req.body.nomeResponsavel;
     var cnpj = req.body.cnpj;
@@ -264,7 +266,7 @@ function cadastrarEmpresa(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        usuarioModel.cadastrarEmpresa(nomeEmpresa, nomeResponsavel, cnpj, emailResponsavel, senha)
+        usuarioModel.cadastrarEmpresa(nomeEmpresa, nomeResponsavel, cnpj, emailResponsavel, senha, imagemPerfil)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -375,6 +377,36 @@ function atualizarUsuario(req, res) {
     }
 }
 
+function atualizarSenhaUsuario(req, res) {
+    var senhaNova = req.body.senhaNova;
+    var cpf = req.body.cpf;
+    var senha = req.body.senhaAntiga;
+
+    if (senhaNova == undefined) {
+        res.status(400).send("Seu senhaNova está undefined!");
+    } else if (cpf == undefined) {
+        res.status(400).send("Sua cpf está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else {
+        usuarioModel.atualizarSenhaUsuario(senhaNova, cpf, senha)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a atualização! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function atualizarEmpresa(req, res) {
     var nomeEmpresa = req.body.nomeEmpresa;
     var nomeResponsavel = req.body.nomeResponsavel;
@@ -416,8 +448,8 @@ function atualizarSenhaEmpresa(req, res) {
     var cnpj = req.body.cnpj;
     var senha = req.body.senhaAntiga;
 
-    if (nomeEmpresa == undefined) {
-        res.status(400).send("Seu nomeEmpresa está undefined!");
+    if (senhaNova == undefined) {
+        res.status(400).send("Seu senhaNova está undefined!");
     } else if (cnpj == undefined) {
         res.status(400).send("Sua cnpj está undefined!");
     } else if (senha == undefined) {
@@ -622,6 +654,30 @@ function removerUsuario(req, res) {
     }
 }
 
+function removerImagemUsuario(req, res) {
+    var cpf = req.body.cpf;
+
+    if (cpf == undefined) {
+        res.status(400).send("Sua cpf está undefined!");
+    } else {
+        usuarioModel.removerImagemUsuario(cpf)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a remoção da imagem! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function inativarEmpresa(req, res) {
     var cnpj = req.body.cnpj;
 
@@ -727,17 +783,34 @@ function removerCargo(req, res) {
 
 
 
-
-function salvarFoto(req, res) {
+function salvarFotoUsuario(req, res) {
     var imagem = req.file.filename;
-    var idUsuario = req.params.idUsuario;
+    var cpf = req.params.cpf;
 
     if (imagem == undefined) {
         res.status(400).send("Seu imagem está undefined!");
-    } else if (idUsuario == undefined) {
-        res.status(400).send("Seu idUsuario está undefined!");
+    } else if (cpf == undefined) {
+        res.status(400).send("Seu cpf está undefined!");
     } else {
-        usuarioModel.salvarFoto(imagem, idUsuario)
+        usuarioModel.salvarFotoUsuario(imagem, cpf)
+            .then(resultado => {
+                res.status(201).send("Imagem alterada");
+            }).catch(err => {
+                res.status(500).send(err);
+            });
+    }
+}
+
+function salvarFotoEmpresa(req, res) {
+    var imagem = req.file.filename;
+    var cnpj = req.params.cnpj;
+
+    if (imagem == undefined) {
+        res.status(400).send("Seu imagem está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
+    } else {
+        usuarioModel.salvarFotoEmpresa(imagem, cnpj)
             .then(resultado => {
                 res.status(201).send("Imagem alterada");
             }).catch(err => {
@@ -760,14 +833,17 @@ module.exports = {
     cadastrarCargo,
 
     atualizarUsuario,
+    atualizarSenhaUsuario,
     atualizarEmpresa,
     atualizarSenhaEmpresa,
     atualizarCargo,
 
     removerUsuario,
+    removerImagemUsuario,
     inativarEmpresa,
     removerImagemEmpresa,
     removerCargo,
 
-    salvarFoto
+    salvarFotoUsuario,
+    salvarFotoEmpresa,
 }

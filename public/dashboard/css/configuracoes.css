@@ -191,10 +191,11 @@ input {
 }
 
 .box-image {
+    background-size: cover;
+    background-position: center center;
     width: 10rem;
     height: 10rem;
     margin-left: 3rem;
-    background-color: rgb(164, 163, 161);
     border-radius: 5px;
     cursor: pointer;
     display: flex;
@@ -206,18 +207,10 @@ input {
 
 .box-image:hover {
     transform: scale(1.2);
-    background-color: #e0e0e0;
 }
 
 .box-image::after {
-    content: "Inserir imagem";
-    color: #333;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    opacity: 0;
     transition: opacity 0.3s ease;
-    position: absolute;
 }
 
 .box-image:hover::after {
