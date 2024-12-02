@@ -183,6 +183,11 @@ function carregarGraficoFuncionarios(dados) {
     });
 }
 
+function destransformarCnpj(cnpj) {
+    let posicao = cnpj.length - 8;
+    return cnpj.substring(0, posicao) + "/" + cnpj.substring(posicao + 1);
+}
+
 
 
 
@@ -239,7 +244,7 @@ function pegarDadosEmp() {
     document.getElementById('dado2').innerHTML = sessionStorage.NOME_USUARIO || 'Nome inválido'
     document.getElementById('dado3').innerHTML = 'Dono'
     document.getElementById('email').innerHTML = sessionStorage.EMAIL_USUARIO || 'Email inválido'
-    document.getElementById('dado4').innerHTML = sessionStorage.CNPJ || 'CNPJ inválido'
+    document.getElementById('dado4').innerHTML = destransformarCnpj(sessionStorage.CNPJ) || 'CNPJ inválido'
 }
 
 function carregarHomeFuncionario() {

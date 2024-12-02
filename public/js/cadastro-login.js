@@ -106,6 +106,8 @@ function cadastrar() {
     }
 
     if (cadastroValido) {
+        cnpjVar = transformarCnpj(cnpjVar)
+
         fetch("/usuarios/cadastrarEmpresa", {
             method: "POST",
             headers: {
@@ -318,4 +320,8 @@ function mascaraCnpj(input) {
     } else {
         input.value = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{1,})/, "$1.$2.$3/$4-$5");
     }
+}
+
+function transformarCnpj(cnpj) {
+    return cnpj.replace("/", "-");
 }
