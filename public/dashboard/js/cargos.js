@@ -16,8 +16,10 @@ async function editarCargo() {
     if (await document.getElementById('estado-rs-edit').checked) novosAcessos.push('RS');
     if (await document.getElementById('estado-sc-edit').checked) novosAcessos.push('SC');
     if (await document.getElementById('estado-sp-edit').checked) novosAcessos.push('SP');
+
     if (novosAcessos.length == 0) {
-        alert('pelo menos 1 estado')
+        popUpNotOk('quantAcesso')
+
     } else {
         if (await document.getElementById('operadora-claro-edit').checked) novosAcessos.push('CLARO');
         if (await document.getElementById('operadora-oi-edit').checked) novosAcessos.push('OI');
@@ -25,15 +27,22 @@ async function editarCargo() {
         if (await document.getElementById('operadora-vivo-edit').checked) novosAcessos.push('VIVO');
         let nomeNovo = await document.getElementById('cargo-name-edit').value
         if (nomeNovo.length <= 2) {
-            alert('nome de cargo muito pequeno')
+            popUpNotOk('nomePequeno')
+
             document.getElementById('edit-modal-container').style.display = 'none'
+
         } else if (novosAcessos.length <= 0) {
             alert('selecione um acesso pelo menos')
+
             document.getElementById('edit-modal-container').style.display = 'none'
+
         } else {
             atualizarCargo(novosAcessos, nomeNovo)
-            window.location.reload()
-            alert('atualizado')
+            popUpOk('atualizacao')
+
+            setInterval(() => {
+                window.location.reload()
+            }, 1500);
             document.getElementById('edit-modal-container').style.display = 'none'
             criarNotificaoEmpresa(`O cargo ${nomeNovo} foi atualizado com sucesso!`, sessionStorage.CNPJ)
         }
@@ -55,6 +64,7 @@ async function atualizarCargo(acessos, nomeNovo) {
     })
         .then(resposta => resposta.json())
         .then(res => {
+            popUpOk('atualizacao')
             console.log(res)
             return
         })
@@ -128,8 +138,10 @@ async function criarCargo() {
     if (await document.getElementById('estado-rs').checked) novosAcessos.push('RS');
     if (await document.getElementById('estado-sc').checked) novosAcessos.push('SC');
     if (await document.getElementById('estado-sp').checked) novosAcessos.push('SP');
+
     if (novosAcessos.length == 0) {
-        alert('pelo menos 1 estado')
+        popUpNotOk('quantAcesso')
+
     } else {
         if (await document.getElementById('operadora-claro').checked) novosAcessos.push('CLARO');
         if (await document.getElementById('operadora-oi').checked) novosAcessos.push('OI');
@@ -138,9 +150,11 @@ async function criarCargo() {
         let nomeNovo = await document.getElementById('adicionar-nome').value
 
         if (nomeNovo.length <= 2) {
-            alert('nome de cargo muito pequeno')
+            popUpNotOk('nomePequeno')
+
         } else if (novosAcessos.length <= 0) {
             alert('selecione um acesso pelo menos')
+
         } else {
             cadastrarCargo(novosAcessos, nomeNovo)
             criarNotificaoEmpresa(`O cargo ${nomeNovo} com os acessos: ${novosAcessos} foi criado com sucesso!`, sessionStorage.CNPJ)
@@ -162,15 +176,16 @@ async function cadastrarCargo(acessos, nome) {
     })
         .then(resposta => resposta.json())
         .then(res => {
+            popUpOk('cadastro')
             console.log(res)
-            window.location.reload()
-            alert('criado')
+            setInterval(() => {
+                window.location.reload() = '';
+            }, 1500);
             return
         })
         .catch(error => {
             console.log(`#ERRO ao cadastrar cargo: ${error}`);
             window.location.reload()
-            alert('erro na criação')
             return null;
         });
 }
@@ -215,17 +230,26 @@ async function confirmarExcluir() {
 
     if (dados == null) {
         alert('erro ao deletar')
+
         document.getElementById('remove-modal-container').style.display = 'none'
     } else if (dados == 'deletado') {
-        alert('deletado')
-        window.location.reload()
+        popUpOk('remocao')
+
+        setInterval(() => {
+            window.location.reload()
+        }, 1500);
         document.getElementById('remove-modal-container').style.display = 'none'
         criarNotificaoEmpresa(`O cargo ${nomeAntigo} foi removido com sucesso!`, sessionStorage.CNPJ)
     } else {
         for (let i = 0; i < dados.nomes.length; i++) {
             usuariosNaoDeletados.push(dados.nomes[i])
         }
-        alert('Usuários com este cargo: ' + usuariosNaoDeletados)
+
+        popUpNotOk('comCargo', usuariosNaoDeletados)
+        setInterval(() => {
+            window.location.reload()
+        }, 1500);
+
         document.getElementById('remove-modal-container').style.display = 'none'
     }
 }
@@ -253,3 +277,60 @@ async function removerCargo() {
         });
 }
 
+
+function popUpOk(tipo) {
+    let mensagem = ''
+
+    if (tipo == 'cadastro') {
+        mensagem = 'Cargo criado com sucesso!'
+
+    } else if (tipo == 'remocao') {
+        mensagem = 'Cargo removido!'
+
+    } else if (tipo == 'atualizacao') {
+        mensagem = 'Cargo atualizado!'
+
+    }
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
+        didOpen: (toast) => {
+            toast.style.marginTop = "50.5px";
+        }
+    });
+    Toast.fire({
+        iconColor: "#43BAFF",
+        icon: "success",
+        title: mensagem
+    });
+}
+
+function popUpNotOk(tipo, usuariosNaoDeletados) {
+    if (tipo == 'quantAcesso') {
+        mensagem = 'Selecione ao menos um Estado.'
+
+    } else if (tipo == 'nomePequeno') {
+        mensagem = `Nome de cargo muito pequeno.`
+    
+    } else if (tipo == 'comCargo') {
+        mensagem = `Há usuários utilizando este cargo:
+        ${usuariosNaoDeletados}`
+    }
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
+        didOpen: (toast) => {
+            toast.style.marginTop = "50.5px";
+        }
+    });
+    Toast.fire({
+        icon: "error",
+        title: mensagem
+    });
+}
