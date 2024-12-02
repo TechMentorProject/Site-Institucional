@@ -1,10 +1,37 @@
 carregarDados()
 
+
 function carregarDados() {
-    document.getElementById('nome_empresa').placeholder = sessionStorage.NOME_EMPRESA || '';
-    document.getElementById('nome_responsavel').placeholder = sessionStorage.NOME_RESPONSAVEL || '';
-    document.getElementById('email_responsavel').placeholder = sessionStorage.EMAIL_RESPONSAVEL || '';
+    document.getElementById('nome_empresa').value = sessionStorage.NOME_EMPRESA || '';
+    document.getElementById('nome_responsavel').value = sessionStorage.NOME_USUARIO || '';
+    document.getElementById('email_responsavel').value = sessionStorage.EMAIL_USUARIO || '';
     document.getElementById('imagem-perfil').style.backgroundImage = `url(../assets/${carregarImagemPerfil()})`;
+}
+carregarPagina();
+
+function carregarPagina(){
+    if (sessionStorage.EMPRESA === "false") {
+        const isEmpresaFalse = sessionStorage.EMPRESA === "false"; // Converte em booleano
+        if (isEmpresaFalse) {
+            document.getElementById('usuario').innerHTML = `
+            <div class="box-nome func">
+                <span>Funcionário</span>
+            </div>
+            `;
+    
+            document.getElementById('perfil').innerHTML = `
+            <div class="box-perfil">
+                <span>Nome de Exibição</span>
+                <input type="text" placeholder="[Nome atual]">
+            </div>
+            <div class="box-perfil">
+                <span>E-mail</span>
+                <input type="text" placeholder="[E-mail atual]">
+            </div>`;
+    
+            document.getElementById('button-delete').className = 'container-button-delete func';
+        }
+    }
 }
 
 function salvarAlteracoes() {
@@ -14,15 +41,15 @@ function salvarAlteracoes() {
 
     let listaAlteracoes = []
     if(document.getElementById('nome_empresa').value != '') {
-        listaAlteracoes += `Nome da Empresa: ${document.getElementById('nome_empresa').value}`
+        listaAlteracoes += `${document.getElementById('nome_empresa').value},\n`
         nomeEmpresa = true;
     }
     if(document.getElementById('nome_responsavel').value != '') {
-        listaAlteracoes += `Nome do Responsável: ${document.getElementById('nome_responsavel').value}`
+        listaAlteracoes += `${document.getElementById('nome_responsavel').value},\n`
         nomeResp = true;
     }
     if(document.getElementById('email_responsavel').value != '') {
-        listaAlteracoes += `Email do Responvável: ${document.getElementById('email_responsavel').value}`
+        listaAlteracoes += `${document.getElementById('email_responsavel').value}`
         emailResp = true;
     }
 
@@ -31,7 +58,7 @@ function salvarAlteracoes() {
     } else {
         Swal.fire({
             title: "Confirmação",
-            text: `Realmente deseja alterar os campos: \n${listaAlteracoes.join('\n')}?`,
+            text: `Realmente deseja alterar para os dados: \n${listaAlteracoes}?`,
             icon: "question",
             showCancelButton: true,
             confirmButtonText: "Sim",
@@ -131,7 +158,7 @@ async function alterarSenha(senhaNova, cnpj, senhaAntiga) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            senhaNova: senhaNova,
+            senhaAntiga: senhaNova,
             cnpj: cnpj,
             senhaAntiga: senhaAntiga,
         })

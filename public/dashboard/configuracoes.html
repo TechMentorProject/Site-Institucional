@@ -14,10 +14,11 @@
 
     <link rel="icon" href="./assets/TechMentor-Logo.ico" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/dashboard.js"></script>
 
 </head>
 
-<body>
+<body onload="carregarPagina(), validar()">
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
@@ -100,7 +101,7 @@
                 <div class="painel">
                     <h1>Configurações</h1>
 
-                    <div class="container-nome">
+                    <div class="container-nome" id="usuario">
                         <div class="box-nome">
                             <span>Empresa</span>
                         </div>
@@ -111,18 +112,18 @@
                             <div class="container-dados">
                                 <h2>Conta</h2>
 
-                                <div id="empresa" class="container-perfil">
+                                <div id="perfil" class="container-perfil">
                                     <div class="box-perfil">
                                         <span>Nome da Empresa</span>
-                                        <input type="text" id="nome_empresa" placeholder="">
+                                        <input type="text" id="nome_empresa">
                                     </div>
                                     <div class="box-perfil">
                                         <span>Nome do Responsável</span>
-                                        <input type="text" id="nome_responsavel" placeholder="">
+                                        <input type="text" id="nome_responsavel">
                                     </div>
                                     <div class="box-perfil">
                                         <span>E-mail da Empresa</span>
-                                        <input type="text" id="email_responsavel" placeholder="">
+                                        <input type="text" id="email_responsavel">
                                     </div>
                                 </div>
 
@@ -142,7 +143,7 @@
                                     <button class="button-senha" onclick="mudarSenha()">Mudar Senha</button>
                                 </div>
 
-                                <div class="container-button-delete">
+                                <div class="container-button-delete" id="button-delete">
                                     <button class="button-apagar-conta" onclick="apagarConta()">Apagar Conta</button>
                                 </div>
                             </div>

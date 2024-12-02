@@ -206,7 +206,7 @@ function validarSenha() {
 function validarCpf() {
     let cpf = document.getElementById('cpf-adicionar').value;
 
-    if (cpf.length !== 11) {
+    if (cpf.length !== 14) {
         alert("CPF inválido. Deve conter 11 dígitos.");
         return false;  
     }
