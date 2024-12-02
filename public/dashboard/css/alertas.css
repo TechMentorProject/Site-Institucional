@@ -118,3 +118,10 @@ p {
     border-radius: 0 0 8px 8px;
     background-color: #43BAFF;
 }
+
+.claro {
+    width: 60vw; 
+    height: 1rem;
+    border-radius: 0 0 8px 8px;
+    background-color: #9edbff;
+}

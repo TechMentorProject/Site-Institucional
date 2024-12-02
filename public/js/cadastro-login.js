@@ -106,6 +106,8 @@ function cadastrar() {
     }
 
     if (cadastroValido) {
+        cnpjVar = transformarCnpj(cnpjVar)
+
         fetch("/usuarios/cadastrarEmpresa", {
             method: "POST",
             headers: {
@@ -217,7 +219,7 @@ function entrar() {
                     console.log("LOGIN REALIZADO!")
                     setInterval(() => {
                         window.location = "./dashboard/home.html"
-                    }, 4000)
+                    }, 1000)
                 }
             })
             .catch(function (resposta) {
@@ -267,7 +269,7 @@ function popUpLogin() {
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.style.marginTop = "50.5px";
@@ -286,7 +288,7 @@ function popUpCadastro() {
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.style.marginTop = "50.5px";
@@ -297,4 +299,29 @@ function popUpCadastro() {
         icon: "success",
         title: "Cadastrado com sucesso!"
     });
+}
+
+function mascaraCnpj(input) {
+
+    let cnpj = input.value.replace(/\D/g, "");
+
+    if (cnpj.length > 14) {
+        cnpj = cnpj.slice(0, 14);
+    }
+
+    if (cnpj.length <= 2) {
+        input.value = cnpj;
+    } else if (cnpj.length <= 5) {
+        input.value = cnpj.replace(/(\d{2})(\d{1,})/, "$1.$2");
+    } else if (cnpj.length <= 8) {
+        input.value = cnpj.replace(/(\d{2})(\d{3})(\d{1,})/, "$1.$2.$3");
+    } else if (cnpj.length <= 12) {
+        input.value = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{1,})/, "$1.$2.$3/$4");
+    } else {
+        input.value = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{1,})/, "$1.$2.$3/$4-$5");
+    }
+}
+
+function transformarCnpj(cnpj) {
+    return cnpj.replace("/", "-");
 }

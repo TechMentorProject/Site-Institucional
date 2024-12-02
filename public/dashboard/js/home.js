@@ -1,8 +1,9 @@
-// validar()
+validar()
 carregarHome()
+let grafico;
 
-function carregarHome() {
-    pegarCargo()
+async function carregarHome() {
+    await pegarCargo()
     if (sessionStorage.EMPRESA == 'true') {
         carregarVisualEmpresa()
         carregarHomeEmpresa()
@@ -49,17 +50,18 @@ async function pegarCargo() {
 
 
 function carregarVisualEmpresa() {
+    document.getElementById('painel-principal').className = "painel empresa"
     document.getElementById('painel-principal').innerHTML =`
         <div class="box">
             <div class="conteudo1">
                 <h2>Gerenciamento de Acessos</h2>
                 <div class="dashboard">
-                    <p>Acessos do Funcionário nos Últimos <select id="dias-grafico">
+                    <p>Acessos do Funcionário nos Últimos <select onChange="carregarHomeEmpresa()" id="dias-grafico">
                     <option value="7">7</option>
                     <option value="15">15</option>
                     <option value="30">30</option>
                     </select> Dias</p>
-                    <div id="chartContainer" style="position: relative; width: 300px; height: 300px;">
+                    <div id="chartContainer" style="position: relative; min-width: 300px; min-height: 300px;">
                         <canvas id="myChart"></canvas>
                     </div>
                 </div>
@@ -75,9 +77,12 @@ function carregarVisualEmpresa() {
 }
 
 function carregarVisualFuncionario() {
+    document.getElementById('painel-principal').className = "painel func"
     document.getElementById('painel-principal').innerHTML =`
+    <h2 id="titulo-utlimas-mensagens" clas="titulo">Últimas mensagens</h2>
     <div class="mensagens">
-        <h2 id="titulo-utlimas-mensagens">Últimas mensagens</h2>
+        <div class="msg"></div>
+        <div class="msg"></div>
     </div>
     <div class="permissoes">
         <h2>Permissões</h2>
@@ -91,17 +96,21 @@ function carregarVisualFuncionario() {
 
 
 async function carregarHomeEmpresa() {
+    document.getElementById('perfil').style.backgroundImage = `url("../assets/users/${await carregarImagemPerfil(true)}")`;
     let dados = await pegarDadosFuncionarios(await document.getElementById('dias-grafico').value)
     carregarGraficoFuncionarios(dados)
     pegarFuncionarios(await document.getElementById('dias-grafico').value)
 }
 
 async function pegarFuncionarios(dias) {
+    document.getElementById('perfis-funcionarios').innerHTML = ``
     let pessoas = await pegarDadosSemAcesso(dias)
-    for (var i = 0; i < pessoas.length; i++) {
+    let nomes = pessoas[0]
+    let cpfs = pessoas[1]
+    for (var i = 0; i < nomes.length; i++) {
         document.getElementById('perfis-funcionarios').innerHTML += `
         <div class="perfil">
-            <span>${pessoas[i].cpf} - ${pessoas[i].nome}</span>
+            <span>${cpfs} - ${nomes}</span>
         </div>`
     }
     // <div class="img-perfil"></div>
@@ -118,7 +127,7 @@ async function pegarDadosSemAcesso(dias) {
         .then(resposta => resposta.json())
         .then(res => {
             console.log(res)
-            return res.nomes
+            return [res.nomes, res.cpfs]
         })
         .catch(error => {
             console.log(`#ERRO ao buscar cobertura: ${error}`);
@@ -149,8 +158,14 @@ async function pegarDadosFuncionarios(dias) {
 
 function carregarGraficoFuncionarios(dados) {
     const ctxGrafico = document.getElementById('myChart');
-    
-    new Chart(ctxGrafico, {
+
+    // Destrua o gráfico existente, se houver
+    if (grafico) {
+        grafico.destroy();
+    }
+
+    // Crie o novo gráfico e armazene na variável global
+    grafico = new Chart(ctxGrafico, {
         type: 'pie',
         data: {
             labels: ['Comparecido', 'Não compareceu'],
@@ -212,8 +227,7 @@ function carregarGraficoFuncionarios(dados) {
 
 
 async function carregarDadosFunc() {
-    let imagem = await carregarImagemPerfil()
-    document.getElementById('perfil').backgroundImage = `url(../assets/${imagem})`;
+    document.getElementById('perfil').style.backgroundImage = `url("../assets/users/${await carregarImagemPerfil(false)}")`;
     pegarCargo()
     pegarDadosFunc()
 }
@@ -226,12 +240,17 @@ async function pegarDadosFunc() {
     document.getElementById('dado4').innerHTML = sessionStorage.CPF || 'CPF inválido'
 }
 
+function destransformarCnpj(cnpj) {
+    let posicao = cnpj.length - 8;
+    return cnpj.substring(0, posicao) + "/" + cnpj.substring(posicao + 1);
+}
+
 function pegarDadosEmp() {
     document.getElementById('dado1').innerHTML = sessionStorage.NOME_EMPRESA || 'Empresa inválida'
     document.getElementById('dado2').innerHTML = sessionStorage.NOME_USUARIO || 'Nome inválido'
     document.getElementById('dado3').innerHTML = 'Dono'
     document.getElementById('email').innerHTML = sessionStorage.EMAIL_USUARIO || 'Email inválido'
-    document.getElementById('dado4').innerHTML = sessionStorage.CNPJ || 'CNPJ inválido'
+    document.getElementById('dado4').innerHTML = destransformarCnpj(sessionStorage.CNPJ) || 'CNPJ inválido'
 }
 
 function carregarHomeFuncionario() {

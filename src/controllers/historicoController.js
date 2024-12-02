@@ -44,7 +44,7 @@ function subtrairDias(dataInicial, dias, pattern = "yyyy-MM-dd") {
         const yyyy = data.getFullYear();
         const MM = String(data.getMonth() + 1).padStart(2, '0');
         const dd = String(data.getDate()).padStart(2, '0');
-        
+
         return pattern
             .replace("yyyy", yyyy)
             .replace("MM", MM)
@@ -97,30 +97,58 @@ function verificarAcessos(req, res) {
 }
 
 function pegarFuncionariosSemAcesso(req, res) {
-    console.log(req.params.dataAtual)
     var dataAtual = Date(req.params.dataAtual);
     var dataAcesso = subtrairDias(dataAtual, Number(req.params.dias))
     var cnpj = req.params.cnpj;
     let listaNomes = []
+    let listaCpfs = []
+    let listaAcesso = []
 
     if (dataAcesso == undefined) {
         res.status(400).send("Seu dataAtual está undefined!");
     } else if (cnpj == undefined) {
         res.status(400).send("Seu cnpj está undefined!");
     } else {
-        historicoModel.pegarFuncionariosSemAcesso(cnpj, dataAcesso)
+
+        historicoModel.pegarFuncionarios(cnpj)
             .then(
                 (resultado) => {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultado)}`);
-                    for(var i = 0; i < resultado.length; i++) {
-                        listaNomes.push(resultado[i])
-                    }
-                    res.status(200).json({
-                        nomes: listaNomes
-                    });
+
+
+                    historicoModel.pegarFuncionariosComAcesso(cnpj, dataAcesso)
+                        .then(
+                            (resultado2) => {
+                                console.log(`\nResultados encontrados: ${resultado2.length}`);
+                                console.log(`Resultados: ${JSON.stringify(resultado2)}`);
+
+                                for (let i = 0; i < resultado.length; i++) {
+                                    for (let j = 0; j < resultado2.length; j++) {
+                                        if (resultado[i].cpf == resultado2[j].cpf) {
+                                            listaAcesso.push(i)
+                                        }
+                                    }
+                                }
+                                
+                                for (let k = 0; k < resultado.length; k++) {
+                                    if (!listaAcesso.includes(k)) {
+                                        console.log('teste', k)
+                                        listaNomes.push(resultado[k].nomeUsuario)
+                                        listaCpfs.push(resultado[k].cpf)
+                                    }
+                                }
+
+                                res.status(200).json({
+                                    nomes: listaNomes,
+                                    cpfs: listaCpfs
+                                });
+                            }
+                        ).catch((e) => { console.log(e) });
                 }
             ).catch((e) => { console.log(e) });
+
+
     }
 }
 

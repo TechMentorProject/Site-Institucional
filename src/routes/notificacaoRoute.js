@@ -3,6 +3,10 @@ var router = express.Router();
 
 var notificacaoController = require("../controllers/notificacaoController");
 
+router.get("/pegarUltimasFuncionario/:fkCnpj", function (req, res) {
+    notificacaoController.pegarUltimasFuncionario(req, res);
+});
+
 router.get("/pegarUltimas/:fkCnpj", function (req, res) {
     notificacaoController.pegarUltimas(req, res);
 });

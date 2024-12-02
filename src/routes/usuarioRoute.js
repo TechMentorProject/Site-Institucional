@@ -22,6 +22,10 @@ router.post("/pegarCargo", function (req, res) {
     usuarioController.pegarCargo(req, res);
 });
 
+router.post("/pegarCargoFuncionario", function (req, res) {
+    usuarioController.pegarCargoFuncionario(req, res);
+});
+
 router.get("/pegarFuncionariosPorEmpresa/:cnpj", function (req, res) {
     usuarioController.pegarFuncionariosPorEmpresa(req, res);
 });
@@ -58,6 +62,10 @@ router.put("/atualizarUsuario", upload.single('foto'), function (req, res) {
     usuarioController.atualizarUsuario(req, res);
 });
 
+router.put("/atualizarSenhaUsuario", function (req, res) {
+    usuarioController.atualizarSenhaUsuario(req, res);
+});
+
 router.put("/atualizarEmpresa", function (req, res) {
     usuarioController.atualizarEmpresa(req, res);
 });
@@ -79,6 +87,10 @@ router.delete("/removerUsuario", function (req, res) {
     usuarioController.removerUsuario(req, res);
 });
 
+router.put("/removerImagemUsuario", function (req, res) {
+    usuarioController.removerImagemUsuario(req, res);
+});
+
 router.delete("/inativarEmpresa", function (req, res) {
     usuarioController.inativarEmpresa(req, res);
 });
@@ -93,8 +105,12 @@ router.delete("/removerCargo", function (req, res) {
 
 
 
-router.post("/alterarFoto/:idUsuario", upload.single('foto'), (req, res) => {
-    usuarioController.salvarFoto(req, res);
+router.post("/alterarFotoEmpresa/:cnpj", upload.single('foto'), (req, res) => {
+    usuarioController.salvarFotoEmpresa(req, res);
+});
+
+router.post("/alterarFotoUsuario/:cpf", upload.single('foto'), (req, res) => {
+    usuarioController.salvarFotoUsuario(req, res);
 });
 
 module.exports = router;
