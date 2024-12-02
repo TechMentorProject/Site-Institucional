@@ -18,7 +18,7 @@
 
 </head>
 
-<body onload="carregarPagina(), validar()">
+<body onload="validar()">
     <div class="navbar">
         <div class="nav"></div>
         <div class="navbar-Child">
@@ -102,9 +102,7 @@
                     <h1>Configurações</h1>
 
                     <div class="container-nome" id="usuario">
-                        <div class="box-nome">
-                            <span>Empresa</span>
-                        </div>
+                        <!-- Conteudo no js -->
                     </div>
 
                     <div class="container-config">
@@ -113,18 +111,7 @@
                                 <h2>Conta</h2>
 
                                 <div id="perfil" class="container-perfil">
-                                    <div class="box-perfil">
-                                        <span>Nome da Empresa</span>
-                                        <input type="text" id="nome_empresa">
-                                    </div>
-                                    <div class="box-perfil">
-                                        <span>Nome do Responsável</span>
-                                        <input type="text" id="nome_responsavel">
-                                    </div>
-                                    <div class="box-perfil">
-                                        <span>E-mail da Empresa</span>
-                                        <input type="text" id="email_responsavel">
-                                    </div>
+                                    <!-- Conteudo no js -->
                                 </div>
 
                                 <div class="container-button">
@@ -150,18 +137,19 @@
 
                             <div class="container-image">
                                 <div id="imagem-perfil" class="box-image"></div>
-                                    <div class="container-buttons">
-                                        <input type="file" id="upload-image" class="hidden-input">
-                                        <button class="button-editar" onclick="document.getElementById('upload-image').click();"></button>
-                                        <div class="button-excluir" onclick="excluirImagem()"></div>
-                                    </div>
-                                </div>   
+                                <div class="container-buttons">
+                                    <input type="file" id="upload-image" class="hidden-input">
+                                    <button class="button-editar"
+                                        onclick="document.getElementById('upload-image').click();"></button>
+                                    <div class="button-excluir" onclick="excluirImagem()"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
 </body>

@@ -1,38 +1,70 @@
-carregarDados()
-
-
 function carregarDados() {
-    document.getElementById('nome_empresa').value = sessionStorage.NOME_EMPRESA || '';
-    document.getElementById('nome_responsavel').value = sessionStorage.NOME_USUARIO || '';
-    document.getElementById('email_responsavel').value = sessionStorage.EMAIL_USUARIO || '';
+    if (sessionStorage.EMPRESA === "false") {
+        // Modo Funcionário
+        document.getElementById('nome_func').value = sessionStorage.NOME_USUARIO || '';
+        document.getElementById('email_func').value = sessionStorage.EMAIL_USUARIO || '';
+    } else {
+        // Modo Empresa
+        document.getElementById('nome_empresa').value = sessionStorage.NOME_EMPRESA || '';
+        document.getElementById('nome_responsavel').value = sessionStorage.NOME_USUARIO || '';
+        document.getElementById('email_responsavel').value = sessionStorage.EMAIL_USUARIO || '';
+    }
+    // Sempre carregar a imagem do perfil
     document.getElementById('imagem-perfil').style.backgroundImage = `url(../assets/${carregarImagemPerfil()})`;
 }
+
 carregarPagina();
 
-function carregarPagina(){
+function carregarPagina() {
     if (sessionStorage.EMPRESA === "false") {
-        const isEmpresaFalse = sessionStorage.EMPRESA === "false"; // Converte em booleano
-        if (isEmpresaFalse) {
-            document.getElementById('usuario').innerHTML = `
+        // Altera o layout para o modo Funcionário
+        document.getElementById('usuario').innerHTML = `
             <div class="box-nome func">
                 <span>Funcionário</span>
             </div>
-            `;
-    
-            document.getElementById('perfil').innerHTML = `
+        `;
+        document.getElementById('perfil').innerHTML = `
             <div class="box-perfil">
                 <span>Nome de Exibição</span>
-                <input type="text" placeholder="[Nome atual]">
+                <input type="text" id="nome_func" placeholder="[Nome atual]">
             </div>
             <div class="box-perfil">
                 <span>E-mail</span>
-                <input type="text" placeholder="[E-mail atual]">
-            </div>`;
+                <input type="text" id="email_func" placeholder="[E-mail atual]">
+            </div>
+        `;
+
+        document.getElementById('button-delete').className = 'container-button-delete func';
     
-            document.getElementById('button-delete').className = 'container-button-delete func';
-        }
+    } else {
+        
+        document.getElementById('usuario').innerHTML = `
+            <div class="box-nome">
+                <span>Empresa</span>
+            </div>
+        `;
+
+        document.getElementById('perfil').innerHTML = `
+            <div class="box-perfil">
+                <span>Nome da Empresa</span>
+                <input type="text" id="nome_empresa">
+            </div>
+            <div class="box-perfil">
+                <span>Nome do Responsável</span>
+                <input type="text" id="nome_responsavel">
+            </div>
+            <div class="box-perfil">
+                <span>E-mail da Empresa</span>
+                <input type="text" id="email_responsavel">
+            </div>
+        `;
+
+        document.getElementById('button-delete').className = 'container-button-delete';
     }
+
+    carregarDados();
 }
+
 
 function salvarAlteracoes() {
     let nomeEmpresa = false;
@@ -40,15 +72,15 @@ function salvarAlteracoes() {
     let emailResp = false;
 
     let listaAlteracoes = []
-    if(document.getElementById('nome_empresa').value != '') {
+    if (document.getElementById('nome_empresa').value != '') {
         listaAlteracoes += `${document.getElementById('nome_empresa').value},\n`
         nomeEmpresa = true;
     }
-    if(document.getElementById('nome_responsavel').value != '') {
+    if (document.getElementById('nome_responsavel').value != '') {
         listaAlteracoes += `${document.getElementById('nome_responsavel').value},\n`
         nomeResp = true;
     }
-    if(document.getElementById('email_responsavel').value != '') {
+    if (document.getElementById('email_responsavel').value != '') {
         listaAlteracoes += `${document.getElementById('email_responsavel').value}`
         emailResp = true;
     }
@@ -100,7 +132,7 @@ async function alterarDados(nomeEmp, nomeResp, emailResp) {
                     sessionStorage.NOME_EMPRESA = nomeEmp == false ? res.nomeEmpresa : nomeEmp
                     sessionStorage.NOME_RESPONSAVEL = nomeResp == false ? res.nomeResponsavel : nomeResp
                     sessionStorage.EMAIL_RESPONSAVEL = emailResp == false ? res.emailResponsavel : emailResp
-                    window.location = './configuracoes.html'   
+                    window.location = './configuracoes.html'
                 })
                 .catch(error => {
                     console.log(`#ERRO ao atualizar os dados: ${error}`);
@@ -125,7 +157,7 @@ async function mudarSenha() {
         } else if (tentativaSenha.length < 7) {
             Swal.fire("Senha muito pequena")
         } else {
-            alterarSenha(novaSenha, )
+            alterarSenha(novaSenha,)
         }
     }
 }
@@ -139,9 +171,9 @@ async function validarSenha(tentativaSenha) {
     })
         .then(resposta => resposta.json())
         .then(res => {
-            if(res.senha == tentativaSenha) { 
+            if (res.senha == tentativaSenha) {
                 return [res.cnpj, res.senha];
-            } else { 
+            } else {
                 return false;
             }
         })
@@ -163,19 +195,19 @@ async function alterarSenha(senhaNova, cnpj, senhaAntiga) {
             senhaAntiga: senhaAntiga,
         })
     })
-    .then((resposta) => {
-        if (resposta.ok) {
-            sessionStorage.SENHA_USUARIO = senhaNova;
-            Swal.fire("Sucesso", "Senha alterada com sucesso!", "success");
-        } else {
-            throw new Error("Erro ao alterar senha.");
-        }
-    })
-    .catch((error) => {
-        console.error(`#ERRO ao atualizar senha: ${error}`);
-        Swal.fire("Erro", "Não foi possível alterar a senha", "error");
-        return null;
-    });
+        .then((resposta) => {
+            if (resposta.ok) {
+                sessionStorage.SENHA_USUARIO = senhaNova;
+                Swal.fire("Sucesso", "Senha alterada com sucesso!", "success");
+            } else {
+                throw new Error("Erro ao alterar senha.");
+            }
+        })
+        .catch((error) => {
+            console.error(`#ERRO ao atualizar senha: ${error}`);
+            Swal.fire("Erro", "Não foi possível alterar a senha", "error");
+            return null;
+        });
 }
 
 
