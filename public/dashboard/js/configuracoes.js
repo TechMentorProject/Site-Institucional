@@ -151,6 +151,7 @@ async function mudarSenha() {
 
     if (dados == false) {
         Swal.fire("Senha anterior inválida")
+        Swal.fire("Senha anterior inválida")
     } else {
         if (tentativaSenha == "") {
             Swal.fire("Senha deve ser prenchida")
