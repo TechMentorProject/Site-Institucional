@@ -1,4 +1,4 @@
-// validar()
+validar()
 pegarNotificacoes()
 
 async function pegarDados() {

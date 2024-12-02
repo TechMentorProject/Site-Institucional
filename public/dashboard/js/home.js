@@ -1,8 +1,8 @@
 // validar()
 carregarHome()
 
-function carregarHome() {
-    pegarCargo()
+async function carregarHome() {
+    await pegarCargo()
     if (sessionStorage.EMPRESA == 'true') {
         carregarVisualEmpresa()
         carregarHomeEmpresa()
@@ -55,7 +55,7 @@ function carregarVisualEmpresa() {
             <div class="conteudo1">
                 <h2>Gerenciamento de Acessos</h2>
                 <div class="dashboard">
-                    <p>Acessos do Funcionário nos Últimos <select id="dias-grafico">
+                    <p>Acessos do Funcionário nos Últimos <select onChange="carregarHomeEmpresa()" id="dias-grafico">
                     <option value="7">7</option>
                     <option value="15">15</option>
                     <option value="30">30</option>
@@ -102,10 +102,12 @@ async function carregarHomeEmpresa() {
 
 async function pegarFuncionarios(dias) {
     let pessoas = await pegarDadosSemAcesso(dias)
-    for (var i = 0; i < pessoas.length; i++) {
+    let nomes = pessoas[0]
+    let cpfs = pessoas[1]
+    for (var i = 0; i < nomes.length; i++) {
         document.getElementById('perfis-funcionarios').innerHTML += `
         <div class="perfil">
-            <span>${pessoas[i].cpf} - ${pessoas[i].nome}</span>
+            <span>${cpfs} - ${nomes}</span>
         </div>`
     }
     // <div class="img-perfil"></div>
@@ -122,7 +124,7 @@ async function pegarDadosSemAcesso(dias) {
         .then(resposta => resposta.json())
         .then(res => {
             console.log(res)
-            return res.nomes
+            return [res.nomes, res.cpfs]
         })
         .catch(error => {
             console.log(`#ERRO ao buscar cobertura: ${error}`);
@@ -152,6 +154,8 @@ async function pegarDadosFuncionarios(dias) {
 
 
 function carregarGraficoFuncionarios(dados) {
+    alert('falta destruir gráfico')
+
     const ctxGrafico = document.getElementById('myChart');
     
     new Chart(ctxGrafico, {

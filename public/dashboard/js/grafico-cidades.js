@@ -1,5 +1,100 @@
-//validar()
-pegarDadosTabela()
+validar()
+validarAcessos()
+
+async function validarAcessos() {
+    if (sessionStorage.EMPRESA === "false") {
+        trocarFiltros(await pegarCargo())
+    }
+    pegarDadosTabela()
+}
+
+function trocarFiltros(dados) {
+    let acessos = dados[1]
+    let filtroEstado = '';
+    let filtroOperadora = '<option selected value="Todas">Todas</option>';
+    let estados = 0;
+    let operadoras = 0;
+
+    if (acessos.includes('ES')) {
+        filtroEstado += '<option value="Espírito Santo">ES</option>'
+        estados++;
+    }
+    if (acessos.includes('MG')) {
+        filtroEstado += '<option value="Minas Gerais">MG</option>'
+        estados++;
+    }
+    if (acessos.includes('PR')) {
+        filtroEstado += '<option value="Paraná">PR</option>'
+        estados++;
+    }
+    if (acessos.includes('RJ')) {
+        filtroEstado += '<option value="Rio de Janeiro">RJ</option>'
+        estados++;
+    }
+    if (acessos.includes('RS')) {
+        filtroEstado += '<option value="Rio Grande do Sul">RS</option>'
+        estados++;
+    }
+    if (acessos.includes('SC')) {
+        filtroEstado += '<option value="Santa Catarina">SC</option>'
+        estados++;
+    }
+    if (acessos.includes('SP')) {
+        filtroEstado += '<option value="São Paulo">SP</option>'
+        estados++;
+    }
+
+    if (estados == 1) {
+        alert('trocar select por campo estado')
+    } else {
+        document.getElementById('filtro-est').innerHTML = filtroEstado
+    }
+
+    if (acessos.includes('CLARO')) {
+        filtroOperadora += '<option value="CLARO">Claro</option>'
+        operadoras++;
+    }
+    if (acessos.includes('OI')) {
+        filtroOperadora += '<option value="OI">Oi</option>'
+        operadoras++;
+    }
+    if (acessos.includes('TIM')) {
+        filtroOperadora += '<option value="TIM">Tim</option>'
+        operadoras++;
+    }
+    if (acessos.includes('VIVO')) {
+        filtroOperadora += '<option value="VIVO">Vivo</option>'
+        operadoras++;
+    }
+
+    if (operadoras == 1) {
+        alert('trocar select por campo operadora')
+    } else {
+        document.getElementById('filtro-ope').innerHTML = filtroOperadora
+    }
+}
+
+async function pegarCargo() {
+    return fetch(`/usuarios/pegarCargoFuncionario`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            cpf: sessionStorage.CPF,
+            cnpj: sessionStorage.CNPJ
+        })        
+    })
+        .then(resposta => resposta.json())
+        .then(res => {
+            console.log(res)
+            return [res.nomeCargo, res.acessos]
+        })
+        .catch(error => {
+            console.log(`#ERRO ao buscar cargo: ${error}`);
+            return null;
+        });
+}
 
 async function pegarDadosTabela() {
     let estado = document.getElementById('filtro-est').value
@@ -37,7 +132,6 @@ async function buscarDadosTabela(estado, operadora, tecnologia) {
 async function carregarTabela(cidades, estados, coberturas, operadoras, tecnologias) {
     for (let i = 1; i <= 20; i++) {
         if (i <= cidades.length) {
-            console.log(i)
             document.getElementById('posicao' + (i)).innerHTML = (i) + "°";
             document.getElementById('estado' + (i)).innerHTML = estados[i-1];
             document.getElementById('cidade' + (i)).innerHTML = cidades[i-1];

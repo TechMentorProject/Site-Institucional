@@ -40,6 +40,17 @@ function pegarCargo(nomeCargo, cnpj) {
     return database.executar(instrucaoSql);
 }
 
+function pegarCargoFuncionario(cpf, cnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarCargoFuncionario(): ", cpf, cnpj)
+    var instrucaoSql = `
+        SELECT nomeCargo, acessos FROM cargo 
+        JOIN usuario ON cargo.nomeCargo = usuario.fkNomeCargo 
+        WHERE cpf = '${cpf}' AND cargo.fkCnpj = '${cnpj}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function pegarFuncionariosPorEmpresa(cnpj) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarFuncionariosPorEmpresa(): ", cnpj)
     var instrucaoSql = `
@@ -269,6 +280,7 @@ module.exports = {
     pegarUsuarioPorEmail,
     autenticarEmpresa,
     pegarCargo,
+    pegarCargoFuncionario,
     pegarFuncionariosPorEmpresa,
     pegarCargosPorEmpresa,
 
