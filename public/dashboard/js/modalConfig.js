@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     btnConfirmar.addEventListener("click", () => {
-        window.location.href = "./telaConfig.html";
+        window.location.href = "./configuracoes.html";
         modal.classList.add("hidden");
     });
 });

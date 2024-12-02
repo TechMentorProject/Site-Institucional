@@ -108,18 +108,20 @@ input {
 
 .container-button {
     width: 87%;
-    height: 10%;
+    height: auto;
     display: flex;
     justify-content: end;
     align-items: center;
+    margin-top: 10px;
 }
 
 .container-button-delete {
     width: 87%;
-    height: 10%;
+    height: auto;
     display: flex;
     justify-content: end;
     align-items: end;
+    margin-top: 10px;
 
     &.func{
         display: none;
@@ -238,6 +240,11 @@ input {
     background-size: cover;
     cursor: pointer;
     transition: transform 0.3s ease;
+    background-color: rgb(229, 229, 229);;
+}
+
+.hidden-input {
+    display: none;
 }
 
 .button-editar:hover {
@@ -259,6 +266,7 @@ input {
 }
 
 
+
 p {
     margin-top: 15px;
     margin-left: 20px;
@@ -271,7 +279,7 @@ p {
     background-color: #43BAFF;
 }
 
-button {
+button{
     border: none;
 }
 
