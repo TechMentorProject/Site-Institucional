@@ -22,6 +22,10 @@ router.post("/pegarCargo", function (req, res) {
     usuarioController.pegarCargo(req, res);
 });
 
+router.post("/pegarCargoFuncionario", function (req, res) {
+    usuarioController.pegarCargoFuncionario(req, res);
+});
+
 router.get("/pegarFuncionariosPorEmpresa/:cnpj", function (req, res) {
     usuarioController.pegarFuncionariosPorEmpresa(req, res);
 });

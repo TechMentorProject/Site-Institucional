@@ -16,21 +16,27 @@ async function editarCargo() {
     if (await document.getElementById('estado-rs-edit').checked) novosAcessos.push('RS');
     if (await document.getElementById('estado-sc-edit').checked) novosAcessos.push('SC');
     if (await document.getElementById('estado-sp-edit').checked) novosAcessos.push('SP');
-    if (await document.getElementById('operadora-claro-edit').checked) novosAcessos.push('CLARO');
-    if (await document.getElementById('operadora-oi-edit').checked) novosAcessos.push('OI');
-    if (await document.getElementById('operadora-tim-edit').checked) novosAcessos.push('TIM');
-    if (await document.getElementById('operadora-vivo-edit').checked) novosAcessos.push('VIVO');
-    let nomeNovo = await document.getElementById('cargo-name-edit').value
-    if (nomeNovo.length <= 2) {
-        alert('nome de cargo muito pequeno')
-        document.getElementById('edit-modal-container').style.display = 'none'
-    } else if (novosAcessos.length <= 0) {
-        alert('selecione um acesso pelo menos')
-        document.getElementById('edit-modal-container').style.display = 'none'
+    if (novosAcessos.length == 0) {
+        alert('pelo menos 1 estado')
     } else {
-        atualizarCargo(novosAcessos, nomeNovo)
-        document.getElementById('edit-modal-container').style.display = 'none'
-        criarNotificaoEmpresa(`O cargo ${nomeNovo} foi atualizado com sucesso!`, pegarDataAtual(), sessionStorage.CNPJ)
+        if (await document.getElementById('operadora-claro-edit').checked) novosAcessos.push('CLARO');
+        if (await document.getElementById('operadora-oi-edit').checked) novosAcessos.push('OI');
+        if (await document.getElementById('operadora-tim-edit').checked) novosAcessos.push('TIM');
+        if (await document.getElementById('operadora-vivo-edit').checked) novosAcessos.push('VIVO');
+        let nomeNovo = await document.getElementById('cargo-name-edit').value
+        if (nomeNovo.length <= 2) {
+            alert('nome de cargo muito pequeno')
+            document.getElementById('edit-modal-container').style.display = 'none'
+        } else if (novosAcessos.length <= 0) {
+            alert('selecione um acesso pelo menos')
+            document.getElementById('edit-modal-container').style.display = 'none'
+        } else {
+            atualizarCargo(novosAcessos, nomeNovo)
+            window.location.reload()
+            alert('atualizado')
+            document.getElementById('edit-modal-container').style.display = 'none'
+            criarNotificaoEmpresa(`O cargo ${nomeNovo} foi atualizado com sucesso!`, sessionStorage.CNPJ)
+        }
     }
 }
 
@@ -50,20 +56,17 @@ async function atualizarCargo(acessos, nomeNovo) {
         .then(resposta => resposta.json())
         .then(res => {
             console.log(res)
-            window.location.reload()
-            alert('atualizado')
             return
         })
         .catch(error => {
             console.log(`#ERRO ao atualizar cargos: ${error}`);
-            window.location.reload()
-            alert('erro na atualização')
             return null;
         });
 }
 
 async function exibirCargos() {
     let dados = await buscarCargos()
+    console.log(dados)
     let cargos = dados[0]
     let acessos = dados[1]
     let estadosAcesso = []
@@ -91,8 +94,6 @@ async function exibirCargos() {
             <h4>Permissões: ${estadosAcesso[i]}</h4>
         </div>
         <div class="edicao-exclusao">
-            <div onclick="abrirEditarCargo('${cargos[i]}')" class="edit-button"></div>
-            <div onclick="abrirExcluir('${cargos[i]}')" class="remove-button"></div>
             <div onclick="abrirEditarCargo('${cargos[i]}')" class="edit-button"></div>
             <div onclick="abrirExcluir('${cargos[i]}')" class="remove-button"></div>
         </div>
@@ -127,19 +128,23 @@ async function criarCargo() {
     if (await document.getElementById('estado-rs').checked) novosAcessos.push('RS');
     if (await document.getElementById('estado-sc').checked) novosAcessos.push('SC');
     if (await document.getElementById('estado-sp').checked) novosAcessos.push('SP');
-    if (await document.getElementById('operadora-claro').checked) novosAcessos.push('CLARO');
-    if (await document.getElementById('operadora-oi').checked) novosAcessos.push('OI');
-    if (await document.getElementById('operadora-tim').checked) novosAcessos.push('TIM');
-    if (await document.getElementById('operadora-vivo').checked) novosAcessos.push('VIVO');
-    let nomeNovo = await document.getElementById('adicionar-nome').value
-
-    if (nomeNovo.length <= 2) {
-        alert('nome de cargo muito pequeno')
-    } else if (novosAcessos.length <= 0) {
-        alert('selecione um acesso pelo menos')
+    if (novosAcessos.length == 0) {
+        alert('pelo menos 1 estado')
     } else {
-        cadastrarCargo(novosAcessos, nomeNovo)
-        criarNotificaoEmpresa(`O cargo ${nomeNovo} com os acessos: ${novosAcessos} foi criado com sucesso!`, pegarDataAtual(), sessionStorage.CNPJ)
+        if (await document.getElementById('operadora-claro').checked) novosAcessos.push('CLARO');
+        if (await document.getElementById('operadora-oi').checked) novosAcessos.push('OI');
+        if (await document.getElementById('operadora-tim').checked) novosAcessos.push('TIM');
+        if (await document.getElementById('operadora-vivo').checked) novosAcessos.push('VIVO');
+        let nomeNovo = await document.getElementById('adicionar-nome').value
+
+        if (nomeNovo.length <= 2) {
+            alert('nome de cargo muito pequeno')
+        } else if (novosAcessos.length <= 0) {
+            alert('selecione um acesso pelo menos')
+        } else {
+            cadastrarCargo(novosAcessos, nomeNovo)
+            criarNotificaoEmpresa(`O cargo ${nomeNovo} com os acessos: ${novosAcessos} foi criado com sucesso!`, sessionStorage.CNPJ)
+        }
     }
 }
 
@@ -189,7 +194,7 @@ function abrirExcluir(nome) {
     document.getElementById('remove-modal-container').style.display = 'flex'
 }
 
-function formatarData(dataInicial) {
+function formatarData(dataInicial, pattern = "yyyy-MM-dd") {
     const yyyy = dataInicial.getFullYear();
     const MM = String(dataInicial.getMonth() + 1).padStart(2, '0');
     const dd = String(dataInicial.getDate()).padStart(2, '0');
@@ -215,7 +220,7 @@ async function confirmarExcluir() {
         alert('deletado')
         window.location.reload()
         document.getElementById('remove-modal-container').style.display = 'none'
-        criarNotificaoEmpresa(`O cargo ${nomeAntigo} foi removido com sucesso!`, pegarDataAtual(), sessionStorage.CNPJ)
+        criarNotificaoEmpresa(`O cargo ${nomeAntigo} foi removido com sucesso!`, sessionStorage.CNPJ)
     } else {
         for (let i = 0; i < dados.nomes.length; i++) {
             usuariosNaoDeletados.push(dados.nomes[i])

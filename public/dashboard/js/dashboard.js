@@ -50,15 +50,14 @@ function carregarImagemPerfil() {
 
 }
 
-function criarNotificaoEmpresa(texto, dataCriacao, cnpj) {
-    fetch("/usuarios/adicionarParaEmpresa", {
+function criarNotificaoEmpresa(texto, cnpj) {
+    fetch("/notificacao/adicionarParaEmpresa", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
             texto: texto,
-            dataCriacao: dataCriacao,
             fkCnpj: cnpj
         }),
     })
