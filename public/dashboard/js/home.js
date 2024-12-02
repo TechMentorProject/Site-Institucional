@@ -1,4 +1,5 @@
 // validar()
+let grafico;
 carregarHome()
 
 async function carregarHome() {
@@ -152,13 +153,16 @@ async function pegarDadosFuncionarios(dias) {
         });
 }
 
-
 function carregarGraficoFuncionarios(dados) {
-    alert('falta destruir gráfico')
-
     const ctxGrafico = document.getElementById('myChart');
-    
-    new Chart(ctxGrafico, {
+
+    // Destrua o gráfico existente, se houver
+    if (grafico) {
+        grafico.destroy();
+    }
+
+    // Crie o novo gráfico e armazene na variável global
+    grafico = new Chart(ctxGrafico, {
         type: 'pie',
         data: {
             labels: ['Comparecido', 'Não compareceu'],
@@ -182,6 +186,7 @@ function carregarGraficoFuncionarios(dados) {
         }
     });
 }
+
 
 function destransformarCnpj(cnpj) {
     let posicao = cnpj.length - 8;
