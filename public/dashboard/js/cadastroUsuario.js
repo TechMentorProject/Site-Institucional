@@ -74,6 +74,9 @@ async function excluirUsuario() {
             popUpOk('remocao');
             console.log(res)
             document.getElementById('modal-container').style.display = 'none'
+            setInterval(() => {
+                window.location.reload();
+              }, 1500);
             return
         })
         .catch(error => {
