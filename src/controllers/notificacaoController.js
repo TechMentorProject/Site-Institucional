@@ -38,20 +38,15 @@ function pegarUltimas(req, res) {
 
 function adicionarParaEmpresa(req, res) {
     var texto = req.body.texto;
-    var dataCriacao = req.body.dataCriacao;
     var cnpj = req.body.fkCnpj;
     var paraEmpresa = 1;
-    let listaTextos = []
-    let listaDatas = []
 
     if (texto == undefined) {
         res.status(400).send("Seu texto está undefined!");
-    } else if (dataCriacao == undefined) {
-        res.status(400).send("Seu dataCriacao está undefined!");
     } else if (cnpj == undefined) {
         res.status(400).send("Seu cnpj está undefined!");
     } else {
-        notificacaoModel.adicionarParaEmpresa(texto, dataCriacao, cnpj, paraEmpresa)
+        notificacaoModel.adicionarParaEmpresa(texto, cnpj, paraEmpresa)
         .then(
             (resultado) => {
                 console.log(`\nResultados encontrados: ${resultado.length}`);

@@ -97,6 +97,35 @@ function pegarCargo(req, res) {
     }
 }
 
+function pegarCargoFuncionario(req, res) {
+    var cpf = req.body.cpf;
+    var cnpj = req.body.cnpj;
+
+    if (cpf == undefined) {
+        res.status(400).send("Seu cpf está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
+    } else {
+        usuarioModel.pegarCargoFuncionario(cpf, cnpj)
+            .then(
+                (resultado) => {
+                    if (resultado.length == 1) {
+                        console.log(`\nResultados encontrados: ${resultado.length}`);
+                        console.log(`Resultados: ${JSON.stringify(resultado)}`);
+                        res.status(200).json({
+                            nomeCargo: resultado[0].nomeCargo,
+                            acessos: resultado[0].acessos
+                        });
+                    } else {
+                        res.status(403).send("CPF ou CNPJ inválido!")
+                    }
+                }
+            ).catch(
+                console.log("Erro na busca de cargo")
+            );
+    }
+}
+
 function pegarFuncionariosPorEmpresa(req, res) {
     var cnpj = req.params.cnpj;
     let listaNomes = []
@@ -722,6 +751,7 @@ module.exports = {
     autenticarUsuario,
     autenticarEmpresa,
     pegarCargo,
+    pegarCargoFuncionario,
     pegarFuncionariosPorEmpresa,
     pegarCargosPorEmpresa,
 

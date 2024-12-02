@@ -49,9 +49,17 @@ function pegarFuncionariosAcesso(cnpj, data) {
 
 
 
+function pegarFuncionarios(cnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarFuncionarios(): ", cnpj)
+    var instrucaoSql = `
+        SELECT nomeUsuario, cpf FROM usuario WHERE usuario.fkCnpj = '${cnpj}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
-function pegarFuncionariosSemAcesso(cnpj, data) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarFuncionariosSemAcesso(): ", cnpj, data)
+function pegarFuncionariosComAcesso(cnpj, data) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarFuncionariosComAcesso(): ", cnpj, data)
     var instrucaoSql = `
         SELECT DISTINCT(usuario.cpf), usuario.nomeUsuario AS nome FROM usuario
         JOIN historico ON usuario.cpf = historico.fkCpf
@@ -67,5 +75,8 @@ module.exports = {
 
     pegarQuantidadeFuncionarios,
     pegarFuncionariosAcesso,
-    pegarFuncionariosSemAcesso
+
+    
+    pegarFuncionarios,
+    pegarFuncionariosComAcesso
 };

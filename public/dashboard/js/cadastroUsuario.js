@@ -127,7 +127,7 @@ async function atualizarUsuario() {
 async function exibirCargos(rota) {
     let cargos = await buscarCargos()
     for (var i = 0; i < cargos.length; i++) {
-        document.getElementById(rota).innerHTML = `
+        document.getElementById(rota).innerHTML += `
         <option value="${cargos[i]}">${cargos[i]}</option>`;
     }
 }
@@ -206,8 +206,8 @@ function validarSenha() {
 function validarCpf() {
     let cpf = document.getElementById('cpf-adicionar').value;
 
-    if (cpf.length !== 11) {
-        alert("CPF inválido. Deve conter 11 dígitos.");
+    if (cpf.length !== 14) {
+        alert("CPF inválido. Deve conter 14 dígitos.");
         return false;  
     }
 
