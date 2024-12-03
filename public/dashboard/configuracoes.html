@@ -140,9 +140,9 @@
                             <div class="container-image">
                                 <div id="imagem-perfil" class="box-image"></div>
                                 <div class="container-buttons">
-                                    <input type="file" id="upload-image" class="hidden-input">
+                                    <input type="file" id="upload-image" onchange="editarImagem()" class="hidden-input">
                                     <button class="button-editar"
-                                        onclick="document.getElementById('upload-image').click();"></button>
+                                        onclick="abrirImagem()"></button>
                                     <div class="button-excluir" onclick="excluirImagem()"></div>
                                 </div>
                             </div>

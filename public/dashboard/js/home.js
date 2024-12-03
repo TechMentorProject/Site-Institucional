@@ -1,6 +1,6 @@
-// validar()
-let grafico;
+validar()
 carregarHome()
+let grafico;
 
 async function carregarHome() {
     await pegarCargo()
@@ -96,12 +96,14 @@ function carregarVisualFuncionario() {
 
 
 async function carregarHomeEmpresa() {
+    document.getElementById('perfil').style.backgroundImage = `url("../assets/users/${await carregarImagemPerfil(true)}")`;
     let dados = await pegarDadosFuncionarios(await document.getElementById('dias-grafico').value)
     carregarGraficoFuncionarios(dados)
     pegarFuncionarios(await document.getElementById('dias-grafico').value)
 }
 
 async function pegarFuncionarios(dias) {
+    document.getElementById('perfis-funcionarios').innerHTML = ``
     let pessoas = await pegarDadosSemAcesso(dias)
     let nomes = pessoas[0]
     let cpfs = pessoas[1]
@@ -188,12 +190,6 @@ function carregarGraficoFuncionarios(dados) {
 }
 
 
-function destransformarCnpj(cnpj) {
-    let posicao = cnpj.length - 8;
-    return cnpj.substring(0, posicao) + "/" + cnpj.substring(posicao + 1);
-}
-
-
 
 
 
@@ -230,8 +226,7 @@ function destransformarCnpj(cnpj) {
 
 
 async function carregarDadosFunc() {
-    let imagem = await carregarImagemPerfil()
-    document.getElementById('perfil').backgroundImage = `url(../assets/${imagem})`;
+    document.getElementById('perfil').style.backgroundImage = `url("../assets/users/${await carregarImagemPerfil(false)}")`;
     pegarCargo()
     pegarDadosFunc()
 }
@@ -242,6 +237,11 @@ async function pegarDadosFunc() {
     document.getElementById('dado3').innerHTML = sessionStorage.NOME_CARGO || 'Cargo inválido'
     document.getElementById('email').innerHTML = sessionStorage.EMAIL_USUARIO || 'Email inválido'
     document.getElementById('dado4').innerHTML = sessionStorage.CPF || 'CPF inválido'
+}
+
+function destransformarCnpj(cnpj) {
+    let posicao = cnpj.length - 8;
+    return cnpj.substring(0, posicao) + "/" + cnpj.substring(posicao + 1);
 }
 
 function pegarDadosEmp() {
