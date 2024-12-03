@@ -13,7 +13,6 @@
 }
 
 .painel {
-    max-height: 80vh; 
     display: flex;
     flex-direction: column; 
     border-radius: 15px 15px 0 0;
@@ -26,6 +25,11 @@
     overflow-x: hidden;
 }
 
+.painel h1 {
+    font-size: 45px;
+    margin: 30px 0 0 61px;
+    width: fit-content;
+}
 
 .painel::-webkit-scrollbar {
     width: 1rem;
@@ -43,8 +47,6 @@
     border: 2px solid black;
 }
 
-
-
 .box-title {
     display: flex;
     height: 10vh;
@@ -60,7 +62,7 @@
     flex-direction: column; 
     width: 90%; 
     gap: 15px; 
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 
 .box-alerta {
@@ -100,7 +102,6 @@
     justify-content: flex-start; 
     align-items: flex-start;
     border-radius: 8px 8px 0 0; 
-    background-color: #e3d9d9;
     padding: 10px;
     box-sizing: border-box;
     height: 8rem;
