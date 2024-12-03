@@ -447,29 +447,35 @@ function excluirImagem() {
 
 
 function apagarConta() {
-    return fetch(`/usuarios/inativarEmpresa`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            cnpj: sessionStorage.CNPJ
-        })
-    })
-        .then((resposta) => {
-            if (resposta.ok) {
-                Swal.fire("Sucesso", "Conta deletada com sucesso!", "success");
-                deslogar()
-                return
-            } else {
-                console.error(`#ERRO ao deletar conta: ${error}`);
-                Swal.fire("Erro", "Não foi possível deletar conta", "error");
-                return
-            }
-        })
-        .catch((error) => {
-            console.error(`#ERRO ao deletar conta: ${error}`);
-            Swal.fire("Erro", "Erro ao deletar conta", "error");
-            return null;
-        });
+    // return fetch(`/usuarios/inativarEmpresa`, {
+    //     method: "DELETE",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //         cnpj: sessionStorage.CNPJ
+    //     })
+    // })
+    //     .then((resposta) => {
+    //         if (resposta.ok) {
+        Swal.fire({
+            title: "Confirmação",
+            text: `Realmente apagar a conta?`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+            cancelButtonText: "Não"
+});
+        //         return
+        //     } else {
+        //         console.error(`#ERRO ao deletar conta: ${error}`);
+        //         Swal.fire("Erro", "Não foi possível deletar conta", "error");
+        //         return
+        //     }
+        // })
+        // .catch((error) => {
+        //     console.error(`#ERRO ao deletar conta: ${error}`);
+        //     Swal.fire("Erro", "Erro ao deletar conta", "error");
+        //     return null;
+        // });
 }
