@@ -1,5 +1,5 @@
-// var ambiente_processo = 'producao';
-var ambiente_processo = 'desenvolvimento';
+var ambiente_processo = 'producao';
+// var ambiente_processo = 'desenvolvimento';
 
 // Se .:desenvolvimento:. você está se conectando ao banco local.
 // Se .:producao:. você está se conectando ao banco remoto.
