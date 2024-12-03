@@ -80,9 +80,7 @@ function carregarVisualFuncionario() {
     document.getElementById('painel-principal').className = "painel func"
     document.getElementById('painel-principal').innerHTML = `
     <h2 id="titulo-utlimas-mensagens" clas="titulo">Últimas mensagens</h2>
-    <div class="mensagens">
-        <div class="msg"></div>
-        <div class="msg"></div>
+    <div id="mensagens-notificacoes" class="mensagens">
     </div>
     <div class="permissoes">
         <h2>Permissões</h2>
@@ -226,7 +224,6 @@ function carregarGraficoFuncionarios(dados) {
 
 
 async function carregarDadosFunc() {
-    document.getElementById('perfil').style.backgroundImage = `url("../assets/users/${await carregarImagemPerfil(false)}")`;
     pegarCargo()
     pegarDadosFunc()
 }
@@ -252,7 +249,8 @@ function pegarDadosEmp() {
     document.getElementById('dado4').innerHTML = destransformarCnpj(sessionStorage.CNPJ) || 'CNPJ inválido'
 }
 
-function carregarHomeFuncionario() {
+async function carregarHomeFuncionario() {
+    document.getElementById('perfil').style.backgroundImage = `url("../assets/users/${await carregarImagemPerfil(false)}")`;
     pegarNotificacoesFunc()
     pegarPermissoes()
 }
@@ -266,6 +264,8 @@ function pegarPermissoes() {
     let acessos = sessionStorage.ACESSOS
     let estadosAcesso = []
     let estadosSemAcesso = []
+    let operadorasAcesso = []
+    let operadorasSemAcesso = []
 
     document.getElementById('lista-permissoes').innerHTML = `
         <li>Alertas</li>
@@ -304,10 +304,39 @@ function pegarPermissoes() {
         <li>Estado: ${estadosAcesso}</li>
         <li class="desativado">Estado: ${estadosSemAcesso}</li>`;
     }
+
+
+
+
+    if (acessos.includes('CLARO')) estadosAcesso.push('Claro');
+    else operadorasSemAcesso.push('Claro')
+    if (acessos.includes('OI')) operadorasAcesso.push('Oi');
+    else operadorasSemAcesso.push('Oi')
+    if (acessos.includes('VIVO')) operadorasAcesso.push('Vivo');
+    else operadorasSemAcesso.push('Vivo')
+    if (acessos.includes('TIM')) operadorasAcesso.push('Tim');
+    else operadorasSemAcesso.push('Tim')
+
+    if (operadorasAcesso.length == 4) {
+        document.getElementById('lista-permissoes').innerHTML += `
+        <li>Operadoras: ${operadorasAcesso}</li>`;
+    } else if (operadorasAcesso.length == 1) {
+        document.getElementById('lista-permissoes').innerHTML += `
+        <li>Operadora: ${operadorasAcesso}</li>
+        <li class="desativado">Operadoras: ${operadorasSemAcesso}</li>`;
+    } else if (operadorasAcesso.length == 3) {
+        document.getElementById('lista-permissoes').innerHTML += `
+        <li>Operadoras: ${operadorasAcesso}</li>
+        <li class="desativado">Operadora: ${operadorasSemAcesso}</li>`;
+    } else {
+        document.getElementById('lista-permissoes').innerHTML += `
+        <li>Operadora: ${operadorasAcesso}</li>
+        <li class="desativado">Operadora: ${operadorasSemAcesso}</li>`;
+    }
 }
 
 async function pegarUltimasMensagensFunc() {
-    return fetch(`/notificacao/pegarUltimas/${sessionStorage.CNPJ}`, {
+    return fetch(`/notificacao/pegarUltimasFuncionario/${sessionStorage.CNPJ}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -335,7 +364,7 @@ async function alterarMensagensFunc(dados) {
         tamanho = textos.length
     }
     for (let i = 0; i < tamanho; i++) {
-        document.getElementsByClassName('mensagens').innerHTML += `
+        document.getElementById('mensagens-notificacoes').innerHTML += `
             <div class="msg">
                 <img src="./assets/sino.png">
                 <div class="texto">
