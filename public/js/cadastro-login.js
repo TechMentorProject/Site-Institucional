@@ -35,7 +35,7 @@ function cadastrar() {
         erro_email.style = "font-weight: 700; color: red"
         erro_email.innerHTML = "E-mail deve ser prenchido";
         cadastroValido = false;
-    } else if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
+    } else if (emailVar.indexOf("@") == -1) {
         input_email.style.borderColor = "red";
         erro_email.style = "font-weight: 700; color: red"
         erro_email.innerHTML = "E-mail inválido";

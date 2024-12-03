@@ -51,7 +51,7 @@ async function pegarCargo() {
 
 function carregarVisualEmpresa() {
     document.getElementById('painel-principal').className = "painel empresa"
-    document.getElementById('painel-principal').innerHTML =`
+    document.getElementById('painel-principal').innerHTML = `
         <div class="box">
             <div class="conteudo1">
                 <h2>Gerenciamento de Acessos</h2>
@@ -78,7 +78,7 @@ function carregarVisualEmpresa() {
 
 function carregarVisualFuncionario() {
     document.getElementById('painel-principal').className = "painel func"
-    document.getElementById('painel-principal').innerHTML =`
+    document.getElementById('painel-principal').innerHTML = `
     <h2 id="titulo-utlimas-mensagens" clas="titulo">Últimas mensagens</h2>
     <div class="mensagens">
         <div class="msg"></div>
@@ -110,10 +110,10 @@ async function pegarFuncionarios(dias) {
     for (var i = 0; i < nomes.length; i++) {
         document.getElementById('perfis-funcionarios').innerHTML += `
         <div class="perfil">
-            <span>${cpfs} - ${nomes}</span>
+        <div class="img-perfil"></div>
+            <span>${nomes} <br> ${cpfs}</span>
         </div>`
     }
-    // <div class="img-perfil"></div>
 }
 
 async function pegarDadosSemAcesso(dias) {
@@ -154,7 +154,6 @@ async function pegarDadosFuncionarios(dias) {
             return null;
         });
 }
-
 
 function carregarGraficoFuncionarios(dados) {
     const ctxGrafico = document.getElementById('myChart');
@@ -242,7 +241,7 @@ async function pegarDadosFunc() {
 
 function destransformarCnpj(cnpj) {
     let posicao = cnpj.length - 8;
-    return cnpj.substring(0, posicao) + "/" + cnpj.substring(posicao + 1);
+    return cnpj.substring(0, posicao) + "/" + cnpj.substring(posicao + 1);
 }
 
 function pegarDadosEmp() {
@@ -273,21 +272,21 @@ function pegarPermissoes() {
         <li class="desativado">Gerenciamento de funcionários e cargos</li>
         <li>Gráficos de estados e cidades</li>
         <li class="desativado">Gerenciamento de acessos</li>`;
-    
+
     if (acessos.includes('SP')) estadosAcesso.push('SP');
-        else estadosSemAcesso.push('SP')
+    else estadosSemAcesso.push('SP')
     if (acessos.includes('MS')) estadosAcesso.push('MS');
-        else estadosSemAcesso.push('MS')
+    else estadosSemAcesso.push('MS')
     if (acessos.includes('MG')) estadosAcesso.push('MG');
-        else estadosSemAcesso.push('MG')
+    else estadosSemAcesso.push('MG')
     if (acessos.includes('RJ')) estadosAcesso.push('RJ');
-        else estadosSemAcesso.push('RJ')
+    else estadosSemAcesso.push('RJ')
     if (acessos.includes('ES')) estadosAcesso.push('ES');
-        else estadosSemAcesso.push('ES')
+    else estadosSemAcesso.push('ES')
     if (acessos.includes('RS')) estadosAcesso.push('RS');
-        else estadosSemAcesso.push('RS')
+    else estadosSemAcesso.push('RS')
     if (acessos.includes('PR')) estadosAcesso.push('PR');
-        else estadosSemAcesso.push('PR')
+    else estadosSemAcesso.push('PR')
 
     if (estadosAcesso.length == 7) {
         document.getElementById('lista-permissoes').innerHTML += `

@@ -82,7 +82,7 @@
 
 input {
     width: 90%;
-    height: 10%;
+    height: 25px;
     border-radius: 0.5rem;
     background-color: #e3e7e9;
     padding-left: 1rem;
@@ -385,4 +385,22 @@ input:focus {
 
 select {
     border-radius: 5px;
+    width: 100px;
+    text-align: center;
+}
+
+#user-form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
+    width: 90%;
+}
+
+#edit-user-form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
+    width: 90%;
 }
