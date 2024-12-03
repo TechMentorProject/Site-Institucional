@@ -3,7 +3,7 @@ var database = require("../database/config")
 function pegarUltimas(quantidade, fkCnpj) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarUltimas(): ", quantidade, fkCnpj)
     var instrucaoSql = `
-        SELECT texto, dataCriacao, paraEmpresa FROM notificacao 
+        SELECT texto, DATE_FORMAT(dataCriacao, '%d/%m/%y %H:%i') AS dataCriacao, paraEmpresa FROM notificacao 
         WHERE fkCnpj = '${fkCnpj}'
         ORDER BY dataCriacao DESC LIMIT ${quantidade};
     `;
@@ -14,7 +14,7 @@ function pegarUltimas(quantidade, fkCnpj) {
 function pegarUltimasFuncionario(quantidade, fkCnpj) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarUltimasFuncionario(): ", quantidade, fkCnpj)
     var instrucaoSql = `
-        SELECT texto, dataCriacao FROM notificacao 
+        SELECT texto, DATE_FORMAT(dataCriacao, '%d/%m/%y %H:%i') AS dataCriacao FROM notificacao 
         WHERE !paraEmpresa AND fkCnpj = '${fkCnpj}'
         ORDER BY dataCriacao DESC LIMIT ${quantidade};
     `;

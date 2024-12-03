@@ -88,7 +88,6 @@
             padding-top: 10px;
 
             .msg {
-                border: red solid 0.1px;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -106,7 +105,7 @@
                     border-radius: 15px;
                     display: flex;
                     align-items: center;
-                    font-size: 12px;
+                    font-size: 15px;
                     height: 100%;
                     width: 90%;
 

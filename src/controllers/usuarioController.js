@@ -678,29 +678,160 @@ function removerImagemUsuario(req, res) {
     }
 }
 
+
+
+
+
+
+
+
+
+
 function inativarEmpresa(req, res) {
     var cnpj = req.body.cnpj;
 
     if (cnpj == undefined) {
         res.status(400).send("Sua cnpj está undefined!");
     } else {
-        usuarioModel.inativarEmpresa(cnpj)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
+
+        usuarioModel.pegarUsuariosRemEmp(cnpj)
+            .then(resultado => {
+                if (resultado.length != 0) {
+
+                    for (let i = 0; i < resultado.length; i++) {
+                        usuarioModel.removerHistoricosRemEmp(resultado.cpf)
+                            .then(resultado10 => {
+
+                                usuarioModel.removerUsuariosRemEmp(resultado.cpf)
+                                    .then(resultado1 => {
+
+                                        if (resultado.length == i + 1) {
+                                            usuarioModel.pegarCargosRemEmp(cnpj)
+                                                .then(resultado2 => {
+
+                                                    if (resultado2.length != 0) {
+                                                        for (let i = 0; i < resultado2.length; i++) {
+                                                            usuarioModel.removerCargosRemEmp(cnpj)
+                                                                .then(resultado4 => {
+
+                                                                    if (resultado2.length == i + 1) {
+
+                                                                        usuarioModel.removerEmpresaRemEmp(cnpj)
+                                                                            .then(resultado6 => {
+                                                                                res.status(200)
+                                                                            }
+                                                                            ).catch(erro => {
+                                                                                console.log(erro, ' - ', erro.sqlMessage);
+                                                                                res.status(500).json(erro.sqlMessage);
+                                                                            });
+                                                                    }
+
+                                                                }
+                                                                ).catch(erro => {
+                                                                    console.log(erro, ' - ', erro.sqlMessage);
+                                                                    res.status(500).json(erro.sqlMessage);
+                                                                });
+                                                        }
+                                                    } else {
+
+                                                        usuarioModel.removerEmpresaRemEmp(cnpj)
+                                                            .then(resultado7 => {
+                                                                res.status(200)
+                                                            }
+                                                            ).catch(erro => {
+                                                                console.log(erro, ' - ', erro.sqlMessage);
+                                                                res.status(500).json(erro.sqlMessage);
+                                                            });
+
+                                                    }
+
+                                                }
+                                                ).catch(erro => {
+                                                    console.log(erro, ' - ', erro.sqlMessage);
+                                                    res.status(500).json(erro.sqlMessage);
+                                                });
+                                        }
+                                    }
+                                    ).catch(erro => {
+                                        console.log(erro, ' - ', erro.sqlMessage);
+                                        res.status(500).json(erro.sqlMessage);
+                                    });
+                            }
+                            ).catch(erro => {
+                                console.log(erro, ' - ', erro.sqlMessage);
+                                res.status(500).json(erro.sqlMessage);
+                            });
+                    }
+
+                } else {
+
+                    usuarioModel.pegarCargosRemEmp(cnpj)
+                        .then(resultado3 => {
+
+                            if (resultado3.length != 0) {
+                                for (let i = 0; i < resultado3.length; i++) {
+
+
+                                    usuarioModel.removerCargosRemEmp(cnpj)
+                                        .then(resultado5 => {
+
+                                            if (resultado3.length == i + 1) {
+
+                                                usuarioModel.removerEmpresaRemEmp(cnpj)
+                                                    .then(resultado8 => {
+                                                        res.status(200)
+                                                    }
+                                                    ).catch(erro => {
+                                                        console.log(erro, ' - ', erro.sqlMessage);
+                                                        res.status(500).json(erro.sqlMessage);
+                                                    });
+
+                                            }
+                                        }
+                                        ).catch(erro => {
+                                            console.log(erro, ' - ', erro.sqlMessage);
+                                            res.status(500).json(erro.sqlMessage);
+                                        });
+                                }
+                            } else {
+
+                                usuarioModel.removerEmpresaRemEmp(cnpj)
+                                    .then(resultado9 => {
+                                        res.status(200)
+                                    }
+                                    ).catch(erro => {
+                                        console.log(erro, ' - ', erro.sqlMessage);
+                                        res.status(500).json(erro.sqlMessage);
+                                    });
+
+                            }
+
+                        }
+                        ).catch(erro => {
+                            console.log(erro, ' - ', erro.sqlMessage);
+                            res.status(500).json(erro.sqlMessage);
+                        });
+
                 }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar a remoção! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+            }
+            ).catch(erro => {
+                console.log(erro, ' - ', erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 function removerImagemEmpresa(req, res) {
     var cnpj = req.body.cnpj;
@@ -761,7 +892,7 @@ function removerCargo(req, res) {
                         for (let i = 0; i < resultado.length; i++) {
                             listaNomes.push(resultado[i].nomeUsuario)
                         }
-                        
+
                         res.status(200).json({
                             nomes: listaNomes
                         });

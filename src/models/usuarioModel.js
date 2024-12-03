@@ -306,6 +306,95 @@ function salvarFotoEmpresa(imagem, cnpj) {
     return database.executar(instrucaoSql);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+function pegarUsuariosRemEmp(cnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarUsuariosRemEmp():", cnpj);
+
+    var instrucaoSql = `
+        SELECT cpf FROM usuario WHERE fkCnpj = '${cnpj}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function removerUsuariosRemEmp(cpf) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function removerUsuariosRemEmp():", cpf);
+
+    var instrucaoSql = `
+        DELETE FROM usuario WHERE cpf = '${cpf}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+
+
+function pegarCargosRemEmp(cnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarCargosRemEmp():", cnpj);
+
+    var instrucaoSql = `
+        SELECT nomeCargo FROM cargo WHERE fkCnpj = '${cnpj}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function removerCargosRemEmp(nomeCargo) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function removerCargosRemEmp():", nomeCargo);
+
+    var instrucaoSql = `
+        DELETE FROM cargo WHERE nomeCargo = '${nomeCargo}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+
+
+function removerHistoricosRemEmp(cpf) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function removerHistoricosRemEmp():", cpf);
+
+    var instrucaoSql = `
+        DELETE FROM historico WHERE fkCpf = '${cpf}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function removerEmpresaRemEmp(cnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function removerEmpresaRemEmp():", cnpj);
+
+    var instrucaoSql = `
+        DELETE FROM empresa WHERE cnpj = '${cnpj}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = {
     autenticarUsuario,
     pegarUsuarioPorEmail,
@@ -333,10 +422,16 @@ module.exports = {
     removerUsuario,
 
     removerImagemUsuario,
-    inativarEmpresa,
     removerImagemEmpresa,
     removerCargo,
 
     salvarFotoUsuario,
-    salvarFotoEmpresa
+    salvarFotoEmpresa,
+
+    pegarUsuariosRemEmp,
+    removerUsuariosRemEmp,
+    pegarCargosRemEmp,
+    removerCargosRemEmp,
+    removerHistoricosRemEmp,
+    removerEmpresaRemEmp
 };

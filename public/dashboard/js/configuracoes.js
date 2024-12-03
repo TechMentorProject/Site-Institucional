@@ -6,12 +6,12 @@ async function carregarDados() {
         document.getElementById('imagem-perfil').style.backgroundImage = `url("../assets/users/${await carregarImagemPerfil(false)}")`;
     } else {
         // Modo Empresa
+        document.getElementById('button-delete').innerHTML = '<button class="button-apagar-conta" onclick="apagarConta()">Apagar Conta</button>'
         document.getElementById('nome_empresa').value = sessionStorage.NOME_EMPRESA || '';
         document.getElementById('nome_responsavel').value = sessionStorage.NOME_USUARIO || '';
         document.getElementById('email_responsavel').value = sessionStorage.EMAIL_USUARIO || '';
         document.getElementById('imagem-perfil').style.backgroundImage = `url("../assets/users/${await carregarImagemPerfil(true)}")`;
     }
-    // Sempre carregar a imagem do perfil
 }
 
 carregarPagina();
@@ -441,4 +441,35 @@ function excluirImagem() {
                 return;
             });
     }
+}
+
+
+
+
+function apagarConta() {
+    return fetch(`/usuarios/inativarEmpresa`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            cnpj: sessionStorage.CNPJ
+        })
+    })
+        .then((resposta) => {
+            if (resposta.ok) {
+                Swal.fire("Sucesso", "Conta deletada com sucesso!", "success");
+                deslogar()
+                return
+            } else {
+                console.error(`#ERRO ao deletar conta: ${error}`);
+                Swal.fire("Erro", "Não foi possível deletar conta", "error");
+                return
+            }
+        })
+        .catch((error) => {
+            console.error(`#ERRO ao deletar conta: ${error}`);
+            Swal.fire("Erro", "Erro ao deletar conta", "error");
+            return null;
+        });
 }

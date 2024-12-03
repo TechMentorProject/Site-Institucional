@@ -186,7 +186,7 @@ function entrar() {
                             } else {
                                 popUpLogin();
 
-                                sessionStorage.EMPRESA = true;
+                                sessionStorage.EMPRESA = 'true';
                                 resposta.json().then((res) => {
                                     sessionStorage.NOME_USUARIO = res.nomeResponsavel
                                     sessionStorage.NOME_EMPRESA = res.nomeEmpresa
@@ -207,7 +207,7 @@ function entrar() {
                 } else {
                     popUpLogin();
 
-                    sessionStorage.EMPRESA = false;
+                    sessionStorage.EMPRESA = 'false';
                     resposta.json().then((res) => {
                         sessionStorage.NOME_USUARIO = res.nomeUsuario
                         sessionStorage.EMAIL_USUARIO = res.email;
