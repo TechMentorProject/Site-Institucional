@@ -187,9 +187,12 @@
                     scrollbar-color: #43BAFF #ffffff;
 
                     .perfil {
+                        background-color: #0000000e;
+                        border-radius: 10px;
                         width: 100%;
                         display: flex;
                         align-items: center;
+                        height: 15%;
 
                         span {
                             margin-left: 10px;
@@ -200,10 +203,14 @@
                         }
 
                         .img-perfil {
+                            background-image: url(../assets/ícone-conta.svg);
+                            background-repeat: no-repeat;
+                            background-size: cover;
                             flex-shrink: 0;
-                            width: 60px;
-                            height: 60px;
+                            width: 50px;
+                            height: 50px;
                             border-radius: 100%;
+                            margin-left: 10px;
                         }
                     }
                 }
