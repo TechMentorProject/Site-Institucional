@@ -70,8 +70,9 @@ async function excluirUsuario() {
         })
     })
         .then(resposta => resposta.json())
-        .then(res => {
+        .then(async res => {
             popUpOk('remocao');
+            await delay(1000);
             document.getElementById('modal-container').style.display = 'none'
             criarNotificaoEmpresa(`O funcionário ${document.getElementById('nome-adicionar').value} com o CPF ${document.getElementById('cpf-adicionar').value} foi removido com sucesso!`, sessionStorage.CNPJ)
             window.location.reload();
@@ -96,9 +97,7 @@ function fechar() {
     document.getElementById('edit-modal-container').style.display = 'none'
     document.getElementById('user-modal-container').style.display = 'none'
     document.getElementById('modal-container').style.display = 'none'
-    setInterval(() => {
-        window.location.href = '';
-      }, 1500);
+    window.location.reload();
 }
 
 async function atualizarUsuario() {
@@ -115,7 +114,9 @@ async function atualizarUsuario() {
         })
     })
         .then(resposta => resposta.json())
-        .then(res => {
+        .then(async res => {
+            popUpOk('atualizacao');
+            await delay(1000);
             console.log(res)
             criarNotificaoEmpresa(`O funcionário ${document.getElementById('nome-adicionar').value} com o CPF ${document.getElementById('cpf-adicionar').value} foi atualizado com sucesso!`, sessionStorage.CNPJ)
             window.location.reload()
@@ -169,6 +170,10 @@ async function cadastrarUsuario() {
         return;
     }
 
+    if (!validarEmail()) {
+        return;
+    }
+
     return fetch(`/usuarios/cadastrarUsuario`, {
         method: "POST",
         headers: {
@@ -184,8 +189,9 @@ async function cadastrarUsuario() {
         }),
     })
         .then(resposta => resposta.json())
-        .then(res => {
+        .then(async res => {
             popUpOk('cadastro')
+            await delay(1000);
             console.log(res)
             criarNotificaoEmpresa(`O funcionário ${document.getElementById('nome-adicionar').value} com o CPF ${document.getElementById('cpf-adicionar').value} foi criado com sucesso!`, sessionStorage.CNPJ)
             fechar()
@@ -221,6 +227,18 @@ function validarCpf() {
     return true;
 }
 
+function validarEmail() {
+    let email = document.getElementById('email-adicionar').value;
+
+    if (email.indexOf("@") == -1) {
+        popUpNotOk('email');
+        return false;
+    }
+
+    console.log(email)
+    return true;
+}
+
 function mascaraCpf(input) {
 
     let cpf = input.value.replace(/\D/g, "");
@@ -245,7 +263,11 @@ function popUpOk(tipo) {
     } else if (tipo == 'remocao') {
         mensagem = 'Usuário removido!'
 
+    } else if (tipo == 'atualizacao') {
+        mensagem = 'Usuário atualizado!'
+
     }
+
 
     const Toast = Swal.mixin({
         toast: true,
@@ -270,6 +292,10 @@ function popUpNotOk(tipo) {
     } else if (tipo == 'cpf') {
         mensagem = `CPF inválido.
         Deve conter 14 dígitos.`
+
+    } else if (tipo == 'email') {
+        mensagem = `E-mail inválido.
+        Deve conter @`
     }
 
     const Toast = Swal.mixin({
@@ -285,4 +311,9 @@ function popUpNotOk(tipo) {
         icon: "error",
         title: mensagem
     });
+}
+
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
