@@ -38,6 +38,7 @@ async function pegarDados() {
 }
 
 async function pegarNotificacoes() {
+    document.getElementById('container-alerta').innerHTML = ''
     if (sessionStorage.EMPRESA == 'false') {
         document.getElementsByClassName('container-alerta').innerHTML = ''
         alterarDadosFunc(await pegarDados())
@@ -54,7 +55,7 @@ function alterarDadosEmp(dados) {
 
     for (let i = 0; i < textos.length; i++) {
         if (paraEmpresas[i] == '0' || paraEmpresas[i] == 0) {
-            document.getElementsByClassName('container-alerta').innerHTML += `
+            document.getElementById('container-alerta').innerHTML += `
             <div class="box-alerta">
                 <div class="icon-alerta"></div>
                     <div class="box-mensagem">
@@ -65,7 +66,7 @@ function alterarDadosEmp(dados) {
                 </div>
             </div>`
         } else {
-            document.getElementsByClassName('container-alerta').innerHTML += `
+            document.getElementById('container-alerta').innerHTML += `
                 <div class="box-alerta">
                     <div class="icon-alerta"></div>
                         <div class="box-mensagem">
@@ -84,7 +85,7 @@ function alterarDadosFunc(dados) {
     let datas = dados[1]
 
     for (let i = 0; i < textos.length; i++) {
-        document.getElementsByClassName('container-alerta').innerHTML += `
+        document.getElementById('container-alerta').innerHTML += `
             <div class="box-alerta">
                 <div class="icon-alerta"></div>
                     <div class="box-mensagem">
